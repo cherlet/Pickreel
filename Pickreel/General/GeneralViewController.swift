@@ -1,6 +1,8 @@
 import UIKit
 
 protocol GeneralViewProtocol: AnyObject {
+    func showFilm()
+    func showSeries()
 }
 
 class GeneralViewController: UIViewController {
@@ -8,44 +10,50 @@ class GeneralViewController: UIViewController {
     
     // MARK: UI Elements
     private var filmCategoryLabel = UILabel()
-    private var tvCategoryLabel = UILabel()
+    private var seriesCategoryLabel = UILabel()
     private var filtersButton = UIButton()
     
     private var swipeView = UIView()
     private var posterSectionIndicator = UIView()
     private var descriptionSectionIndicator = UIView()
     
-    /*
-    private var posterSectionIndicator = UIView()
-    private var posterSectionView = UIView()
-    private var posterSectionName = UILabel()
-    private var posterSectionYear = UILabel()
-    private var posterSectionRating = UILabel()
-    private var posterSectionDuration = UILabel()
-    private var posterSectionDirector = UILabel()
-    
-    private var descriptionSectionIndicator = UIView()
-    private var descriptionSectionView = UIView()
-    */
-    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.viewLoaded()
         initialize()
     }
 }
 
+// MARK: Module
+extension GeneralViewController: GeneralViewProtocol {
+    func showFilm() {
+        guard filmCategoryLabel.textColor != ThemeColor.generalColor else { return }
+        print("film")
+        filmCategoryLabel.textColor = ThemeColor.generalColor
+        seriesCategoryLabel.textColor = ThemeColor.silentColor
+    }
+    
+    func showSeries() {
+        guard seriesCategoryLabel.textColor != ThemeColor.generalColor else { return }
+        print("series")
+        seriesCategoryLabel.textColor = ThemeColor.generalColor
+        filmCategoryLabel.textColor = ThemeColor.silentColor
+    }
+}
+
+// MARK: Setup
 private extension GeneralViewController {
     func initialize() {
         view.backgroundColor = ThemeColor.backgroundColor
+        setupLayout()
         setupCategories()
         setupFilters()
         setupSwipeView()
-        setupLayout()
     }
     
     func setupLayout() {
-        let uiElements = [filmCategoryLabel, tvCategoryLabel, filtersButton, swipeView]
+        let uiElements = [filmCategoryLabel, seriesCategoryLabel, filtersButton, swipeView]
         
         uiElements.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -63,8 +71,8 @@ private extension GeneralViewController {
             filmCategoryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             filmCategoryLabel.bottomAnchor.constraint(equalTo: swipeView.topAnchor, constant: -20),
             
-            tvCategoryLabel.leadingAnchor.constraint(equalTo: filmCategoryLabel.trailingAnchor, constant: 16),
-            tvCategoryLabel.centerYAnchor.constraint(equalTo: filmCategoryLabel.centerYAnchor),
+            seriesCategoryLabel.leadingAnchor.constraint(equalTo: filmCategoryLabel.trailingAnchor, constant: 16),
+            seriesCategoryLabel.centerYAnchor.constraint(equalTo: filmCategoryLabel.centerYAnchor),
             
             filtersButton.widthAnchor.constraint(equalToConstant: 24),
             filtersButton.heightAnchor.constraint(equalToConstant: 24),
@@ -77,10 +85,16 @@ private extension GeneralViewController {
         filmCategoryLabel.text = "Фильмы"
         filmCategoryLabel.textColor = ThemeColor.generalColor
         filmCategoryLabel.font = UIFont.systemFont(ofSize: 20)
+        filmCategoryLabel.isUserInteractionEnabled = true
+        let filmTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapFilmCategory))
+        filmCategoryLabel.addGestureRecognizer(filmTapGestureRecognizer)
         
-        tvCategoryLabel.text = "Сериалы"
-        tvCategoryLabel.textColor = ThemeColor.silentColor
-        tvCategoryLabel.font = UIFont.systemFont(ofSize: 20)
+        seriesCategoryLabel.text = "Сериалы"
+        seriesCategoryLabel.textColor = ThemeColor.silentColor
+        seriesCategoryLabel.font = UIFont.systemFont(ofSize: 20)
+        seriesCategoryLabel.isUserInteractionEnabled = true
+        let seriesTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapSeriesCategory))
+        seriesCategoryLabel.addGestureRecognizer(seriesTapGestureRecognizer)
     }
     
     func setupFilters() {
@@ -98,7 +112,14 @@ private extension GeneralViewController {
         descriptionSectionIndicator.backgroundColor = ThemeColor.contrastColor
         descriptionSectionIndicator.layer.cornerRadius = 2
     }
-}
+    
+    // MARK: Actions
+    @objc private func didTapFilmCategory() {
+        presenter?.didTapFilmCategory()
+    }
+    
+    @objc private func didTapSeriesCategory() {
+        presenter?.didTapSeriesCategory()
+    }
 
-extension GeneralViewController: GeneralViewProtocol {
 }

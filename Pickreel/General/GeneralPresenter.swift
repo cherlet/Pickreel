@@ -1,4 +1,7 @@
 protocol GeneralPresenterProtocol: AnyObject {
+    func viewLoaded()
+    func didTapFilmCategory()
+    func didTapSeriesCategory()
 }
 
 class GeneralPresenter {
@@ -13,4 +16,15 @@ class GeneralPresenter {
 }
 
 extension GeneralPresenter: GeneralPresenterProtocol {
+    func viewLoaded() {
+        interactor.loadContent()
+    }
+    
+    func didTapFilmCategory() {
+        view?.showFilm()
+    }
+    
+    func didTapSeriesCategory() {
+        view?.showSeries()
+    }
 }

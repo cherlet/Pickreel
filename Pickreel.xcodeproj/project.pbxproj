@@ -83,9 +83,9 @@
 		07CEF24A2B623CD700BF88BD /* Pickreel */ = {
 			isa = PBXGroup;
 			children = (
-				078016C12B63F5B900DCAF55 /* General */,
 				078016C02B63F58100DCAF55 /* API */,
 				07D1BD2B2B62425A004DED7E /* Application */,
+				078016C12B63F5B900DCAF55 /* General */,
 				07D1BD2C2B624268004DED7E /* Resources */,
 			);
 			path = Pickreel;

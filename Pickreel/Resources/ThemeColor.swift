@@ -5,6 +5,7 @@ struct ThemeColor {
     static let backgroundColor = UIColor.appColor(CustomColor.BackgroundColor)
     static let silentColor = UIColor.appColor(CustomColor.SilentColor)
     static let contrastColor = UIColor.appColor(CustomColor.ContrastColor)
+    static let oppColor = UIColor.appColor(CustomColor.OppColor)
 }
 
 enum CustomColor: String {
@@ -12,6 +13,7 @@ enum CustomColor: String {
     case BackgroundColor
     case SilentColor
     case ContrastColor
+    case OppColor
 }
 
 extension UIColor {

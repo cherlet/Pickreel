@@ -9,13 +9,13 @@ class GeneralViewController: UIViewController {
     var presenter: GeneralPresenterProtocol?
     
     // MARK: UI Elements
-    private var filmCategoryLabel = UILabel()
-    private var seriesCategoryLabel = UILabel()
-    private var filtersButton = UIButton()
+    private let filmCategoryLabel = UILabel()
+    private let seriesCategoryLabel = UILabel()
+    private let filtersButton = UIButton()
     
-    private var swipeView = UIView()
-    private var posterSectionIndicator = UIView()
-    private var descriptionSectionIndicator = UIView()
+    private let swipeView = UIView()
+    private let posterSectionIndicator = UIView()
+    private let descriptionSectionIndicator = UIView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {

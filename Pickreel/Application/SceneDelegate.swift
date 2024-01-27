@@ -8,10 +8,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let viewController = GeneralModuleBuilder.build()
+        let generalViewController = GeneralModuleBuilder.build()
+        let profileViewController = ProfileModuleBuilder.build()
+        let modules = (
+            general: generalViewController,
+            profile: profileViewController
+        )
+        let tabBarController = TabBarModuleBuilder.build(using: modules)
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = viewController
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
 

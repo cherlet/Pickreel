@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07946FD22B651A53001C4E7F /* ProfileModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FCD2B651A53001C4E7F /* ProfileModuleBuilder.swift */; };
+		07946FD32B651A53001C4E7F /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FCE2B651A53001C4E7F /* ProfilePresenter.swift */; };
+		07946FD42B651A53001C4E7F /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FCF2B651A53001C4E7F /* ProfileRouter.swift */; };
+		07946FD52B651A53001C4E7F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FD02B651A53001C4E7F /* ProfileViewController.swift */; };
+		07946FD62B651A53001C4E7F /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FD12B651A53001C4E7F /* ProfileInteractor.swift */; };
+		07946FDD2B651B6C001C4E7F /* TabBarModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FD82B651B6C001C4E7F /* TabBarModuleBuilder.swift */; };
+		07946FE02B651B6C001C4E7F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FDB2B651B6C001C4E7F /* TabBarController.swift */; };
 		07CEF24C2B623CD700BF88BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CEF24B2B623CD700BF88BD /* AppDelegate.swift */; };
 		07CEF24E2B623CD700BF88BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CEF24D2B623CD700BF88BD /* SceneDelegate.swift */; };
 		07CEF2552B623CDA00BF88BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07CEF2542B623CDA00BF88BD /* Assets.xcassets */; };
@@ -20,6 +27,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07946FCD2B651A53001C4E7F /* ProfileModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModuleBuilder.swift; sourceTree = "<group>"; };
+		07946FCE2B651A53001C4E7F /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		07946FCF2B651A53001C4E7F /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
+		07946FD02B651A53001C4E7F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		07946FD12B651A53001C4E7F /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
+		07946FD82B651B6C001C4E7F /* TabBarModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModuleBuilder.swift; sourceTree = "<group>"; };
+		07946FDB2B651B6C001C4E7F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		07CEF2482B623CD700BF88BD /* Pickreel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pickreel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07CEF24B2B623CD700BF88BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07CEF24D2B623CD700BF88BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +78,27 @@
 			path = General;
 			sourceTree = "<group>";
 		};
+		07946FCC2B651A06001C4E7F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				07946FCD2B651A53001C4E7F /* ProfileModuleBuilder.swift */,
+				07946FCE2B651A53001C4E7F /* ProfilePresenter.swift */,
+				07946FCF2B651A53001C4E7F /* ProfileRouter.swift */,
+				07946FD02B651A53001C4E7F /* ProfileViewController.swift */,
+				07946FD12B651A53001C4E7F /* ProfileInteractor.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		07946FD72B651B31001C4E7F /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				07946FD82B651B6C001C4E7F /* TabBarModuleBuilder.swift */,
+				07946FDB2B651B6C001C4E7F /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		07CEF23F2B623CD700BF88BD = {
 			isa = PBXGroup;
 			children = (
@@ -83,9 +118,11 @@
 		07CEF24A2B623CD700BF88BD /* Pickreel */ = {
 			isa = PBXGroup;
 			children = (
+				078016C12B63F5B900DCAF55 /* General */,
+				07946FCC2B651A06001C4E7F /* Profile */,
+				07946FD72B651B31001C4E7F /* TabBar */,
 				078016C02B63F58100DCAF55 /* API */,
 				07D1BD2B2B62425A004DED7E /* Application */,
-				078016C12B63F5B900DCAF55 /* General */,
 				07D1BD2C2B624268004DED7E /* Resources */,
 			);
 			path = Pickreel;
@@ -181,14 +218,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07946FD22B651A53001C4E7F /* ProfileModuleBuilder.swift in Sources */,
 				07ED003B2B63F70B00F0A143 /* GeneralModuleBuilder.swift in Sources */,
 				07ED00432B640E2700F0A143 /* ThemeColor.swift in Sources */,
 				07ED003E2B63F70B00F0A143 /* GeneralViewController.swift in Sources */,
 				07ED003D2B63F70B00F0A143 /* GeneralRouter.swift in Sources */,
 				07ED003F2B63F70B00F0A143 /* GeneralInteractor.swift in Sources */,
+				07946FD52B651A53001C4E7F /* ProfileViewController.swift in Sources */,
 				07ED003C2B63F70B00F0A143 /* GeneralPresenter.swift in Sources */,
+				07946FE02B651B6C001C4E7F /* TabBarController.swift in Sources */,
 				07CEF24C2B623CD700BF88BD /* AppDelegate.swift in Sources */,
+				07946FD32B651A53001C4E7F /* ProfilePresenter.swift in Sources */,
+				07946FD62B651A53001C4E7F /* ProfileInteractor.swift in Sources */,
+				07946FDD2B651B6C001C4E7F /* TabBarModuleBuilder.swift in Sources */,
 				07CEF24E2B623CD700BF88BD /* SceneDelegate.swift in Sources */,
+				07946FD42B651A53001C4E7F /* ProfileRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

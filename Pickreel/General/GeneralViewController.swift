@@ -28,15 +28,11 @@ class GeneralViewController: UIViewController {
 // MARK: Module
 extension GeneralViewController: GeneralViewProtocol {
     func showFilm() {
-        guard filmCategoryLabel.textColor != ThemeColor.generalColor else { return }
-        print("film")
         filmCategoryLabel.textColor = ThemeColor.generalColor
         seriesCategoryLabel.textColor = ThemeColor.silentColor
     }
     
     func showSeries() {
-        guard seriesCategoryLabel.textColor != ThemeColor.generalColor else { return }
-        print("series")
         seriesCategoryLabel.textColor = ThemeColor.generalColor
         filmCategoryLabel.textColor = ThemeColor.silentColor
     }

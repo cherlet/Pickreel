@@ -1,44 +1,45 @@
 protocol GeneralInteractorProtocol: AnyObject {
     func loadFilms()
     func loadSeries()
-    func prepareContent()
 }
 
 class GeneralInteractor: GeneralInteractorProtocol {
     weak var presenter: GeneralPresenterProtocol?
-    var iterator = 0
-    var data: [Item] = [] {
-        didSet {
-            iterator = 0
-        }
-    }
     
     func loadFilms() {
         ApiManager.shared.getFilms { [weak self] films in
-            self?.data = films
+            var data: [Content] = []
+            
+            for film in films {
+                let content = Content(name: film.nameRu,
+                                      year: film.year ?? 0,
+                                      rating: film.ratingKinopoisk ?? 0,
+                                      countries: film.countries.map { "\($0)" },
+                                      genres: film.genres.map { "\($0)"},
+                                      poster: film.posterURL ?? "")
+                data.append(content)
+            }
+            
+            self?.presenter?.didLoad(films: data)
         }
     }
     
     func loadSeries() {
         ApiManager.shared.getSeries { [weak self] series in
-            self?.data = series
+            var data: [Content] = []
+            
+            for tv in series {
+                let content = Content(name: tv.nameRu,
+                                      year: tv.year ?? 0,
+                                      rating: tv.ratingKinopoisk ?? 0,
+                                      countries: tv.countries.map { "\($0)" },
+                                      genres: tv.genres.map { "\($0)"},
+                                      poster: tv.posterURL ?? "")
+                data.append(content)
+            }
+            
+            self?.presenter?.didLoad(series: data)
         }
-    }
-    
-    func prepareContent() {
-        let current = data[iterator]
-        let countries = current.countries.map { "\($0)" }
-        let genres = current.genres.map { "\($0)"}
-        
-        let content = Content(name: current.nameRu,
-                              year: current.year ?? 0,
-                              rating: current.ratingKinopoisk ?? 0,
-                              countries: countries,
-                              genres: genres,
-                              poster: current.posterURL ?? "")
-        
-        presenter?.setContent(content)
-        iterator = iterator < data.count  ? 0 : iterator + 1
     }
 }
 

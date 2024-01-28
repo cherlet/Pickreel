@@ -13,7 +13,7 @@ class GeneralViewController: UIViewController {
     private let seriesCategoryLabel = UILabel()
     private let filtersButton = UIButton()
     
-    private let swipeView = UIView()
+    private let swipeView = UIImageView()
     private let posterSectionIndicator = UIView()
     private let descriptionSectionIndicator = UIView()
     
@@ -102,6 +102,13 @@ private extension GeneralViewController {
     }
     
     func setupSwipeView(content: Content) {
+        swipeView.contentMode = .scaleAspectFit
+        
+        if let url = URL(string: content.poster) {
+            swipeView.load(url: url)
+        } else {
+            // placeholder
+        }
     }
     
     // MARK: Actions
@@ -112,5 +119,19 @@ private extension GeneralViewController {
     @objc private func didTapSeriesCategory() {
         presenter?.didTapSeriesCategory()
     }
+}
 
+// MARK: UIImageView Extension
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
 }

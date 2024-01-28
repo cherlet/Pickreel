@@ -24,7 +24,6 @@ class TabBarController: UITabBarController {
 
 extension TabBarController {
     func initialize() {
-        tabBar.backgroundColor = ThemeColor.contrastColor?.withAlphaComponent(0.5)
         tabBar.tintColor = ThemeColor.generalColor
         tabBar.unselectedItemTintColor = ThemeColor.silentColor
     }

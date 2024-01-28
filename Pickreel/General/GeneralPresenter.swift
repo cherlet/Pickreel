@@ -1,8 +1,11 @@
+import Foundation
+
 protocol GeneralPresenterProtocol: AnyObject {
     func viewLoaded()
     func didTapFilmCategory()
     func didTapSeriesCategory()
-    func setContent(_ content: Content)
+    func didLoad(films: [Content])
+    func didLoad(series: [Content])
 }
 
 class GeneralPresenter {
@@ -11,7 +14,9 @@ class GeneralPresenter {
     var interactor: GeneralInteractorProtocol
     
     private var isFilmCategory = true
-    private var content = Content(name: "", year: 0, rating: 0, countries: [], genres: [], poster: "")
+    private var iterator = 0
+    private var films: [Content] = []
+    private var series: [Content] = []
 
     init(interactor: GeneralInteractorProtocol, router: GeneralRouterProtocol) {
         self.interactor = interactor
@@ -20,27 +25,34 @@ class GeneralPresenter {
 }
 
 extension GeneralPresenter: GeneralPresenterProtocol {
+    
     func viewLoaded() {
         interactor.loadFilms()
-        interactor.prepareContent()
-        view?.show(film: content)
+        interactor.loadSeries()
     }
     
     func didTapFilmCategory() {
         guard !isFilmCategory else { return }
-        interactor.loadFilms()
-        view?.show(film: content)
         isFilmCategory = true
+        iterator += 1
+        view?.show(film: films[iterator])
     }
     
     func didTapSeriesCategory() {
         guard isFilmCategory else { return }
-        interactor.loadSeries()
-        view?.show(series: content)
         isFilmCategory = false
+        iterator += 1
+        view?.show(series: series[iterator])
     }
     
-    func setContent(_ content: Content) {
-        self.content = content
+    func didLoad(films: [Content]) {
+        self.films = films
+        DispatchQueue.main.async {
+            self.view?.show(film: films[self.iterator])
+        }
+    }
+    
+    func didLoad(series: [Content]) {
+        self.series = series
     }
 }

@@ -1,8 +1,8 @@
 import UIKit
 
 protocol GeneralViewProtocol: AnyObject {
-    func showFilm()
-    func showSeries()
+    func show(film: Content)
+    func show(series: Content)
 }
 
 class GeneralViewController: UIViewController {
@@ -27,14 +27,18 @@ class GeneralViewController: UIViewController {
 
 // MARK: Module
 extension GeneralViewController: GeneralViewProtocol {
-    func showFilm() {
+    func show(film: Content) {
         filmCategoryLabel.textColor = ThemeColor.generalColor
         seriesCategoryLabel.textColor = ThemeColor.silentColor
+        
+        setupSwipeView(content: film)
     }
     
-    func showSeries() {
+    func show(series: Content) {
         seriesCategoryLabel.textColor = ThemeColor.generalColor
         filmCategoryLabel.textColor = ThemeColor.silentColor
+        
+        setupSwipeView(content: series)
     }
 }
 
@@ -45,7 +49,6 @@ private extension GeneralViewController {
         setupLayout()
         setupCategories()
         setupFilters()
-        setupSwipeView()
     }
     
     func setupLayout() {
@@ -98,15 +101,7 @@ private extension GeneralViewController {
         filtersButton.setImage(UIImage(systemName: "slider.horizontal.3"), for: .normal)
     }
     
-    func setupSwipeView() {
-        swipeView.backgroundColor = ThemeColor.contrastColor?.withAlphaComponent(0.5)
-        swipeView.layer.cornerRadius = 12
-        
-        posterSectionIndicator.backgroundColor = ThemeColor.oppColor
-        posterSectionIndicator.layer.cornerRadius = 2
-        
-        descriptionSectionIndicator.backgroundColor = ThemeColor.contrastColor
-        descriptionSectionIndicator.layer.cornerRadius = 2
+    func setupSwipeView(content: Content) {
     }
     
     // MARK: Actions

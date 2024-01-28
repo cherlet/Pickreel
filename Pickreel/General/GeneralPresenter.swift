@@ -2,6 +2,7 @@ protocol GeneralPresenterProtocol: AnyObject {
     func viewLoaded()
     func didTapFilmCategory()
     func didTapSeriesCategory()
+    func setContent(_ content: Content)
 }
 
 class GeneralPresenter {
@@ -10,6 +11,7 @@ class GeneralPresenter {
     var interactor: GeneralInteractorProtocol
     
     private var isFilmCategory = true
+    private var content = Content(name: "", year: 0, rating: 0, countries: [], genres: [], poster: "")
 
     init(interactor: GeneralInteractorProtocol, router: GeneralRouterProtocol) {
         self.interactor = interactor
@@ -19,18 +21,26 @@ class GeneralPresenter {
 
 extension GeneralPresenter: GeneralPresenterProtocol {
     func viewLoaded() {
-        interactor.loadContent()
+        interactor.loadFilms()
+        interactor.prepareContent()
+        view?.show(film: content)
     }
     
     func didTapFilmCategory() {
         guard !isFilmCategory else { return }
-        view?.showFilm()
+        interactor.loadFilms()
+        view?.show(film: content)
         isFilmCategory = true
     }
     
     func didTapSeriesCategory() {
         guard isFilmCategory else { return }
-        view?.showSeries()
+        interactor.loadSeries()
+        view?.show(series: content)
         isFilmCategory = false
+    }
+    
+    func setContent(_ content: Content) {
+        self.content = content
     }
 }

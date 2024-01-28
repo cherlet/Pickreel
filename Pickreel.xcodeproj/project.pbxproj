@@ -18,6 +18,8 @@
 		07CEF24E2B623CD700BF88BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CEF24D2B623CD700BF88BD /* SceneDelegate.swift */; };
 		07CEF2552B623CDA00BF88BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07CEF2542B623CDA00BF88BD /* Assets.xcassets */; };
 		07CEF2582B623CDA00BF88BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07CEF2562B623CDA00BF88BD /* LaunchScreen.storyboard */; };
+		07E04D7B2B6585E900F9867F /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E04D7A2B6585E900F9867F /* ApiManager.swift */; };
+		07E04D7D2B65920300F9867F /* Films.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E04D7C2B65920300F9867F /* Films.swift */; };
 		07ED003B2B63F70B00F0A143 /* GeneralModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ED00362B63F70B00F0A143 /* GeneralModuleBuilder.swift */; };
 		07ED003C2B63F70B00F0A143 /* GeneralPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ED00372B63F70B00F0A143 /* GeneralPresenter.swift */; };
 		07ED003D2B63F70B00F0A143 /* GeneralRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ED00382B63F70B00F0A143 /* GeneralRouter.swift */; };
@@ -40,6 +42,8 @@
 		07CEF2542B623CDA00BF88BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07CEF2572B623CDA00BF88BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07CEF2592B623CDA00BF88BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07E04D7A2B6585E900F9867F /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		07E04D7C2B65920300F9867F /* Films.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Films.swift; sourceTree = "<group>"; };
 		07ED00362B63F70B00F0A143 /* GeneralModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralModuleBuilder.swift; sourceTree = "<group>"; };
 		07ED00372B63F70B00F0A143 /* GeneralPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPresenter.swift; sourceTree = "<group>"; };
 		07ED00382B63F70B00F0A143 /* GeneralRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralRouter.swift; sourceTree = "<group>"; };
@@ -62,6 +66,8 @@
 		078016C02B63F58100DCAF55 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				07E04D792B6585C700F9867F /* Models */,
+				07E04D782B6585C000F9867F /* Services */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -148,6 +154,22 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		07E04D782B6585C000F9867F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				07E04D7A2B6585E900F9867F /* ApiManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		07E04D792B6585C700F9867F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				07E04D7C2B65920300F9867F /* Films.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -218,6 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07E04D7B2B6585E900F9867F /* ApiManager.swift in Sources */,
 				07946FD22B651A53001C4E7F /* ProfileModuleBuilder.swift in Sources */,
 				07ED003B2B63F70B00F0A143 /* GeneralModuleBuilder.swift in Sources */,
 				07ED00432B640E2700F0A143 /* ThemeColor.swift in Sources */,
@@ -230,6 +253,7 @@
 				07CEF24C2B623CD700BF88BD /* AppDelegate.swift in Sources */,
 				07946FD32B651A53001C4E7F /* ProfilePresenter.swift in Sources */,
 				07946FD62B651A53001C4E7F /* ProfileInteractor.swift in Sources */,
+				07E04D7D2B65920300F9867F /* Films.swift in Sources */,
 				07946FDD2B651B6C001C4E7F /* TabBarModuleBuilder.swift in Sources */,
 				07CEF24E2B623CD700BF88BD /* SceneDelegate.swift in Sources */,
 				07946FD42B651A53001C4E7F /* ProfileRouter.swift in Sources */,

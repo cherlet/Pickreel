@@ -6,6 +6,12 @@ struct ThemeColor {
     static let silentColor = UIColor.appColor(CustomColor.SilentColor)
     static let contrastColor = UIColor.appColor(CustomColor.ContrastColor)
     static let oppColor = UIColor.appColor(CustomColor.OppColor)
+    static let greenGradientFirst = UIColor.appColor(CustomColor.GreenGradientFirstColor)
+    static let greenGradientSecond = UIColor.appColor(CustomColor.GreenGradientSecondColor)
+    static let redGradientFirst = UIColor.appColor(CustomColor.RedGradientFirstColor)
+    static let redGradientSecond = UIColor.appColor(CustomColor.RedGradientSecondColor)
+    static let yellowGradientFirst = UIColor.appColor(CustomColor.YellowGradientFirstColor)
+    static let yellowGradientSecond = UIColor.appColor(CustomColor.YellowGradientSecondColor)
 }
 
 enum CustomColor: String {
@@ -14,10 +20,10 @@ enum CustomColor: String {
     case SilentColor
     case ContrastColor
     case OppColor
-}
-
-extension UIColor {
-    static func appColor(_ name: CustomColor) -> UIColor! {
-        return UIColor(named: name.rawValue)
-    }
+    case GreenGradientFirstColor
+    case GreenGradientSecondColor
+    case RedGradientFirstColor
+    case RedGradientSecondColor
+    case YellowGradientFirstColor
+    case YellowGradientSecondColor
 }

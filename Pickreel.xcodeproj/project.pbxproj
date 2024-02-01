@@ -29,6 +29,11 @@
 		07ED003E2B63F70B00F0A143 /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ED00392B63F70B00F0A143 /* GeneralViewController.swift */; };
 		07ED003F2B63F70B00F0A143 /* GeneralInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ED003A2B63F70B00F0A143 /* GeneralInteractor.swift */; };
 		07ED00432B640E2700F0A143 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ED00422B640E2700F0A143 /* ThemeColor.swift */; };
+		07F6DD8C2B6BF177001F9DB3 /* FiltersModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F6DD872B6BF177001F9DB3 /* FiltersModuleBuilder.swift */; };
+		07F6DD8D2B6BF177001F9DB3 /* FiltersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F6DD882B6BF177001F9DB3 /* FiltersPresenter.swift */; };
+		07F6DD8E2B6BF177001F9DB3 /* FiltersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F6DD892B6BF177001F9DB3 /* FiltersRouter.swift */; };
+		07F6DD8F2B6BF177001F9DB3 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F6DD8A2B6BF177001F9DB3 /* FiltersViewController.swift */; };
+		07F6DD902B6BF177001F9DB3 /* FiltersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F6DD8B2B6BF177001F9DB3 /* FiltersInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +61,11 @@
 		07ED00392B63F70B00F0A143 /* GeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
 		07ED003A2B63F70B00F0A143 /* GeneralInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInteractor.swift; sourceTree = "<group>"; };
 		07ED00422B640E2700F0A143 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
+		07F6DD872B6BF177001F9DB3 /* FiltersModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersModuleBuilder.swift; sourceTree = "<group>"; };
+		07F6DD882B6BF177001F9DB3 /* FiltersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersPresenter.swift; sourceTree = "<group>"; };
+		07F6DD892B6BF177001F9DB3 /* FiltersRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersRouter.swift; sourceTree = "<group>"; };
+		07F6DD8A2B6BF177001F9DB3 /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
+		07F6DD8B2B6BF177001F9DB3 /* FiltersInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +150,7 @@
 		07CEF24A2B623CD700BF88BD /* Pickreel */ = {
 			isa = PBXGroup;
 			children = (
+				07F6DD862B6BF161001F9DB3 /* Filters */,
 				078016C12B63F5B900DCAF55 /* General */,
 				07946FCC2B651A06001C4E7F /* Profile */,
 				07946FD72B651B31001C4E7F /* TabBar */,
@@ -185,6 +196,18 @@
 				07E04D7C2B65920300F9867F /* Films.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		07F6DD862B6BF161001F9DB3 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				07F6DD872B6BF177001F9DB3 /* FiltersModuleBuilder.swift */,
+				07F6DD882B6BF177001F9DB3 /* FiltersPresenter.swift */,
+				07F6DD892B6BF177001F9DB3 /* FiltersRouter.swift */,
+				07F6DD8A2B6BF177001F9DB3 /* FiltersViewController.swift */,
+				07F6DD8B2B6BF177001F9DB3 /* FiltersInteractor.swift */,
+			);
+			path = Filters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,15 +282,19 @@
 			files = (
 				070827002B6AB89E00D10341 /* UIColor.extension.swift in Sources */,
 				07E04D7B2B6585E900F9867F /* ApiManager.swift in Sources */,
+				07F6DD902B6BF177001F9DB3 /* FiltersInteractor.swift in Sources */,
 				07946FD22B651A53001C4E7F /* ProfileModuleBuilder.swift in Sources */,
+				07F6DD8C2B6BF177001F9DB3 /* FiltersModuleBuilder.swift in Sources */,
 				07ED003B2B63F70B00F0A143 /* GeneralModuleBuilder.swift in Sources */,
 				07ED00432B640E2700F0A143 /* ThemeColor.swift in Sources */,
+				07F6DD8E2B6BF177001F9DB3 /* FiltersRouter.swift in Sources */,
 				07ED003E2B63F70B00F0A143 /* GeneralViewController.swift in Sources */,
 				07ED003D2B63F70B00F0A143 /* GeneralRouter.swift in Sources */,
 				07ED003F2B63F70B00F0A143 /* GeneralInteractor.swift in Sources */,
 				07946FD52B651A53001C4E7F /* ProfileViewController.swift in Sources */,
 				070827052B6ABACC00D10341 /* UIView.extension.swift in Sources */,
 				07ED003C2B63F70B00F0A143 /* GeneralPresenter.swift in Sources */,
+				07F6DD8D2B6BF177001F9DB3 /* FiltersPresenter.swift in Sources */,
 				07946FE02B651B6C001C4E7F /* TabBarController.swift in Sources */,
 				07CEF24C2B623CD700BF88BD /* AppDelegate.swift in Sources */,
 				07946FD32B651A53001C4E7F /* ProfilePresenter.swift in Sources */,
@@ -276,6 +303,7 @@
 				07946FDD2B651B6C001C4E7F /* TabBarModuleBuilder.swift in Sources */,
 				07CEF24E2B623CD700BF88BD /* SceneDelegate.swift in Sources */,
 				07946FD42B651A53001C4E7F /* ProfileRouter.swift in Sources */,
+				07F6DD8F2B6BF177001F9DB3 /* FiltersViewController.swift in Sources */,
 				070827022B6AB8AE00D10341 /* UIImageView.extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

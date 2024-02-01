@@ -18,8 +18,6 @@ class GeneralViewController: UIViewController {
     private let name = UILabel()
     private let year = UILabel()
     private let rating = UILabel()
-    private let posterSectionIndicator = UIView()
-    private let descriptionSectionIndicator = UIView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -102,7 +100,7 @@ private extension GeneralViewController {
             swipeView.addSubview($0)
         }
         
-        NSLayoutConstraint.activate([ // in this block i building the interface from the bottom up
+        NSLayoutConstraint.activate([ // building interface from bottom up
             ratingIcon.bottomAnchor.constraint(equalTo: swipeView.bottomAnchor, constant: -48),
             ratingIcon.leadingAnchor.constraint(equalTo: swipeView.leadingAnchor, constant: 16),
             
@@ -144,7 +142,10 @@ private extension GeneralViewController {
     
     func setupFilters() {
         filtersButton.tintColor = ThemeColor.oppColor
-        filtersButton.setImage(UIImage(systemName: "slider.horizontal.3"), for: .normal)
+        let config = UIImage.SymbolConfiguration(pointSize: 24)
+        let image = UIImage(systemName: "slider.horizontal.3", withConfiguration: config)
+        filtersButton.setImage(image, for: .normal)
+        filtersButton.addTarget(self, action: #selector(didTapFiltersButton), for: .touchUpInside)
     }
     
     func setupSwipeView(content: Content) {
@@ -189,5 +190,9 @@ private extension GeneralViewController {
     
     @objc private func didTapSeriesCategory() {
         presenter?.didTapSeriesCategory()
+    }
+    
+    @objc private func didTapFiltersButton() {
+        presenter?.didTapFiltersButton()
     }
 }

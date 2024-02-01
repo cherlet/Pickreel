@@ -17,8 +17,8 @@ enum ApiType {
     
     var path: String {
         switch self {
-        case .getFilms: return "api/v2.2/films?type=FILM&order=NUM_VOTE&ratingFrom=8"
-        case .getSeries: return "api/v2.2/films?type=TV_SERIES&order=NUM_VOTE&ratingFrom=8"
+        case .getFilms: return "api/v2.2/films?type=FILM&order=NUM_VOTE"
+        case .getSeries: return "api/v2.2/films?type=TV_SERIES&order=NUM_VOTE"
         case .getStaff: return "api/v1/staff"
         }
     }

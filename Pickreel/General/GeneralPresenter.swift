@@ -4,6 +4,7 @@ protocol GeneralPresenterProtocol: AnyObject {
     func viewLoaded()
     func didTapFilmCategory()
     func didTapSeriesCategory()
+    func didTapFiltersButton()
     func didLoad(films: [Content])
     func didLoad(series: [Content])
 }
@@ -43,6 +44,10 @@ extension GeneralPresenter: GeneralPresenterProtocol {
         isFilmCategory = false
         iterator += 1
         view?.show(series: series[iterator])
+    }
+    
+    func didTapFiltersButton() {
+        router.openFilters()
     }
     
     func didLoad(films: [Content]) {

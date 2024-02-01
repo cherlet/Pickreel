@@ -38,14 +38,14 @@ extension GeneralViewController: GeneralViewProtocol {
         filmCategoryLabel.textColor = ThemeColor.generalColor
         seriesCategoryLabel.textColor = ThemeColor.silentColor
         
-        setupSwipeView(content: film)
+        updateSwipeView(content: film)
     }
     
     func show(series: Content) {
         seriesCategoryLabel.textColor = ThemeColor.generalColor
         filmCategoryLabel.textColor = ThemeColor.silentColor
         
-        setupSwipeView(content: series)
+        updateSwipeView(content: series)
     }
 }
 
@@ -53,9 +53,10 @@ extension GeneralViewController: GeneralViewProtocol {
 private extension GeneralViewController {
     func initialize() {
         view.backgroundColor = ThemeColor.backgroundColor
-        setupLayout()
+        setupSwipeView()
         setupCategories()
         setupFilters()
+        setupLayout()
     }
     
     func setupLayout() {
@@ -127,14 +128,14 @@ private extension GeneralViewController {
     func setupCategories() {
         filmCategoryLabel.text = "Фильмы"
         filmCategoryLabel.textColor = ThemeColor.generalColor
-        filmCategoryLabel.font = UIFont.systemFont(ofSize: 20)
+        filmCategoryLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         filmCategoryLabel.isUserInteractionEnabled = true
         let filmTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapFilmCategory))
         filmCategoryLabel.addGestureRecognizer(filmTapGestureRecognizer)
         
         seriesCategoryLabel.text = "Сериалы"
         seriesCategoryLabel.textColor = ThemeColor.silentColor
-        seriesCategoryLabel.font = UIFont.systemFont(ofSize: 20)
+        seriesCategoryLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         seriesCategoryLabel.isUserInteractionEnabled = true
         let seriesTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapSeriesCategory))
         seriesCategoryLabel.addGestureRecognizer(seriesTapGestureRecognizer)
@@ -148,25 +149,23 @@ private extension GeneralViewController {
         filtersButton.addTarget(self, action: #selector(didTapFiltersButton), for: .touchUpInside)
     }
     
-    func setupSwipeView(content: Content) {
-        name.text = content.name
+    func setupSwipeView() {
         name.font = UIFont.systemFont(ofSize: 36, weight: .bold)
         name.numberOfLines = 0
-        
-        year.text = String(content.year)
         year.font = UIFont.systemFont(ofSize: 20)
-        
-        rating.text = String(content.rating)
         rating.font = UIFont.systemFont(ofSize: 20)
-        
         [name, year, rating].forEach {
             $0.textColor = .white
         }
-        
         swipeView.layer.cornerRadius = 16
-        
         swipeImage.layer.cornerRadius = 16
         swipeImage.clipsToBounds = true
+    }
+    
+    func updateSwipeView(content: Content) {
+        name.text = content.name
+        year.text = String(content.year)
+        rating.text = String(content.rating)
         
         if let url = URL(string: content.poster) {
             swipeImage.load(url: url)

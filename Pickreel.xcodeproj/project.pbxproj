@@ -34,6 +34,7 @@
 		07F6DD8E2B6BF177001F9DB3 /* FiltersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F6DD892B6BF177001F9DB3 /* FiltersRouter.swift */; };
 		07F6DD8F2B6BF177001F9DB3 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F6DD8A2B6BF177001F9DB3 /* FiltersViewController.swift */; };
 		07F6DD902B6BF177001F9DB3 /* FiltersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F6DD8B2B6BF177001F9DB3 /* FiltersInteractor.swift */; };
+		07F6DD932B6C2A8B001F9DB3 /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 07F6DD922B6C2A8B001F9DB3 /* MultiSlider */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F6DD932B6C2A8B001F9DB3 /* MultiSlider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +228,9 @@
 			dependencies = (
 			);
 			name = Pickreel;
+			packageProductDependencies = (
+				07F6DD922B6C2A8B001F9DB3 /* MultiSlider */,
+			);
 			productName = Pickreel;
 			productReference = 07CEF2482B623CD700BF88BD /* Pickreel.app */;
 			productType = "com.apple.product-type.application";
@@ -254,6 +259,9 @@
 				Base,
 			);
 			mainGroup = 07CEF23F2B623CD700BF88BD;
+			packageReferences = (
+				07F6DD912B6C2A8B001F9DB3 /* XCRemoteSwiftPackageReference "MultiSlider" */,
+			);
 			productRefGroup = 07CEF2492B623CD700BF88BD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -525,6 +533,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		07F6DD912B6C2A8B001F9DB3 /* XCRemoteSwiftPackageReference "MultiSlider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yonat/MultiSlider";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		07F6DD922B6C2A8B001F9DB3 /* MultiSlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 07F6DD912B6C2A8B001F9DB3 /* XCRemoteSwiftPackageReference "MultiSlider" */;
+			productName = MultiSlider;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 07CEF2402B623CD700BF88BD /* Project object */;
 }

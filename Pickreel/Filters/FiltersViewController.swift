@@ -1,6 +1,9 @@
 import UIKit
+import MultiSlider
 
 protocol FiltersViewProtocol: AnyObject {
+    func update(years: (Int, Int))
+    func update(ratings: (Double, Double))
 }
 
 class FiltersViewController: UIViewController {
@@ -8,33 +11,58 @@ class FiltersViewController: UIViewController {
 
     // MARK: UI Elements
     private let headerLabel = UILabel()
+    private let yearFilterLabel = UILabel()
+    private let yearValueLabel = UILabel()
+    private let yearSlider = MultiSlider()
+    private let ratingFilterLabel = UILabel()
+    private let ratingValueLabel = UILabel()
+    private let ratingSlider = MultiSlider()
     private let countriesFilterLabel = UILabel()
     private let genresFilterLabel = UILabel()
-    private let yearFilterLabel = UILabel()
-    private let ratingFilterLabel = UILabel()
 
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.viewLoaded()
         initialize()
     }
 }
 
 // MARK: Module 
 extension FiltersViewController: FiltersViewProtocol {
+    func update(years: (Int, Int)) {
+        DispatchQueue.main.async {
+            self.yearValueLabel.text = "\(years.0) - \(years.1)"
+        }
+    }
+    
+    func update(ratings: (Double, Double)) {
+        DispatchQueue.main.async {
+            self.ratingValueLabel.text = "\(ratings.0) - \(ratings.1)"
+        }
+    }
 }
 
 // MARK: Setup
 private extension FiltersViewController {
     func initialize() {
         view.backgroundColor = ThemeColor.backgroundColor
+        setupSliders()
         setupSectionLabels()
         setupLayout()
     }
     
     func setupLayout() {
-        let sectionLabels = [headerLabel, yearFilterLabel, ratingFilterLabel, countriesFilterLabel, genresFilterLabel]
-        sectionLabels.forEach {
+        let yearStack = UIStackView(arrangedSubviews: [yearFilterLabel, yearValueLabel])
+        let ratingStack = UIStackView(arrangedSubviews: [ratingFilterLabel, ratingValueLabel])
+        
+        [yearStack, ratingStack].forEach {
+            $0.axis = .horizontal
+            $0.distribution = .equalSpacing
+        }
+        
+        let uiElements = [headerLabel, yearStack, yearSlider, ratingStack, ratingSlider, countriesFilterLabel, genresFilterLabel]
+        uiElements.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
@@ -43,18 +71,51 @@ private extension FiltersViewController {
             headerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 32),
             headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             
-            yearFilterLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 16),
-            yearFilterLabel.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor),
+            yearStack.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 16),
+            yearStack.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor),
+            yearStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
-            ratingFilterLabel.topAnchor.constraint(equalTo: yearFilterLabel.bottomAnchor, constant: 16),
-            ratingFilterLabel.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor),
+            yearSlider.topAnchor.constraint(equalTo: yearStack.bottomAnchor, constant: 8),
+            yearSlider.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            yearSlider.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            countriesFilterLabel.topAnchor.constraint(equalTo: ratingFilterLabel.bottomAnchor, constant: 16),
+            ratingStack.topAnchor.constraint(equalTo: yearSlider.bottomAnchor, constant: 16),
+            ratingStack.leadingAnchor.constraint(equalTo: yearStack.leadingAnchor),
+            ratingStack.trailingAnchor.constraint(equalTo: yearStack.trailingAnchor),
+            
+            ratingSlider.topAnchor.constraint(equalTo: ratingStack.bottomAnchor, constant: 8),
+            ratingSlider.leadingAnchor.constraint(equalTo: yearSlider.leadingAnchor),
+            ratingSlider.trailingAnchor.constraint(equalTo: yearSlider.trailingAnchor),
+            
+            countriesFilterLabel.topAnchor.constraint(equalTo: ratingSlider.bottomAnchor, constant: 16),
             countriesFilterLabel.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor),
             
             genresFilterLabel.topAnchor.constraint(equalTo: countriesFilterLabel.bottomAnchor, constant: 16),
             genresFilterLabel.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor),
         ])
+    }
+    
+    func setupSliders() {
+        yearSlider.minimumValue = 1930
+        yearSlider.maximumValue = 2030
+        yearSlider.value = [1930, 2030]
+        yearSlider.snapStepSize = 1
+        yearSlider.outerTrackColor = ThemeColor.contrastColor
+        yearSlider.orientation = .horizontal
+        yearSlider.tintColor = ThemeColor.generalColor?.withAlphaComponent(0.5)
+        yearSlider.thumbTintColor = .white
+        yearSlider.hasRoundTrackEnds = true
+        yearSlider.addTarget(self, action: #selector(yearSliderChanged), for: .valueChanged)
+        
+        ratingSlider.minimumValue = 0
+        ratingSlider.maximumValue = 10
+        ratingSlider.value = [0, 10]
+        yearSlider.snapStepSize = 0.1
+        ratingSlider.outerTrackColor = ThemeColor.contrastColor
+        ratingSlider.orientation = .horizontal
+        ratingSlider.tintColor = ThemeColor.generalColor?.withAlphaComponent(0.5)
+        ratingSlider.thumbTintColor = .white
+        ratingSlider.addTarget(self, action: #selector(ratingSliderChanged), for: .valueChanged)
     }
     
     func setupSectionLabels() {
@@ -67,9 +128,17 @@ private extension FiltersViewController {
         countriesFilterLabel.text = "Страна:"
         genresFilterLabel.text = "Жанр:"
         
-        [yearFilterLabel, ratingFilterLabel, countriesFilterLabel, genresFilterLabel].forEach {
+        [yearFilterLabel, yearValueLabel, ratingFilterLabel, ratingValueLabel, countriesFilterLabel, genresFilterLabel].forEach {
             $0.font = UIFont.systemFont(ofSize: 20)
-            $0.textColor = ThemeColor.contrastColor
+            $0.textColor = ThemeColor.oppColor?.withAlphaComponent(0.5)
         }
+    }
+    
+    @objc func yearSliderChanged(slider: MultiSlider) {
+        presenter?.yearSliderChanged(slider: slider)
+    }
+    
+    @objc func ratingSliderChanged(slider: MultiSlider) {
+        presenter?.ratingSliderChanged(slider: slider)
     }
 }

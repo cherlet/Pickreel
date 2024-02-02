@@ -43,13 +43,4 @@ class GeneralInteractor: GeneralInteractorProtocol {
     }
 }
 
-struct Content {
-    var name: String
-    var year: Int
-    var rating: Double
-    var countries: [String]
-    var genres: [String]
-    var poster: String
-}
-
 

@@ -4,6 +4,7 @@ protocol FiltersPresenterProtocol: AnyObject {
     func viewLoaded()
     func yearSliderChanged(slider: MultiSlider)
     func ratingSliderChanged(slider: MultiSlider)
+    func didTapSubmitButton()
 }
 
 class FiltersPresenter {
@@ -11,32 +12,36 @@ class FiltersPresenter {
     var router: FiltersRouterProtocol
     var interactor: FiltersInteractorProtocol
     
-    private var yearLeftValue = 1930
-    private var yearRightValue = 2030
-    private var ratingLeftValue: Double = 0
-    private var ratingRightValue: Double = 10
+    private var years: (Int, Int)
+    private var ratings: (Double, Double)
+    private var completion: (Filter) -> Void
 
-    init(interactor: FiltersInteractorProtocol, router: FiltersRouterProtocol) {
+    init(interactor: FiltersInteractorProtocol, router: FiltersRouterProtocol, filter: Filter, completion: @escaping (Filter) -> Void) {
         self.interactor = interactor
         self.router = router
+        self.years = filter.years
+        self.ratings = filter.ratings
+        self.completion = completion
     }
 }
 
 extension FiltersPresenter: FiltersPresenterProtocol {
     func viewLoaded() {
-        view?.update(years: (yearLeftValue, yearRightValue))
-        view?.update(ratings: (ratingLeftValue, ratingRightValue))
+        view?.update(years: years)
+        view?.update(ratings: ratings)
     }
     
     func yearSliderChanged(slider: MultiSlider) {
-        yearLeftValue = Int(slider.value[0])
-        yearRightValue = Int(slider.value[1])
-        view?.update(years: (yearLeftValue, yearRightValue))
+        years = (Int(slider.value[0]), Int(slider.value[1]))
+        view?.update(years: years)
     }
     
     func ratingSliderChanged(slider: MultiSlider) {
-        ratingLeftValue = Double(slider.value[0] * 10).rounded() / 10
-        ratingRightValue = Double(slider.value[1] * 10).rounded() / 10
-        view?.update(ratings: (ratingLeftValue, ratingRightValue))
+        ratings = (Double(slider.value[0] * 10).rounded() / 10, Double(slider.value[1] * 10).rounded() / 10)
+        view?.update(ratings: ratings)
+    }
+    
+    func didTapSubmitButton() {
+        router.closeFilters(newFilter: Filter(years: years, ratings: ratings), completion: completion)
     }
 }

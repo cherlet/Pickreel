@@ -93,7 +93,7 @@ private extension ProfileViewController {
         profileAvatar.translatesAutoresizingMaskIntoConstraints = false
         profileAvatar.tintColor = .white
         
-        profileName.text = "Usman Mahmuthazhiev"
+        profileName.text = "Usman Gosling"
         profileName.textColor = .white
         profileName.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         profileName.translatesAutoresizingMaskIntoConstraints = false

@@ -1,13 +1,12 @@
 protocol GeneralRouterProtocol {
-    func openFilters()
+    func openFilters(with filter: Filter, completion: @escaping (Filter) -> Void)
 }
 
 class GeneralRouter: GeneralRouterProtocol {
     weak var viewController: GeneralViewController?
     
-    func openFilters() {
-        let vc = FiltersModuleBuilder.build()
-        //vc.modalPresentationStyle = .overCurrentContext - input cut config later
+    func openFilters(with filter: Filter, completion: @escaping (Filter) -> Void) {
+        let vc = FiltersModuleBuilder.build(with: filter, completion: completion)
         viewController?.present(vc, animated: true)
     }
 }

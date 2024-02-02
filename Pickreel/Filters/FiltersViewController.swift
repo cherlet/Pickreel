@@ -19,6 +19,7 @@ class FiltersViewController: UIViewController {
     private let ratingSlider = MultiSlider()
     private let countriesFilterLabel = UILabel()
     private let genresFilterLabel = UILabel()
+    private let submitButton = UIButton()
 
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -33,12 +34,14 @@ extension FiltersViewController: FiltersViewProtocol {
     func update(years: (Int, Int)) {
         DispatchQueue.main.async {
             self.yearValueLabel.text = "\(years.0) - \(years.1)"
+            self.yearSlider.value = [CGFloat(years.0), CGFloat(years.1)]
         }
     }
     
     func update(ratings: (Double, Double)) {
         DispatchQueue.main.async {
             self.ratingValueLabel.text = "\(ratings.0) - \(ratings.1)"
+            self.ratingSlider.value = [CGFloat(ratings.0), CGFloat(ratings.1)]
         }
     }
 }
@@ -49,6 +52,7 @@ private extension FiltersViewController {
         view.backgroundColor = ThemeColor.backgroundColor
         setupSliders()
         setupSectionLabels()
+        setupSubmitButton()
         setupLayout()
     }
     
@@ -61,7 +65,7 @@ private extension FiltersViewController {
             $0.distribution = .equalSpacing
         }
         
-        let uiElements = [headerLabel, yearStack, yearSlider, ratingStack, ratingSlider, countriesFilterLabel, genresFilterLabel]
+        let uiElements = [headerLabel, yearStack, yearSlider, ratingStack, ratingSlider, countriesFilterLabel, genresFilterLabel, submitButton]
         uiElements.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
@@ -92,13 +96,18 @@ private extension FiltersViewController {
             
             genresFilterLabel.topAnchor.constraint(equalTo: countriesFilterLabel.bottomAnchor, constant: 16),
             genresFilterLabel.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor),
+            
+            submitButton.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor),
+            submitButton.heightAnchor.constraint(equalToConstant: 40),
+            submitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -64),
+            submitButton.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor),
+            submitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
     }
     
     func setupSliders() {
         yearSlider.minimumValue = 1930
         yearSlider.maximumValue = 2030
-        yearSlider.value = [1930, 2030]
         yearSlider.snapStepSize = 1
         yearSlider.outerTrackColor = ThemeColor.contrastColor
         yearSlider.orientation = .horizontal
@@ -109,7 +118,6 @@ private extension FiltersViewController {
         
         ratingSlider.minimumValue = 0
         ratingSlider.maximumValue = 10
-        ratingSlider.value = [0, 10]
         yearSlider.snapStepSize = 0.1
         ratingSlider.outerTrackColor = ThemeColor.contrastColor
         ratingSlider.orientation = .horizontal
@@ -134,11 +142,24 @@ private extension FiltersViewController {
         }
     }
     
+    func setupSubmitButton() {
+        submitButton.setTitle("Применить", for: .normal)
+        submitButton.backgroundColor = ThemeColor.generalColor
+        submitButton.layer.cornerRadius = 16
+        submitButton.addTarget(self, action: #selector(didTapSubmitButton), for: .touchUpInside)
+    }
+    
+    // MARK: Actions
+    
     @objc func yearSliderChanged(slider: MultiSlider) {
         presenter?.yearSliderChanged(slider: slider)
     }
     
     @objc func ratingSliderChanged(slider: MultiSlider) {
         presenter?.ratingSliderChanged(slider: slider)
+    }
+    
+    @objc func didTapSubmitButton() {
+        presenter?.didTapSubmitButton()
     }
 }

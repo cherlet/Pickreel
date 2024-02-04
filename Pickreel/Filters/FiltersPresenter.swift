@@ -10,14 +10,12 @@ protocol FiltersPresenterProtocol: AnyObject {
 class FiltersPresenter {
     weak var view: FiltersViewProtocol?
     var router: FiltersRouterProtocol
-    var interactor: FiltersInteractorProtocol
     
     private var years: (Int, Int)
     private var ratings: (Double, Double)
     private var completion: (Filter) -> Void
 
-    init(interactor: FiltersInteractorProtocol, router: FiltersRouterProtocol, filter: Filter, completion: @escaping (Filter) -> Void) {
-        self.interactor = interactor
+    init(router: FiltersRouterProtocol, filter: Filter, completion: @escaping (Filter) -> Void) {
         self.router = router
         self.years = filter.years
         self.ratings = filter.ratings

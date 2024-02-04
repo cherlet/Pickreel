@@ -128,14 +128,14 @@ private extension GeneralViewController {
     func setupCategories() {
         filmCategoryLabel.text = "Фильмы"
         filmCategoryLabel.textColor = ThemeColor.generalColor
-        filmCategoryLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        filmCategoryLabel.font = UIFont.systemFont(ofSize: 20)
         filmCategoryLabel.isUserInteractionEnabled = true
         let filmTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapFilmCategory))
         filmCategoryLabel.addGestureRecognizer(filmTapGestureRecognizer)
         
         seriesCategoryLabel.text = "Сериалы"
         seriesCategoryLabel.textColor = ThemeColor.silentColor
-        seriesCategoryLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        seriesCategoryLabel.font = UIFont.systemFont(ofSize: 20)
         seriesCategoryLabel.isUserInteractionEnabled = true
         let seriesTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapSeriesCategory))
         seriesCategoryLabel.addGestureRecognizer(seriesTapGestureRecognizer)

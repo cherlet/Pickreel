@@ -2,11 +2,11 @@ import Foundation
 
 protocol GeneralPresenterProtocol: AnyObject {
     func viewLoaded()
-    func didTapFilmCategory()
-    func didTapSeriesCategory()
+    func didTapFilmCategory() // combine.1
+    func didTapSeriesCategory() // combine.1
     func didTapFiltersButton()
-    func didLoad(films: [Content])
-    func didLoad(series: [Content])
+    func didLoad(films: [Content]) // combine.2
+    func didLoad(series: [Content]) // combine.2
     func updateFilter(to filter: Filter)
 }
 
@@ -16,13 +16,13 @@ class GeneralPresenter {
     var interactor: GeneralInteractorProtocol
     
     private var isFilmCategory = true
-    private var iterator = 0
-    private var films: [Content] = []
-    private var series: [Content] = []
+    private var iterator = 0 // temporary option
+    private var films: [Content] = [] // combine.0
+    private var series: [Content] = [] // combine.0
     private var filter = Filter(years: (1930, 2030), ratings: (0, 10))
     
-    private var tempFilms: [Content] = []
-    private var tempSeries: [Content] = []
+    private var tempFilms: [Content] = [] // temporary option
+    private var tempSeries: [Content] = [] // temporary option
 
     init(interactor: GeneralInteractorProtocol, router: GeneralRouterProtocol) {
         self.interactor = interactor
@@ -33,8 +33,8 @@ class GeneralPresenter {
 extension GeneralPresenter: GeneralPresenterProtocol {
     
     func viewLoaded() {
-        interactor.loadFilms()
-        interactor.loadSeries()
+        interactor.loadFilms() // combine.3
+        interactor.loadSeries() // combine.3
     }
     
     func didTapFilmCategory() {

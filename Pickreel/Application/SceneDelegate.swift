@@ -10,7 +10,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let generalViewController = GeneralModuleBuilder.build()
         let profileViewController = ProfileModuleBuilder.build()
+        let searchViewController = SearchModuleBuilder.build()
         let modules = (
+            search: searchViewController,
             general: generalViewController,
             profile: profileViewController
         )

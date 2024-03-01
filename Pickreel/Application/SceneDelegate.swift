@@ -11,10 +11,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let generalViewController = GeneralModuleBuilder.build()
         let profileViewController = ProfileModuleBuilder.build()
         let searchViewController = SearchModuleBuilder.build()
+        let loginViewController = LoginModuleBuilder.build() // delete in future
         let modules = (
             search: searchViewController,
             general: generalViewController,
-            profile: profileViewController
+            profile: profileViewController,
+            login: loginViewController // delete in future
         )
         let tabBarController = TabBarModuleBuilder.build(using: modules)
         

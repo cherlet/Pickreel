@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "shuffle",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mac-gallagher/Shuffle.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "df246b9cd6b8b5e021b23c80706b4a4571785c1b"
+      }
+    },
+    {
       "identity" : "sweeterswift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/yonat/SweeterSwift",

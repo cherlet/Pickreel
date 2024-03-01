@@ -3,14 +3,15 @@ import UIKit
 typealias Tabs = (
     search: UIViewController,
     general: UIViewController,
-    profile: UIViewController
+    profile: UIViewController,
+    login: UIViewController // delete in future
 )
 
 class TabBarController: UITabBarController {
     
     init(tabs: Tabs) {
         super.init(nibName: nil, bundle: nil)
-        viewControllers = [tabs.search, tabs.general, tabs.profile]
+        viewControllers = [tabs.search, tabs.general, tabs.profile, tabs.login]
     }
     
     required init?(coder: NSCoder) {
@@ -36,10 +37,13 @@ extension TabBarController {
         generalTabBarItem.image = UIImage(systemName: "infinity")
         let profileTabBarItem = UITabBarItem()
         profileTabBarItem.image = UIImage(systemName: "person")
+        let loginTabBarItem = UITabBarItem()
+        loginTabBarItem.image = UIImage(systemName: "square.fill")
         
         submodules.search.tabBarItem = searchTabBarItem
         submodules.general.tabBarItem = generalTabBarItem
         submodules.profile.tabBarItem = profileTabBarItem
+        submodules.login.tabBarItem = loginTabBarItem// delete in future
         
         return submodules
     }

@@ -179,6 +179,7 @@ private extension GeneralViewController {
         gradient.colors = [UIColor.black.withAlphaComponent(0).cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
         gradient.cornerRadius = 16
         gradient.frame = swipeImage.bounds
+        swipeImage.layer.sublayers?.removeAll()
         swipeImage.layer.addSublayer(gradient)
     }
     

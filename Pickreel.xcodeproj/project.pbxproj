@@ -15,6 +15,17 @@
 		075909332B6D75F800A603EA /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0759092E2B6D75F800A603EA /* SearchRouter.swift */; };
 		075909342B6D75F800A603EA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0759092F2B6D75F800A603EA /* SearchViewController.swift */; };
 		075909352B6D75F800A603EA /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075909302B6D75F800A603EA /* SearchInteractor.swift */; };
+		07773D252B8FE7FF00483A08 /* LoginModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D202B8FE7FF00483A08 /* LoginModuleBuilder.swift */; };
+		07773D262B8FE7FF00483A08 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D212B8FE7FF00483A08 /* LoginPresenter.swift */; };
+		07773D272B8FE7FF00483A08 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D222B8FE7FF00483A08 /* LoginRouter.swift */; };
+		07773D282B8FE7FF00483A08 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D232B8FE7FF00483A08 /* LoginViewController.swift */; };
+		07773D292B8FE7FF00483A08 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D242B8FE7FF00483A08 /* LoginInteractor.swift */; };
+		07773D2B2B8FEDF700483A08 /* UITextField.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D2A2B8FEDF700483A08 /* UITextField.extension.swift */; };
+		07773D322B8FFC9400483A08 /* RegisterModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D2D2B8FFC9400483A08 /* RegisterModuleBuilder.swift */; };
+		07773D332B8FFC9400483A08 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D2E2B8FFC9400483A08 /* RegisterPresenter.swift */; };
+		07773D342B8FFC9400483A08 /* RegisterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D2F2B8FFC9400483A08 /* RegisterRouter.swift */; };
+		07773D352B8FFC9400483A08 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D302B8FFC9400483A08 /* RegisterViewController.swift */; };
+		07773D362B8FFC9400483A08 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D312B8FFC9400483A08 /* RegisterInteractor.swift */; };
 		077E03FC2B6D48A100FA6DA4 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E03FB2B6D48A100FA6DA4 /* Content.swift */; };
 		077E03FE2B6D48B400FA6DA4 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E03FD2B6D48B400FA6DA4 /* Filter.swift */; };
 		07946FD22B651A53001C4E7F /* ProfileModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FCD2B651A53001C4E7F /* ProfileModuleBuilder.swift */; };
@@ -24,6 +35,7 @@
 		07946FD62B651A53001C4E7F /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FD12B651A53001C4E7F /* ProfileInteractor.swift */; };
 		07946FDD2B651B6C001C4E7F /* TabBarModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FD82B651B6C001C4E7F /* TabBarModuleBuilder.swift */; };
 		07946FE02B651B6C001C4E7F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FDB2B651B6C001C4E7F /* TabBarController.swift */; };
+		0797AAE32B91DD0400AF9E78 /* Shuffle in Frameworks */ = {isa = PBXBuildFile; productRef = 0797AAE22B91DD0400AF9E78 /* Shuffle */; };
 		07CEF24C2B623CD700BF88BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CEF24B2B623CD700BF88BD /* AppDelegate.swift */; };
 		07CEF24E2B623CD700BF88BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CEF24D2B623CD700BF88BD /* SceneDelegate.swift */; };
 		07CEF2552B623CDA00BF88BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07CEF2542B623CDA00BF88BD /* Assets.xcassets */; };
@@ -52,6 +64,17 @@
 		0759092E2B6D75F800A603EA /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		0759092F2B6D75F800A603EA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		075909302B6D75F800A603EA /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
+		07773D202B8FE7FF00483A08 /* LoginModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModuleBuilder.swift; sourceTree = "<group>"; };
+		07773D212B8FE7FF00483A08 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		07773D222B8FE7FF00483A08 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		07773D232B8FE7FF00483A08 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		07773D242B8FE7FF00483A08 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		07773D2A2B8FEDF700483A08 /* UITextField.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.extension.swift; sourceTree = "<group>"; };
+		07773D2D2B8FFC9400483A08 /* RegisterModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModuleBuilder.swift; sourceTree = "<group>"; };
+		07773D2E2B8FFC9400483A08 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
+		07773D2F2B8FFC9400483A08 /* RegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRouter.swift; sourceTree = "<group>"; };
+		07773D302B8FFC9400483A08 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		07773D312B8FFC9400483A08 /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
 		077E03FB2B6D48A100FA6DA4 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		077E03FD2B6D48B400FA6DA4 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		07946FCD2B651A53001C4E7F /* ProfileModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModuleBuilder.swift; sourceTree = "<group>"; };
@@ -86,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0797AAE32B91DD0400AF9E78 /* Shuffle in Frameworks */,
 				07F6DD932B6C2A8B001F9DB3 /* MultiSlider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +123,7 @@
 				070826FF2B6AB89E00D10341 /* UIColor.extension.swift */,
 				070827012B6AB8AE00D10341 /* UIImageView.extension.swift */,
 				070827042B6ABACB00D10341 /* UIView.extension.swift */,
+				07773D2A2B8FEDF700483A08 /* UITextField.extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -113,6 +138,30 @@
 				075909302B6D75F800A603EA /* SearchInteractor.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		07773D1F2B8FE7D100483A08 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				07773D202B8FE7FF00483A08 /* LoginModuleBuilder.swift */,
+				07773D212B8FE7FF00483A08 /* LoginPresenter.swift */,
+				07773D222B8FE7FF00483A08 /* LoginRouter.swift */,
+				07773D232B8FE7FF00483A08 /* LoginViewController.swift */,
+				07773D242B8FE7FF00483A08 /* LoginInteractor.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		07773D2C2B8FFC2F00483A08 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				07773D2D2B8FFC9400483A08 /* RegisterModuleBuilder.swift */,
+				07773D2E2B8FFC9400483A08 /* RegisterPresenter.swift */,
+				07773D2F2B8FFC9400483A08 /* RegisterRouter.swift */,
+				07773D302B8FFC9400483A08 /* RegisterViewController.swift */,
+				07773D312B8FFC9400483A08 /* RegisterInteractor.swift */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 		077E03FA2B6D488400FA6DA4 /* Models */ = {
@@ -186,6 +235,8 @@
 			isa = PBXGroup;
 			children = (
 				078016C12B63F5B900DCAF55 /* General */,
+				07773D1F2B8FE7D100483A08 /* Login */,
+				07773D2C2B8FFC2F00483A08 /* Register */,
 				0759092B2B6D748700A603EA /* Search */,
 				07946FCC2B651A06001C4E7F /* Profile */,
 				07F6DD862B6BF161001F9DB3 /* Filters */,
@@ -264,6 +315,7 @@
 			name = Pickreel;
 			packageProductDependencies = (
 				07F6DD922B6C2A8B001F9DB3 /* MultiSlider */,
+				0797AAE22B91DD0400AF9E78 /* Shuffle */,
 			);
 			productName = Pickreel;
 			productReference = 07CEF2482B623CD700BF88BD /* Pickreel.app */;
@@ -295,6 +347,7 @@
 			mainGroup = 07CEF23F2B623CD700BF88BD;
 			packageReferences = (
 				07F6DD912B6C2A8B001F9DB3 /* XCRemoteSwiftPackageReference "MultiSlider" */,
+				0797AAE12B91DD0400AF9E78 /* XCRemoteSwiftPackageReference "Shuffle" */,
 			);
 			productRefGroup = 07CEF2492B623CD700BF88BD /* Products */;
 			projectDirPath = "";
@@ -328,25 +381,36 @@
 				07946FD22B651A53001C4E7F /* ProfileModuleBuilder.swift in Sources */,
 				07F6DD8C2B6BF177001F9DB3 /* FiltersModuleBuilder.swift in Sources */,
 				075909332B6D75F800A603EA /* SearchRouter.swift in Sources */,
+				07773D272B8FE7FF00483A08 /* LoginRouter.swift in Sources */,
+				07773D332B8FFC9400483A08 /* RegisterPresenter.swift in Sources */,
 				07ED003B2B63F70B00F0A143 /* GeneralModuleBuilder.swift in Sources */,
+				07773D292B8FE7FF00483A08 /* LoginInteractor.swift in Sources */,
 				07ED00432B640E2700F0A143 /* ThemeColor.swift in Sources */,
 				075909322B6D75F800A603EA /* SearchPresenter.swift in Sources */,
 				077E03FC2B6D48A100FA6DA4 /* Content.swift in Sources */,
 				07F6DD8E2B6BF177001F9DB3 /* FiltersRouter.swift in Sources */,
 				07ED003E2B63F70B00F0A143 /* GeneralViewController.swift in Sources */,
+				07773D362B8FFC9400483A08 /* RegisterInteractor.swift in Sources */,
+				07773D352B8FFC9400483A08 /* RegisterViewController.swift in Sources */,
 				075909312B6D75F800A603EA /* SearchModuleBuilder.swift in Sources */,
 				07ED003D2B63F70B00F0A143 /* GeneralRouter.swift in Sources */,
 				07ED003F2B63F70B00F0A143 /* GeneralInteractor.swift in Sources */,
+				07773D262B8FE7FF00483A08 /* LoginPresenter.swift in Sources */,
 				07946FD52B651A53001C4E7F /* ProfileViewController.swift in Sources */,
 				070827052B6ABACC00D10341 /* UIView.extension.swift in Sources */,
+				07773D342B8FFC9400483A08 /* RegisterRouter.swift in Sources */,
+				07773D322B8FFC9400483A08 /* RegisterModuleBuilder.swift in Sources */,
 				07ED003C2B63F70B00F0A143 /* GeneralPresenter.swift in Sources */,
 				07F6DD8D2B6BF177001F9DB3 /* FiltersPresenter.swift in Sources */,
 				07946FE02B651B6C001C4E7F /* TabBarController.swift in Sources */,
 				07CEF24C2B623CD700BF88BD /* AppDelegate.swift in Sources */,
 				07946FD32B651A53001C4E7F /* ProfilePresenter.swift in Sources */,
 				07946FD62B651A53001C4E7F /* ProfileInteractor.swift in Sources */,
+				07773D2B2B8FEDF700483A08 /* UITextField.extension.swift in Sources */,
 				07E04D7D2B65920300F9867F /* Films.swift in Sources */,
 				07946FDD2B651B6C001C4E7F /* TabBarModuleBuilder.swift in Sources */,
+				07773D252B8FE7FF00483A08 /* LoginModuleBuilder.swift in Sources */,
+				07773D282B8FE7FF00483A08 /* LoginViewController.swift in Sources */,
 				07CEF24E2B623CD700BF88BD /* SceneDelegate.swift in Sources */,
 				07946FD42B651A53001C4E7F /* ProfileRouter.swift in Sources */,
 				075909352B6D75F800A603EA /* SearchInteractor.swift in Sources */,
@@ -575,6 +639,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0797AAE12B91DD0400AF9E78 /* XCRemoteSwiftPackageReference "Shuffle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-gallagher/Shuffle.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		07F6DD912B6C2A8B001F9DB3 /* XCRemoteSwiftPackageReference "MultiSlider" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/yonat/MultiSlider";
@@ -586,6 +658,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0797AAE22B91DD0400AF9E78 /* Shuffle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0797AAE12B91DD0400AF9E78 /* XCRemoteSwiftPackageReference "Shuffle" */;
+			productName = Shuffle;
+		};
 		07F6DD922B6C2A8B001F9DB3 /* MultiSlider */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 07F6DD912B6C2A8B001F9DB3 /* XCRemoteSwiftPackageReference "MultiSlider" */;

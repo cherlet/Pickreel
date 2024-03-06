@@ -1,4 +1,6 @@
 protocol RegisterPresenterProtocol: AnyObject {
+    func didTapSubmitButton()
+    func didTapCancel()
 }
 
 class RegisterPresenter {
@@ -13,4 +15,11 @@ class RegisterPresenter {
 }
 
 extension RegisterPresenter: RegisterPresenterProtocol {
+    func didTapSubmitButton() {
+        view?.hide()
+    }
+    
+    func didTapCancel() {
+        view?.hide()
+    }
 }

@@ -7,6 +7,9 @@ class LoginRouter: LoginRouterProtocol {
     
     func openRegister() {
         let vc = RegisterModuleBuilder.build()
-        viewController?.present(vc, animated: true)
+        vc.modalPresentationStyle = .overFullScreen
+        viewController?.present(vc, animated: false) {
+            vc.show()
+        }
     }
 }

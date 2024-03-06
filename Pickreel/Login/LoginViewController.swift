@@ -12,7 +12,6 @@ class LoginViewController: UIViewController {
     private let loginTextField = UITextField()
     private let passwordTextField = UITextField()
     private let registerLabel = UILabel()
-    
     private let policyView = UIView()
     private let secondPolicyLabel = UILabel()
     private let fourthPolicyLabel = UILabel()
@@ -78,14 +77,14 @@ private extension LoginViewController {
     func setupTextFields() {
         loginTextField.textColor = ThemeColor.oppColor
         loginTextField.font = UIFont.systemFont(ofSize: 20)
-        loginTextField.backgroundColor = UIColor.systemGray4
+        loginTextField.backgroundColor = UIColor.systemGray5
         loginTextField.layer.cornerRadius = 8
         loginTextField.placeholder = "Логин"
         loginTextField.indent(size: 16)
         
         passwordTextField.textColor = ThemeColor.oppColor
         passwordTextField.font = UIFont.systemFont(ofSize: 20)
-        passwordTextField.backgroundColor = UIColor.systemGray4
+        passwordTextField.backgroundColor = UIColor.systemGray5
         passwordTextField.layer.cornerRadius = 8
         passwordTextField.placeholder = "Пароль"
         passwordTextField.indent(size: 16)

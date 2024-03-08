@@ -9,8 +9,10 @@ class LoginViewController: UIViewController {
     // MARK: UI Elements
     
     private let appLabel = UILabel()
-    private let loginTextField = UITextField()
+    private let emailTextField = UITextField()
+    //private let loginTextField = UITextField()
     private let passwordTextField = UITextField()
+    private let submitButton = UIButton()
     private let registerLabel = UILabel()
     private let policyView = UIView()
     private let secondPolicyLabel = UILabel()
@@ -32,16 +34,15 @@ extension LoginViewController: LoginViewProtocol {
 private extension LoginViewController {
     func initialize() {
         view.backgroundColor = .white
-        
         setupPolicyView()
-        setupRegisterButton()
+        setupButtons()
         setupTextFields()
         setupAppLabel()
         setupLayout()
     }
     
     func setupLayout() {
-        let uiElements = [loginTextField, passwordTextField, appLabel, policyView, registerLabel]
+        let uiElements = [emailTextField, passwordTextField, submitButton, appLabel, policyView, registerLabel]
         
         uiElements.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -52,17 +53,23 @@ private extension LoginViewController {
             appLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 256),
             appLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            loginTextField.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor),
-            loginTextField.heightAnchor.constraint(equalToConstant: 48),
-            loginTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            loginTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            loginTextField.topAnchor.constraint(equalTo: appLabel.bottomAnchor, constant: 64),
+            emailTextField.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor),
+            emailTextField.heightAnchor.constraint(equalToConstant: 48),
+            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            emailTextField.topAnchor.constraint(equalTo: appLabel.bottomAnchor, constant: 64),
             
             passwordTextField.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor),
             passwordTextField.heightAnchor.constraint(equalToConstant: 48),
             passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 20),
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 16),
+            
+            submitButton.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor),
+            submitButton.heightAnchor.constraint(equalToConstant: 48),
+            submitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            submitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            submitButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
             
             policyView.heightAnchor.constraint(lessThanOrEqualToConstant: 100),
             policyView.widthAnchor.constraint(equalTo: view.widthAnchor),
@@ -75,12 +82,13 @@ private extension LoginViewController {
     }
     
     func setupTextFields() {
-        loginTextField.textColor = ThemeColor.oppColor
-        loginTextField.font = UIFont.systemFont(ofSize: 20)
-        loginTextField.backgroundColor = UIColor.systemGray5
-        loginTextField.layer.cornerRadius = 8
-        loginTextField.placeholder = "Логин"
-        loginTextField.indent(size: 16)
+        emailTextField.textColor = ThemeColor.oppColor
+        emailTextField.font = UIFont.systemFont(ofSize: 20)
+        emailTextField.backgroundColor = UIColor.systemGray5
+        emailTextField.layer.cornerRadius = 8
+        emailTextField.placeholder = "Email"
+        emailTextField.indent(size: 16)
+        emailTextField.delegate = self
         
         passwordTextField.textColor = ThemeColor.oppColor
         passwordTextField.font = UIFont.systemFont(ofSize: 20)
@@ -88,6 +96,8 @@ private extension LoginViewController {
         passwordTextField.layer.cornerRadius = 8
         passwordTextField.placeholder = "Пароль"
         passwordTextField.indent(size: 16)
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.delegate = self
     }
     
     func setupAppLabel() {
@@ -96,7 +106,14 @@ private extension LoginViewController {
         appLabel.font = UIFont.systemFont(ofSize: 32, weight: .semibold)
     }
     
-    func setupRegisterButton() {
+    func setupButtons() {
+        submitButton.isEnabled = false
+        submitButton.backgroundColor = ThemeColor.generalColor?.withAlphaComponent(0.5)
+        submitButton.setTitle("Войти", for: .normal)
+        submitButton.titleLabel!.font = UIFont.systemFont(ofSize: 20)
+        submitButton.layer.cornerRadius = 8
+        submitButton.addTarget(self, action: #selector(didTapSignInButton), for: .touchUpInside)
+        
         registerLabel.textColor = ThemeColor.generalColor
         registerLabel.font = UIFont.systemFont(ofSize: 20)
         registerLabel.text = "Создать новый аккаунт"
@@ -141,7 +158,37 @@ private extension LoginViewController {
     }
     
     // MARK: Actions
+    @objc private func didTapSignInButton() {
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            presenter?.didTapSignInButton(email, password)
+        }
+    }
+    
     @objc private func didTapRegisterButton() {
         presenter?.didTapRegisterButton()
+    }
+}
+
+// MARK: UITextFieldDelegate
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        let emailValid = isEmailValid(emailTextField.text ?? "")
+        let passwordValid = isPasswordValid(passwordTextField.text ?? "")
+        
+        if emailValid && passwordValid {
+            submitButton.isEnabled = true
+            submitButton.backgroundColor = ThemeColor.generalColor
+        } else {
+            submitButton.isEnabled = false
+            submitButton.backgroundColor = ThemeColor.generalColor?.withAlphaComponent(0.5)
+        }
+    }
+    
+    func isEmailValid(_ email: String) -> Bool {
+        return email.contains("@") && !email.isEmpty
+    }
+    
+    func isPasswordValid(_ password: String) -> Bool {
+        return password.count >= 6
     }
 }

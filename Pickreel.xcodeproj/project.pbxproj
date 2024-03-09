@@ -31,7 +31,6 @@
 		07773D2B2B8FEDF700483A08 /* UITextField.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D2A2B8FEDF700483A08 /* UITextField.extension.swift */; };
 		07773D322B8FFC9400483A08 /* RegisterModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D2D2B8FFC9400483A08 /* RegisterModuleBuilder.swift */; };
 		07773D332B8FFC9400483A08 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D2E2B8FFC9400483A08 /* RegisterPresenter.swift */; };
-		07773D342B8FFC9400483A08 /* RegisterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D2F2B8FFC9400483A08 /* RegisterRouter.swift */; };
 		07773D352B8FFC9400483A08 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D302B8FFC9400483A08 /* RegisterViewController.swift */; };
 		07773D362B8FFC9400483A08 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D312B8FFC9400483A08 /* RegisterInteractor.swift */; };
 		077E03FC2B6D48A100FA6DA4 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E03FB2B6D48A100FA6DA4 /* Content.swift */; };
@@ -84,7 +83,6 @@
 		07773D2A2B8FEDF700483A08 /* UITextField.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.extension.swift; sourceTree = "<group>"; };
 		07773D2D2B8FFC9400483A08 /* RegisterModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModuleBuilder.swift; sourceTree = "<group>"; };
 		07773D2E2B8FFC9400483A08 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
-		07773D2F2B8FFC9400483A08 /* RegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRouter.swift; sourceTree = "<group>"; };
 		07773D302B8FFC9400483A08 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		07773D312B8FFC9400483A08 /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
 		077E03FB2B6D48A100FA6DA4 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 			children = (
 				07773D2D2B8FFC9400483A08 /* RegisterModuleBuilder.swift */,
 				07773D2E2B8FFC9400483A08 /* RegisterPresenter.swift */,
-				07773D2F2B8FFC9400483A08 /* RegisterRouter.swift */,
 				07773D302B8FFC9400483A08 /* RegisterViewController.swift */,
 				07773D312B8FFC9400483A08 /* RegisterInteractor.swift */,
 			);
@@ -444,7 +441,6 @@
 				07946FD52B651A53001C4E7F /* ProfileViewController.swift in Sources */,
 				070827052B6ABACC00D10341 /* UIView.extension.swift in Sources */,
 				0760B8582B9AE20E006CFFF5 /* User.swift in Sources */,
-				07773D342B8FFC9400483A08 /* RegisterRouter.swift in Sources */,
 				07773D322B8FFC9400483A08 /* RegisterModuleBuilder.swift in Sources */,
 				07ED003C2B63F70B00F0A143 /* GeneralPresenter.swift in Sources */,
 				07F6DD8D2B6BF177001F9DB3 /* FiltersPresenter.swift in Sources */,

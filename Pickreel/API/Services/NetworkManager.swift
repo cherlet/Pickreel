@@ -45,13 +45,21 @@ final class NetworkManager {
             self.userSession = nil
             self.currentUser = nil
         } catch {
-            print("DEBUG: Failed sign out \(error.localizedDescription)")
+            print("DEBUG: Failed sign out with error \(error.localizedDescription)")
         }
     }
     
     func deleteAccount() {
+        guard let user = Auth.auth().currentUser else { return }
         
+        user.delete { error in
+            if let error = error {
+                print("DEBUG: Failed to delete user with error \(error.localizedDescription)")
+            }
+        }
         
+        Firestore.firestore().collection("users").document(user.uid).delete()
+        signOut()
     }
     
     func fetchUser() async {

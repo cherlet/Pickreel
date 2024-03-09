@@ -1,23 +1,21 @@
 protocol RegisterPresenterProtocol: AnyObject {
-    func didTapSubmitButton(_ email: String, _ password: String)
+    func didTapSubmitButton(_ email: String, _ password: String, _ nickname: String)
     func didTapCancel()
     func didSignUp(_ email: String, _ password: String)
 }
 
 class RegisterPresenter {
     weak var view: RegisterViewProtocol?
-    var router: RegisterRouterProtocol
     var interactor: RegisterInteractorProtocol
 
-    init(interactor: RegisterInteractorProtocol, router: RegisterRouterProtocol) {
+    init(interactor: RegisterInteractorProtocol) {
         self.interactor = interactor
-        self.router = router
     }
 }
 
 extension RegisterPresenter: RegisterPresenterProtocol {
-    func didTapSubmitButton(_ email: String, _ password: String) {
-        //
+    func didTapSubmitButton(_ email: String, _ password: String, _ nickname: String) {
+        interactor.didTapSubmitButton(email, password, nickname)
     }
     
     func didSignUp(_ email: String, _ password: String) {

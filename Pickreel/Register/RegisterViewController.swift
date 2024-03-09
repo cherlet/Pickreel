@@ -172,8 +172,8 @@ private extension RegisterViewController {
     // MARK: Actions
     
     @objc private func didTapSubmitButton() {
-        if let email = emailTextField.text, let password = passwordTextField.text {
-            presenter?.didTapSubmitButton(email, password)
+        if let email = emailTextField.text, let password = passwordTextField.text, let nickname = nickTextField.text {
+            presenter?.didTapSubmitButton(email, password, nickname)
         }
     }
     

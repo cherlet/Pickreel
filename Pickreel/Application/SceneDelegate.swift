@@ -26,7 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         
         if NetworkManager.shared.userSession == nil {
-            print("SESSION IS NIL")
             let loginViewController = LoginModuleBuilder.build()
             navigationController.pushViewController(loginViewController, animated: false)
         }

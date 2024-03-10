@@ -12,17 +12,13 @@ class ProfileViewController: UIViewController {
     private let profileName = UILabel()
     private let likedSection = UIView()
     private let ratingSection = UIView()
+    private let settingsButton = UIButton()
 
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        likedSection.setGradient(colors: (ThemeColor.greenGradientFirst, ThemeColor.greenGradientSecond))
-//    }
 }
 
 // MARK: Module 
@@ -33,13 +29,14 @@ extension ProfileViewController: ProfileViewProtocol {
 private extension ProfileViewController {
     func initialize() {
         view.backgroundColor = ThemeColor.backgroundColor
+        setupButtons()
         setupSections()
         setupProfile()
         setupLayout()
     }
     
     func setupLayout() {
-        let uiElements = [profileView, likedSection, ratingSection]
+        let uiElements = [profileView, likedSection, ratingSection, settingsButton]
         
         uiElements.forEach {
             view.addSubview($0)
@@ -62,11 +59,16 @@ private extension ProfileViewController {
             ratingSection.heightAnchor.constraint(equalToConstant: 100),
         ])
         
-        [profileAvatar, profileName].forEach {
+        [profileAvatar, profileName, settingsButton].forEach {
             profileView.addSubview($0)
         }
         
         NSLayoutConstraint.activate([
+            settingsButton.heightAnchor.constraint(equalToConstant: 32),
+            settingsButton.widthAnchor.constraint(equalToConstant: 32),
+            settingsButton.topAnchor.constraint(equalTo: profileView.topAnchor, constant: 64),
+            settingsButton.trailingAnchor.constraint(equalTo: profileView.trailingAnchor, constant: -32),
+            
             profileAvatar.topAnchor.constraint(equalTo: profileView.topAnchor, constant: 80),
             profileAvatar.widthAnchor.constraint(equalToConstant: 64),
             profileAvatar.heightAnchor.constraint(equalToConstant: 64),
@@ -88,6 +90,7 @@ private extension ProfileViewController {
         profileView.backgroundColor = ThemeColor.contrastColor
         profileView.translatesAutoresizingMaskIntoConstraints = false
         profileView.layer.cornerRadius = 16
+        profileView.isUserInteractionEnabled = true
         
         profileAvatar.image = UIImage(systemName: "person.circle")
         profileAvatar.translatesAutoresizingMaskIntoConstraints = false
@@ -97,5 +100,21 @@ private extension ProfileViewController {
         profileName.textColor = .white
         profileName.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         profileName.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func setupButtons() {
+        let config = UIImage.SymbolConfiguration(pointSize: 32)
+        let image = UIImage(systemName: "gear", withConfiguration: config)
+        settingsButton.setImage(image, for: .normal)
+        settingsButton.tintColor = ThemeColor.backgroundColor
+        settingsButton.addTarget(self, action: #selector(didTapSettingsButton), for: .touchUpInside)
+        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        settingsButton.isUserInteractionEnabled = true
+    }
+    
+    // MARK: Actions
+    
+    @objc func didTapSettingsButton() {
+        presenter?.didTapSettingsButton()
     }
 }

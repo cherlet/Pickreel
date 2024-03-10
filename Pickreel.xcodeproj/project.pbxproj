@@ -35,6 +35,11 @@
 		07773D362B8FFC9400483A08 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D312B8FFC9400483A08 /* RegisterInteractor.swift */; };
 		077E03FC2B6D48A100FA6DA4 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E03FB2B6D48A100FA6DA4 /* Content.swift */; };
 		077E03FE2B6D48B400FA6DA4 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E03FD2B6D48B400FA6DA4 /* Filter.swift */; };
+		077FD3BC2B9E20800041E2C6 /* SettingsModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3B72B9E20800041E2C6 /* SettingsModuleBuilder.swift */; };
+		077FD3BD2B9E20800041E2C6 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3B82B9E20800041E2C6 /* SettingsPresenter.swift */; };
+		077FD3BE2B9E20800041E2C6 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3B92B9E20800041E2C6 /* SettingsRouter.swift */; };
+		077FD3BF2B9E20800041E2C6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3BA2B9E20800041E2C6 /* SettingsViewController.swift */; };
+		077FD3C02B9E20800041E2C6 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3BB2B9E20800041E2C6 /* SettingsInteractor.swift */; };
 		07946FD22B651A53001C4E7F /* ProfileModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FCD2B651A53001C4E7F /* ProfileModuleBuilder.swift */; };
 		07946FD32B651A53001C4E7F /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FCE2B651A53001C4E7F /* ProfilePresenter.swift */; };
 		07946FD42B651A53001C4E7F /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FCF2B651A53001C4E7F /* ProfileRouter.swift */; };
@@ -87,6 +92,11 @@
 		07773D312B8FFC9400483A08 /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
 		077E03FB2B6D48A100FA6DA4 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		077E03FD2B6D48B400FA6DA4 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		077FD3B72B9E20800041E2C6 /* SettingsModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleBuilder.swift; sourceTree = "<group>"; };
+		077FD3B82B9E20800041E2C6 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		077FD3B92B9E20800041E2C6 /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		077FD3BA2B9E20800041E2C6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		077FD3BB2B9E20800041E2C6 /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
 		07946FCD2B651A53001C4E7F /* ProfileModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModuleBuilder.swift; sourceTree = "<group>"; };
 		07946FCE2B651A53001C4E7F /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		07946FCF2B651A53001C4E7F /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
@@ -203,6 +213,18 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		077FD3B62B9E20640041E2C6 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				077FD3B72B9E20800041E2C6 /* SettingsModuleBuilder.swift */,
+				077FD3B82B9E20800041E2C6 /* SettingsPresenter.swift */,
+				077FD3B92B9E20800041E2C6 /* SettingsRouter.swift */,
+				077FD3BA2B9E20800041E2C6 /* SettingsViewController.swift */,
+				077FD3BB2B9E20800041E2C6 /* SettingsInteractor.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		078016C02B63F58100DCAF55 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +287,7 @@
 		07CEF24A2B623CD700BF88BD /* Pickreel */ = {
 			isa = PBXGroup;
 			children = (
+				077FD3B62B9E20640041E2C6 /* Settings */,
 				078016C12B63F5B900DCAF55 /* General */,
 				07773D1F2B8FE7D100483A08 /* Login */,
 				07773D2C2B8FFC2F00483A08 /* Register */,
@@ -436,15 +459,19 @@
 				07773D352B8FFC9400483A08 /* RegisterViewController.swift in Sources */,
 				075909312B6D75F800A603EA /* SearchModuleBuilder.swift in Sources */,
 				07ED003D2B63F70B00F0A143 /* GeneralRouter.swift in Sources */,
+				077FD3BD2B9E20800041E2C6 /* SettingsPresenter.swift in Sources */,
 				07ED003F2B63F70B00F0A143 /* GeneralInteractor.swift in Sources */,
 				07773D262B8FE7FF00483A08 /* LoginPresenter.swift in Sources */,
 				07946FD52B651A53001C4E7F /* ProfileViewController.swift in Sources */,
+				077FD3BF2B9E20800041E2C6 /* SettingsViewController.swift in Sources */,
 				070827052B6ABACC00D10341 /* UIView.extension.swift in Sources */,
 				0760B8582B9AE20E006CFFF5 /* User.swift in Sources */,
 				07773D322B8FFC9400483A08 /* RegisterModuleBuilder.swift in Sources */,
+				077FD3BE2B9E20800041E2C6 /* SettingsRouter.swift in Sources */,
 				07ED003C2B63F70B00F0A143 /* GeneralPresenter.swift in Sources */,
 				07F6DD8D2B6BF177001F9DB3 /* FiltersPresenter.swift in Sources */,
 				07946FE02B651B6C001C4E7F /* TabBarController.swift in Sources */,
+				077FD3C02B9E20800041E2C6 /* SettingsInteractor.swift in Sources */,
 				07CEF24C2B623CD700BF88BD /* AppDelegate.swift in Sources */,
 				07946FD32B651A53001C4E7F /* ProfilePresenter.swift in Sources */,
 				07946FD62B651A53001C4E7F /* ProfileInteractor.swift in Sources */,
@@ -457,6 +484,7 @@
 				07CEF24E2B623CD700BF88BD /* SceneDelegate.swift in Sources */,
 				07946FD42B651A53001C4E7F /* ProfileRouter.swift in Sources */,
 				075909352B6D75F800A603EA /* SearchInteractor.swift in Sources */,
+				077FD3BC2B9E20800041E2C6 /* SettingsModuleBuilder.swift in Sources */,
 				07F6DD8F2B6BF177001F9DB3 /* FiltersViewController.swift in Sources */,
 				077E03FE2B6D48B400FA6DA4 /* Filter.swift in Sources */,
 				07514A672B98C785003449AF /* NetworkManager.swift in Sources */,

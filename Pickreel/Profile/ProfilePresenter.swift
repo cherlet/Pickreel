@@ -1,4 +1,5 @@
 protocol ProfilePresenterProtocol: AnyObject {
+    func didTapSettingsButton()
 }
 
 class ProfilePresenter {
@@ -13,4 +14,7 @@ class ProfilePresenter {
 }
 
 extension ProfilePresenter: ProfilePresenterProtocol {
+    func didTapSettingsButton() {
+        router.openSettings()
+    }
 }

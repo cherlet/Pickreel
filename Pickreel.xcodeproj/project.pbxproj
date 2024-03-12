@@ -48,6 +48,7 @@
 		07946FDD2B651B6C001C4E7F /* TabBarModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FD82B651B6C001C4E7F /* TabBarModuleBuilder.swift */; };
 		07946FE02B651B6C001C4E7F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FDB2B651B6C001C4E7F /* TabBarController.swift */; };
 		0797AAE32B91DD0400AF9E78 /* Shuffle in Frameworks */ = {isa = PBXBuildFile; productRef = 0797AAE22B91DD0400AF9E78 /* Shuffle */; };
+		07AF1EC02BA0474300B4169D /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AF1EBF2BA0474300B4169D /* SettingCell.swift */; };
 		07B025FA2B98C2D2004C303B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07B025F92B98C2D2004C303B /* GoogleService-Info.plist */; };
 		07CEF24C2B623CD700BF88BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CEF24B2B623CD700BF88BD /* AppDelegate.swift */; };
 		07CEF24E2B623CD700BF88BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CEF24D2B623CD700BF88BD /* SceneDelegate.swift */; };
@@ -104,6 +105,7 @@
 		07946FD12B651A53001C4E7F /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
 		07946FD82B651B6C001C4E7F /* TabBarModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModuleBuilder.swift; sourceTree = "<group>"; };
 		07946FDB2B651B6C001C4E7F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		07AF1EBF2BA0474300B4169D /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		07B025F92B98C2D2004C303B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		07CEF2482B623CD700BF88BD /* Pickreel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pickreel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07CEF24B2B623CD700BF88BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				077FD3B92B9E20800041E2C6 /* SettingsRouter.swift */,
 				077FD3BA2B9E20800041E2C6 /* SettingsViewController.swift */,
 				077FD3BB2B9E20800041E2C6 /* SettingsInteractor.swift */,
+				07AF1EBF2BA0474300B4169D /* SettingCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				07773D362B8FFC9400483A08 /* RegisterInteractor.swift in Sources */,
 				07773D352B8FFC9400483A08 /* RegisterViewController.swift in Sources */,
 				075909312B6D75F800A603EA /* SearchModuleBuilder.swift in Sources */,
+				07AF1EC02BA0474300B4169D /* SettingCell.swift in Sources */,
 				07ED003D2B63F70B00F0A143 /* GeneralRouter.swift in Sources */,
 				077FD3BD2B9E20800041E2C6 /* SettingsPresenter.swift in Sources */,
 				07ED003F2B63F70B00F0A143 /* GeneralInteractor.swift in Sources */,

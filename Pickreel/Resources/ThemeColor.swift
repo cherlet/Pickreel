@@ -12,6 +12,8 @@ struct ThemeColor {
     static let redGradientSecond = UIColor.appColor(CustomColor.RedGradientSecondColor)
     static let yellowGradientFirst = UIColor.appColor(CustomColor.YellowGradientFirstColor)
     static let yellowGradientSecond = UIColor.appColor(CustomColor.YellowGradientSecondColor)
+    static let tableFrontColor = UIColor.appColor(CustomColor.TableFrontColor)
+    static let tableBackColor = UIColor.appColor(CustomColor.TableBackColor)
 }
 
 enum CustomColor: String {
@@ -26,4 +28,6 @@ enum CustomColor: String {
     case RedGradientSecondColor
     case YellowGradientFirstColor
     case YellowGradientSecondColor
+    case TableFrontColor
+    case TableBackColor
 }

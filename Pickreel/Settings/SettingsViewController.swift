@@ -15,7 +15,7 @@ class SettingsViewController: UIViewController {
         layout.minimumInteritemSpacing = 0
         layout.sectionInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = ThemeColor.tableBackColor
+        collectionView.backgroundColor = ThemeColor.backgroundColor
         collectionView.register(SettingCell.self, forCellWithReuseIdentifier: SettingCell.identifier)
         return collectionView
     }()
@@ -57,8 +57,6 @@ private extension SettingsViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
-    // MARK: Actions
 }
 
 // MARK: CollectionView
@@ -88,6 +86,25 @@ extension SettingsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 3.2
+    }
+    
+    // MARK: Actions
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedSetting = settingsSections[indexPath.section][indexPath.item]
+        switch selectedSetting {
+        case .changeAvatar:
+            presenter?.handleAvatarChange()
+        case .toggleTheme:
+            return
+        case .personalData:
+            presenter?.handlePersonalData()
+        case .signOut:
+            presenter?.handleSignOut()
+        case .resetAccount:
+            presenter?.handleAccountReset()
+        case .deleteAccount:
+            presenter?.handleAccountDeletion()
+        }
     }
 }
 

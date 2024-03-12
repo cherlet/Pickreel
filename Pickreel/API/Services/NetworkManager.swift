@@ -8,7 +8,7 @@ final class NetworkManager {
     var userSession: FirebaseAuth.User?
     var currentUser: User?
     
-    init() {
+    private init() {
         self.userSession = Auth.auth().currentUser
         
         Task {

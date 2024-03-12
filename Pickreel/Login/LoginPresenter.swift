@@ -1,8 +1,8 @@
 import Foundation
 
 protocol LoginPresenterProtocol: AnyObject {
-    func didTapSignInButton(_ email: String, _ password: String)
-    func didTapRegisterButton()
+    func handleSignIn(_ email: String, _ password: String)
+    func handleRegister()
     func didSignIn()
 }
 
@@ -18,11 +18,11 @@ class LoginPresenter {
 }
 
 extension LoginPresenter: LoginPresenterProtocol {
-    func didTapSignInButton(_ email: String, _ password: String) {
-        interactor.didTapSignInButton(email, password)
+    func handleSignIn(_ email: String, _ password: String) {
+        interactor.handleSignIn(email, password)
     }
     
-    func didTapRegisterButton() {
+    func handleRegister() {
         router.openRegister()
     }
     

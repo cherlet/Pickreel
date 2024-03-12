@@ -33,7 +33,7 @@ extension LoginViewController: LoginViewProtocol {
 // MARK: Setup
 private extension LoginViewController {
     func initialize() {
-        view.backgroundColor = .white
+        view.backgroundColor = ThemeColor.backgroundColor
         setupPolicyView()
         setupButtons()
         setupTextFields()
@@ -112,13 +112,13 @@ private extension LoginViewController {
         submitButton.setTitle("Войти", for: .normal)
         submitButton.titleLabel!.font = UIFont.systemFont(ofSize: 20)
         submitButton.layer.cornerRadius = 8
-        submitButton.addTarget(self, action: #selector(didTapSignInButton), for: .touchUpInside)
+        submitButton.addTarget(self, action: #selector(handleSignIn), for: .touchUpInside)
         
         registerLabel.textColor = ThemeColor.generalColor
         registerLabel.font = UIFont.systemFont(ofSize: 20)
         registerLabel.text = "Создать новый аккаунт"
         registerLabel.isUserInteractionEnabled = true
-        let registerTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapRegisterButton))
+        let registerTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleRegister))
         registerLabel.addGestureRecognizer(registerTapGestureRecognizer)
     }
     
@@ -158,14 +158,14 @@ private extension LoginViewController {
     }
     
     // MARK: Actions
-    @objc private func didTapSignInButton() {
+    @objc private func handleSignIn() {
         if let email = emailTextField.text, let password = passwordTextField.text {
-            presenter?.didTapSignInButton(email, password)
+            presenter?.handleSignIn(email, password)
         }
     }
     
-    @objc private func didTapRegisterButton() {
-        presenter?.didTapRegisterButton()
+    @objc private func handleRegister() {
+        presenter?.handleRegister()
     }
 }
 

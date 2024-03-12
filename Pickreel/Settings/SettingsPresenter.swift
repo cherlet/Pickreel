@@ -1,4 +1,13 @@
 protocol SettingsPresenterProtocol: AnyObject {
+    func handleAvatarChange()
+    func handlePersonalData()
+    func handleThemeToggle()
+    
+    func handleSignOut()
+    func didSignOut()
+    
+    func handleAccountReset()
+    func handleAccountDeletion()
 }
 
 class SettingsPresenter {
@@ -13,4 +22,31 @@ class SettingsPresenter {
 }
 
 extension SettingsPresenter: SettingsPresenterProtocol {
+    func handleAvatarChange() {
+        print("avatar")
+    }
+    
+    func handlePersonalData() {
+        //
+    }
+    
+    func handleThemeToggle() {
+        print("hello")
+    }
+    
+    func handleSignOut() {
+        interactor.handleSignOut()
+    }
+    
+    func didSignOut() {
+        router.openLogin()
+    }
+    
+    func handleAccountReset() {
+        //
+    }
+    
+    func handleAccountDeletion() {
+        interactor.handleAccountDeletion()
+    }
 }

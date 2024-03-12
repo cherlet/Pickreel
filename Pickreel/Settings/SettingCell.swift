@@ -11,6 +11,7 @@ class SettingCell: UICollectionViewCell {
         let toggleSwitch = UISwitch()
         toggleSwitch.onTintColor = ThemeColor.generalColor
         toggleSwitch.isHidden = true
+        toggleSwitch.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
         return toggleSwitch
     }()
     
@@ -73,6 +74,9 @@ class SettingCell: UICollectionViewCell {
                 label.textColor = ThemeColor.redGradientSecond
             case .toggle:
                 toggleSwitch.isHidden = false
+                if ThemeManager.shared.currentTheme == .dark {
+                    toggleSwitch.isOn = true
+                }
             case .container:
                 arrowIcon.isHidden = false
             }
@@ -97,11 +101,21 @@ class SettingCell: UICollectionViewCell {
     }
     
     // MARK: Setting Type Enum
-    
     enum SettingType {
         case danger
         case toggle
         case container
+    }
+    
+    // MARK: Theme Switch
+    
+    @objc private func switchValueChanged(_ sender: UISwitch) {
+        if sender.isOn {
+            ThemeManager.shared.currentTheme = .dark
+        } else {
+            ThemeManager.shared.currentTheme = .light
+        }
+        ThemeManager.shared.applyTheme()
     }
 }
 

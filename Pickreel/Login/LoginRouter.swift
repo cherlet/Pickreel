@@ -11,7 +11,7 @@ class LoginRouter: LoginRouterProtocol {
         vc.modalPresentationStyle = .overFullScreen
         vc.onHide = { [weak self] email, password in
             if let email = email, let password = password {
-                self?.viewController?.presenter?.didTapSignInButton(email, password)
+                self?.viewController?.presenter?.handleSignIn(email, password)
             }
         }
         viewController?.present(vc, animated: false) {

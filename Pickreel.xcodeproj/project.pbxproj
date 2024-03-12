@@ -49,6 +49,7 @@
 		07946FE02B651B6C001C4E7F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FDB2B651B6C001C4E7F /* TabBarController.swift */; };
 		0797AAE32B91DD0400AF9E78 /* Shuffle in Frameworks */ = {isa = PBXBuildFile; productRef = 0797AAE22B91DD0400AF9E78 /* Shuffle */; };
 		07AF1EC02BA0474300B4169D /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AF1EBF2BA0474300B4169D /* SettingCell.swift */; };
+		07AF1EC22BA08AFB00B4169D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AF1EC12BA08AFB00B4169D /* ThemeManager.swift */; };
 		07B025FA2B98C2D2004C303B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07B025F92B98C2D2004C303B /* GoogleService-Info.plist */; };
 		07CEF24C2B623CD700BF88BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CEF24B2B623CD700BF88BD /* AppDelegate.swift */; };
 		07CEF24E2B623CD700BF88BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CEF24D2B623CD700BF88BD /* SceneDelegate.swift */; };
@@ -106,6 +107,7 @@
 		07946FD82B651B6C001C4E7F /* TabBarModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModuleBuilder.swift; sourceTree = "<group>"; };
 		07946FDB2B651B6C001C4E7F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		07AF1EBF2BA0474300B4169D /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		07AF1EC12BA08AFB00B4169D /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		07B025F92B98C2D2004C303B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		07CEF2482B623CD700BF88BD /* Pickreel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pickreel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07CEF24B2B623CD700BF88BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				07CEF2592B623CDA00BF88BD /* Info.plist */,
 				07CEF2562B623CDA00BF88BD /* LaunchScreen.storyboard */,
 				07ED00422B640E2700F0A143 /* ThemeColor.swift */,
+				07AF1EC12BA08AFB00B4169D /* ThemeManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				07773D282B8FE7FF00483A08 /* LoginViewController.swift in Sources */,
 				07CEF24E2B623CD700BF88BD /* SceneDelegate.swift in Sources */,
 				07946FD42B651A53001C4E7F /* ProfileRouter.swift in Sources */,
+				07AF1EC22BA08AFB00B4169D /* ThemeManager.swift in Sources */,
 				075909352B6D75F800A603EA /* SearchInteractor.swift in Sources */,
 				077FD3BC2B9E20800041E2C6 /* SettingsModuleBuilder.swift in Sources */,
 				07F6DD8F2B6BF177001F9DB3 /* FiltersViewController.swift in Sources */,

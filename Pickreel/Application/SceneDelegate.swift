@@ -22,9 +22,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController(rootViewController: tabBarController)
         navigationController.isNavigationBarHidden = true
         
+        let isDarkTheme = StorageManager.shared.bool(forKey: .isDark) ?? false
+        ThemeManager.shared.currentTheme = isDarkTheme ? .dark : .light
+        
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        
+        ThemeManager.shared.applyTheme()
         
         if NetworkManager.shared.userSession == nil {
             let loginViewController = LoginModuleBuilder.build()

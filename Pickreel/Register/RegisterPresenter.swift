@@ -1,6 +1,6 @@
 protocol RegisterPresenterProtocol: AnyObject {
-    func didTapSubmitButton(_ email: String, _ password: String, _ nickname: String)
-    func didTapCancel()
+    func handleSignUp(_ email: String, _ password: String, _ nickname: String)
+    func handleCancel()
     func didSignUp(_ email: String, _ password: String)
 }
 
@@ -14,15 +14,15 @@ class RegisterPresenter {
 }
 
 extension RegisterPresenter: RegisterPresenterProtocol {
-    func didTapSubmitButton(_ email: String, _ password: String, _ nickname: String) {
-        interactor.didTapSubmitButton(email, password, nickname)
+    func handleSignUp(_ email: String, _ password: String, _ nickname: String) {
+        interactor.handleSignUp(email, password, nickname)
     }
     
     func didSignUp(_ email: String, _ password: String) {
         view?.hide(email, password)
     }
     
-    func didTapCancel() {
+    func handleCancel() {
         view?.hide(nil, nil)
     }
 }

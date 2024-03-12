@@ -1,11 +1,15 @@
 import UIKit
 
 protocol ProfileViewProtocol: AnyObject {
+    func showSettings()
+    func hideSettings()
 }
 
 class ProfileViewController: UIViewController {
+    // MARK: Variables
     var presenter: ProfilePresenterProtocol?
-
+    var settingsViewController: SettingsViewController?
+    
     // MARK: UI Elements
     private let profileView = UIView()
     private let profileAvatar = UIImageView()
@@ -13,16 +17,50 @@ class ProfileViewController: UIViewController {
     private let likedSection = UIView()
     private let ratingSection = UIView()
     private let settingsButton = UIButton()
-
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        presenter?.deselectSettingsButton()
+    }
 }
 
-// MARK: Module 
+// MARK: Module
 extension ProfileViewController: ProfileViewProtocol {
+    func showSettings() {
+        settingsViewController = SettingsModuleBuilder.build()
+        guard let settingsViewController = settingsViewController else { return }
+        addChild(settingsViewController)
+        
+        settingsViewController.view.frame = CGRect(x: 0, y: -settingsViewController.view.frame.height, width: view.bounds.width, height: settingsViewController.view.frame.height)
+        view.insertSubview(settingsViewController.view, belowSubview: profileView)
+        settingsViewController.didMove(toParent: self)
+
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+            settingsViewController.view.frame = CGRect(x: 0, y: self.profileView.frame.maxY, width: settingsViewController.view.frame.width, height: settingsViewController.view.frame.height)
+        }, completion: nil)
+        
+        settingsButton.tintColor = ThemeColor.generalColor
+    }
+
+    func hideSettings() {
+        guard let settingsViewController = settingsViewController else { return }
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+            settingsViewController.view.frame = CGRect(x: 0, y: -settingsViewController.view.frame.height, width: settingsViewController.view.frame.width, height: settingsViewController.view.frame.height)
+        }) { _ in
+            settingsViewController.willMove(toParent: nil)
+            settingsViewController.view.removeFromSuperview()
+            settingsViewController.removeFromParent()
+        }
+
+        settingsButton.tintColor = ThemeColor.backgroundColor
+    }
 }
 
 // MARK: Setup
@@ -36,7 +74,7 @@ private extension ProfileViewController {
     }
     
     func setupLayout() {
-        let uiElements = [profileView, likedSection, ratingSection, settingsButton]
+        let uiElements = [likedSection, ratingSection, profileView, settingsButton]
         
         uiElements.forEach {
             view.addSubview($0)
@@ -67,7 +105,7 @@ private extension ProfileViewController {
             settingsButton.heightAnchor.constraint(equalToConstant: 32),
             settingsButton.widthAnchor.constraint(equalToConstant: 32),
             settingsButton.topAnchor.constraint(equalTo: profileView.topAnchor, constant: 64),
-            settingsButton.trailingAnchor.constraint(equalTo: profileView.trailingAnchor, constant: -32),
+            settingsButton.trailingAnchor.constraint(equalTo: profileView.trailingAnchor, constant: -20),
             
             profileAvatar.topAnchor.constraint(equalTo: profileView.topAnchor, constant: 80),
             profileAvatar.widthAnchor.constraint(equalToConstant: 64),

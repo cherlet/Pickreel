@@ -150,7 +150,7 @@ private extension RegisterViewController {
         dimmedView.backgroundColor = .black
         dimmedView.alpha = 0
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapCancel))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleCancel))
         dimmedView.addGestureRecognizer(tapGestureRecognizer)
     }
     
@@ -158,27 +158,27 @@ private extension RegisterViewController {
         submitButton.setTitle("Создать", for: .normal)
         submitButton.setTitleColor(ThemeColor.backgroundColor, for: .normal)
         submitButton.backgroundColor = ThemeColor.generalColor?.withAlphaComponent(0.5)
-        submitButton.addTarget(self, action: #selector(didTapSubmitButton), for: .touchUpInside)
+        submitButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         submitButton.layer.cornerRadius = 8
         submitButton.isEnabled = false
         
         cancelButton.setTitle("Отмена", for: .normal)
         cancelButton.setTitleColor(ThemeColor.backgroundColor, for: .normal)
         cancelButton.backgroundColor = ThemeColor.contrastColor
-        cancelButton.addTarget(self, action: #selector(didTapCancel), for: .touchUpInside)
+        cancelButton.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
         cancelButton.layer.cornerRadius = 8
     }
     
     // MARK: Actions
     
-    @objc private func didTapSubmitButton() {
+    @objc private func handleSignUp() {
         if let email = emailTextField.text, let password = passwordTextField.text, let nickname = nickTextField.text {
-            presenter?.didTapSubmitButton(email, password, nickname)
+            presenter?.handleSignUp(email, password, nickname)
         }
     }
     
-    @objc private func didTapCancel() {
-        presenter?.didTapCancel()
+    @objc private func handleCancel() {
+        presenter?.handleCancel()
     }
 }
 

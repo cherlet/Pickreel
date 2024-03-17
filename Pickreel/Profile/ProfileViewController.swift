@@ -124,7 +124,6 @@ private extension ProfileViewController {
     }
     
     func setupProfile() {
-        // later add network layer
         profileView.backgroundColor = ThemeColor.contrastColor
         profileView.translatesAutoresizingMaskIntoConstraints = false
         profileView.layer.cornerRadius = 16
@@ -134,7 +133,7 @@ private extension ProfileViewController {
         profileAvatar.translatesAutoresizingMaskIntoConstraints = false
         profileAvatar.tintColor = .white
         
-        profileName.text = "Usman Gosling"
+        profileName.text = NetworkManager.shared.currentUser?.nickname
         profileName.textColor = .white
         profileName.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         profileName.translatesAutoresizingMaskIntoConstraints = false

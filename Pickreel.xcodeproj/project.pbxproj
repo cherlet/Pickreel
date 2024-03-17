@@ -33,13 +33,14 @@
 		07773D332B8FFC9400483A08 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D2E2B8FFC9400483A08 /* RegisterPresenter.swift */; };
 		07773D352B8FFC9400483A08 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D302B8FFC9400483A08 /* RegisterViewController.swift */; };
 		07773D362B8FFC9400483A08 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D312B8FFC9400483A08 /* RegisterInteractor.swift */; };
-		077E03FC2B6D48A100FA6DA4 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E03FB2B6D48A100FA6DA4 /* Content.swift */; };
 		077E03FE2B6D48B400FA6DA4 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E03FD2B6D48B400FA6DA4 /* Filter.swift */; };
 		077FD3BC2B9E20800041E2C6 /* SettingsModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3B72B9E20800041E2C6 /* SettingsModuleBuilder.swift */; };
 		077FD3BD2B9E20800041E2C6 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3B82B9E20800041E2C6 /* SettingsPresenter.swift */; };
 		077FD3BE2B9E20800041E2C6 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3B92B9E20800041E2C6 /* SettingsRouter.swift */; };
 		077FD3BF2B9E20800041E2C6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3BA2B9E20800041E2C6 /* SettingsViewController.swift */; };
 		077FD3C02B9E20800041E2C6 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3BB2B9E20800041E2C6 /* SettingsInteractor.swift */; };
+		0781FFBA2BA36DE0001903A8 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0781FFB92BA36DE0001903A8 /* Movie.swift */; };
+		078275B02BA7310600FB8582 /* Series.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078275AF2BA7310600FB8582 /* Series.swift */; };
 		07946FD22B651A53001C4E7F /* ProfileModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FCD2B651A53001C4E7F /* ProfileModuleBuilder.swift */; };
 		07946FD32B651A53001C4E7F /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FCE2B651A53001C4E7F /* ProfilePresenter.swift */; };
 		07946FD42B651A53001C4E7F /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FCF2B651A53001C4E7F /* ProfileRouter.swift */; };
@@ -55,8 +56,6 @@
 		07CEF24E2B623CD700BF88BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CEF24D2B623CD700BF88BD /* SceneDelegate.swift */; };
 		07CEF2552B623CDA00BF88BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07CEF2542B623CDA00BF88BD /* Assets.xcassets */; };
 		07CEF2582B623CDA00BF88BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07CEF2562B623CDA00BF88BD /* LaunchScreen.storyboard */; };
-		07E04D7B2B6585E900F9867F /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E04D7A2B6585E900F9867F /* ApiManager.swift */; };
-		07E04D7D2B65920300F9867F /* Films.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E04D7C2B65920300F9867F /* Films.swift */; };
 		07ED003B2B63F70B00F0A143 /* GeneralModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ED00362B63F70B00F0A143 /* GeneralModuleBuilder.swift */; };
 		07ED003C2B63F70B00F0A143 /* GeneralPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ED00372B63F70B00F0A143 /* GeneralPresenter.swift */; };
 		07ED003D2B63F70B00F0A143 /* GeneralRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ED00382B63F70B00F0A143 /* GeneralRouter.swift */; };
@@ -92,13 +91,14 @@
 		07773D2E2B8FFC9400483A08 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
 		07773D302B8FFC9400483A08 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		07773D312B8FFC9400483A08 /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
-		077E03FB2B6D48A100FA6DA4 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		077E03FD2B6D48B400FA6DA4 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		077FD3B72B9E20800041E2C6 /* SettingsModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleBuilder.swift; sourceTree = "<group>"; };
 		077FD3B82B9E20800041E2C6 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		077FD3B92B9E20800041E2C6 /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
 		077FD3BA2B9E20800041E2C6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		077FD3BB2B9E20800041E2C6 /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
+		0781FFB92BA36DE0001903A8 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		078275AF2BA7310600FB8582 /* Series.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
 		07946FCD2B651A53001C4E7F /* ProfileModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModuleBuilder.swift; sourceTree = "<group>"; };
 		07946FCE2B651A53001C4E7F /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		07946FCF2B651A53001C4E7F /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
@@ -115,8 +115,6 @@
 		07CEF2542B623CDA00BF88BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07CEF2572B623CDA00BF88BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07CEF2592B623CDA00BF88BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07E04D7A2B6585E900F9867F /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
-		07E04D7C2B65920300F9867F /* Films.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Films.swift; sourceTree = "<group>"; };
 		07ED00362B63F70B00F0A143 /* GeneralModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralModuleBuilder.swift; sourceTree = "<group>"; };
 		07ED00372B63F70B00F0A143 /* GeneralPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPresenter.swift; sourceTree = "<group>"; };
 		07ED00382B63F70B00F0A143 /* GeneralRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralRouter.swift; sourceTree = "<group>"; };
@@ -208,15 +206,6 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
-		077E03FA2B6D488400FA6DA4 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				077E03FB2B6D48A100FA6DA4 /* Content.swift */,
-				077E03FD2B6D48B400FA6DA4 /* Filter.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		077FD3B62B9E20640041E2C6 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,13 +219,13 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		078016C02B63F58100DCAF55 /* API */ = {
+		078016C02B63F58100DCAF55 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				07E04D792B6585C700F9867F /* Models */,
 				07E04D782B6585C000F9867F /* Services */,
 			);
-			path = API;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		078016C12B63F5B900DCAF55 /* General */ = {
@@ -300,9 +289,8 @@
 				07946FCC2B651A06001C4E7F /* Profile */,
 				07F6DD862B6BF161001F9DB3 /* Filters */,
 				07946FD72B651B31001C4E7F /* TabBar */,
-				077E03FA2B6D488400FA6DA4 /* Models */,
 				0760B8542B9AD84F006CFFF5 /* Storage */,
-				078016C02B63F58100DCAF55 /* API */,
+				078016C02B63F58100DCAF55 /* Network */,
 				07D1BD2B2B62425A004DED7E /* Application */,
 				070826FE2B6AB88300D10341 /* Extensions */,
 				07D1BD2C2B624268004DED7E /* Resources */,
@@ -335,7 +323,6 @@
 		07E04D782B6585C000F9867F /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				07E04D7A2B6585E900F9867F /* ApiManager.swift */,
 				07514A662B98C785003449AF /* NetworkManager.swift */,
 			);
 			path = Services;
@@ -344,8 +331,10 @@
 		07E04D792B6585C700F9867F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				07E04D7C2B65920300F9867F /* Films.swift */,
 				0760B8572B9AE20E006CFFF5 /* User.swift */,
+				0781FFB92BA36DE0001903A8 /* Movie.swift */,
+				078275AF2BA7310600FB8582 /* Series.swift */,
+				077E03FD2B6D48B400FA6DA4 /* Filter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -448,7 +437,6 @@
 			files = (
 				075909342B6D75F800A603EA /* SearchViewController.swift in Sources */,
 				070827002B6AB89E00D10341 /* UIColor.extension.swift in Sources */,
-				07E04D7B2B6585E900F9867F /* ApiManager.swift in Sources */,
 				07946FD22B651A53001C4E7F /* ProfileModuleBuilder.swift in Sources */,
 				07F6DD8C2B6BF177001F9DB3 /* FiltersModuleBuilder.swift in Sources */,
 				075909332B6D75F800A603EA /* SearchRouter.swift in Sources */,
@@ -458,7 +446,6 @@
 				07773D292B8FE7FF00483A08 /* LoginInteractor.swift in Sources */,
 				07ED00432B640E2700F0A143 /* ThemeColor.swift in Sources */,
 				075909322B6D75F800A603EA /* SearchPresenter.swift in Sources */,
-				077E03FC2B6D48A100FA6DA4 /* Content.swift in Sources */,
 				07F6DD8E2B6BF177001F9DB3 /* FiltersRouter.swift in Sources */,
 				07ED003E2B63F70B00F0A143 /* GeneralViewController.swift in Sources */,
 				07773D362B8FFC9400483A08 /* RegisterInteractor.swift in Sources */,
@@ -478,12 +465,13 @@
 				07ED003C2B63F70B00F0A143 /* GeneralPresenter.swift in Sources */,
 				07F6DD8D2B6BF177001F9DB3 /* FiltersPresenter.swift in Sources */,
 				07946FE02B651B6C001C4E7F /* TabBarController.swift in Sources */,
+				078275B02BA7310600FB8582 /* Series.swift in Sources */,
 				077FD3C02B9E20800041E2C6 /* SettingsInteractor.swift in Sources */,
 				07CEF24C2B623CD700BF88BD /* AppDelegate.swift in Sources */,
+				0781FFBA2BA36DE0001903A8 /* Movie.swift in Sources */,
 				07946FD32B651A53001C4E7F /* ProfilePresenter.swift in Sources */,
 				07946FD62B651A53001C4E7F /* ProfileInteractor.swift in Sources */,
 				07773D2B2B8FEDF700483A08 /* UITextField.extension.swift in Sources */,
-				07E04D7D2B65920300F9867F /* Films.swift in Sources */,
 				07946FDD2B651B6C001C4E7F /* TabBarModuleBuilder.swift in Sources */,
 				07773D252B8FE7FF00483A08 /* LoginModuleBuilder.swift in Sources */,
 				0760B8562B9AD86C006CFFF5 /* StorageManager.swift in Sources */,

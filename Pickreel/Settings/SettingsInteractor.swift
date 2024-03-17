@@ -12,7 +12,9 @@ class SettingsInteractor: SettingsInteractorProtocol {
     }
     
     func handleAccountDeletion() {
-        NetworkManager.shared.deleteAccount()
-        presenter?.didSignOut()
+        Task {
+            await NetworkManager.shared.deleteAccount()
+            presenter?.didSignOut()
+        }
     }
 }

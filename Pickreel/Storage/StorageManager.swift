@@ -1,11 +1,5 @@
 import Foundation
 
-// MARK: - CRUD
-protocol StorageManagerProtocol {
-    func set(_ object: Any?, forKey key: StorageManager.Keys)
-    func bool(forKey key: StorageManager.Keys) -> Bool?
-}
-
 final class StorageManager {
     static let shared = StorageManager()
     

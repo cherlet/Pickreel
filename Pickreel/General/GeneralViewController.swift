@@ -1,8 +1,7 @@
 import UIKit
 
 protocol GeneralViewProtocol: AnyObject {
-    func show(film: Content)
-    func show(series: Content)
+    
 }
 
 class GeneralViewController: UIViewController {
@@ -34,19 +33,13 @@ class GeneralViewController: UIViewController {
 
 // MARK: Module
 extension GeneralViewController: GeneralViewProtocol {
-    func show(film: Content) {
-        filmCategoryLabel.textColor = ThemeColor.generalColor
-        seriesCategoryLabel.textColor = ThemeColor.silentColor
-        
-        updateSwipeView(content: film)
-    }
-    
-    func show(series: Content) {
-        seriesCategoryLabel.textColor = ThemeColor.generalColor
-        filmCategoryLabel.textColor = ThemeColor.silentColor
-        
-        updateSwipeView(content: series)
-    }
+    // TODO: - Add content presentation func
+//    func show(film: Content) {
+//        filmCategoryLabel.textColor = ThemeColor.generalColor
+//        seriesCategoryLabel.textColor = ThemeColor.silentColor
+//        
+//        updateSwipeView(content: film)
+//    }
 }
 
 // MARK: Setup
@@ -162,17 +155,17 @@ private extension GeneralViewController {
         swipeImage.clipsToBounds = true
     }
     
-    func updateSwipeView(content: Content) {
-        name.text = content.name
-        year.text = String(content.year)
-        rating.text = String(content.rating)
-        
-        if let url = URL(string: content.poster) {
-            swipeImage.load(url: url)
-        } else {
-            // placeholder
-        }
-    }
+//    func updateSwipeView(content: Content) {
+//        name.text = content.name
+//        year.text = String(content.year)
+//        rating.text = String(content.rating)
+//        
+//        if let url = URL(string: content.poster) {
+//            swipeImage.load(url: url)
+//        } else {
+//        // TODO: - Add image placeholder
+//        }
+//    }
     
     func setupGradient() {
         let gradient = CAGradientLayer()

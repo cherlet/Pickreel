@@ -1,7 +1,7 @@
 import UIKit
 
 class AlertManager {
-    static func signOutAlert(on vc: UIViewController, completion: @escaping ((UIAlertAction) -> Void)) {
+    static func deleteAccountAlert(on vc: UIViewController, completion: @escaping ((UIAlertAction) -> Void)) {
         let title = "Удаление аккаунта"
         let message = "Вы уверены что хотите удалить аккаунт? Его уже нельзя будет восстановить"
         let deleteAction = AlertAction(title: "Удалить", style: .destructive, handler: completion)

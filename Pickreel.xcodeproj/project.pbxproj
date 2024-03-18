@@ -23,6 +23,7 @@
 		0760B8562B9AD86C006CFFF5 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0760B8552B9AD86C006CFFF5 /* StorageManager.swift */; };
 		0760B8582B9AE20E006CFFF5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0760B8572B9AE20E006CFFF5 /* User.swift */; };
 		0760B85B2B9AE416006CFFF5 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0760B85A2B9AE416006CFFF5 /* FirebaseFirestoreSwift */; };
+		076CDEDA2BA888A200B9F576 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076CDED92BA888A200B9F576 /* AlertManager.swift */; };
 		07773D252B8FE7FF00483A08 /* LoginModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D202B8FE7FF00483A08 /* LoginModuleBuilder.swift */; };
 		07773D262B8FE7FF00483A08 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D212B8FE7FF00483A08 /* LoginPresenter.swift */; };
 		07773D272B8FE7FF00483A08 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D222B8FE7FF00483A08 /* LoginRouter.swift */; };
@@ -81,6 +82,7 @@
 		075909302B6D75F800A603EA /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
 		0760B8552B9AD86C006CFFF5 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		0760B8572B9AE20E006CFFF5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		076CDED92BA888A200B9F576 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		07773D202B8FE7FF00483A08 /* LoginModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModuleBuilder.swift; sourceTree = "<group>"; };
 		07773D212B8FE7FF00483A08 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		07773D222B8FE7FF00483A08 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				07CEF2562B623CDA00BF88BD /* LaunchScreen.storyboard */,
 				07ED00422B640E2700F0A143 /* ThemeColor.swift */,
 				07AF1EC12BA08AFB00B4169D /* ThemeManager.swift */,
+				076CDED92BA888A200B9F576 /* AlertManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				07CEF24C2B623CD700BF88BD /* AppDelegate.swift in Sources */,
 				0781FFBA2BA36DE0001903A8 /* Movie.swift in Sources */,
 				07946FD32B651A53001C4E7F /* ProfilePresenter.swift in Sources */,
+				076CDEDA2BA888A200B9F576 /* AlertManager.swift in Sources */,
 				07946FD62B651A53001C4E7F /* ProfileInteractor.swift in Sources */,
 				07773D2B2B8FEDF700483A08 /* UITextField.extension.swift in Sources */,
 				07946FDD2B651B6C001C4E7F /* TabBarModuleBuilder.swift in Sources */,

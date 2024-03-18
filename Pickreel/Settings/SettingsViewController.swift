@@ -103,7 +103,9 @@ extension SettingsViewController: UICollectionViewDataSource, UICollectionViewDe
         case .resetAccount:
             presenter?.handleAccountReset()
         case .deleteAccount:
-            presenter?.handleAccountDeletion()
+            AlertManager.signOutAlert(on: self) { _ in
+                self.presenter?.handleAccountDeletion()
+            }
         }
     }
 }

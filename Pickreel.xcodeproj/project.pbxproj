@@ -63,6 +63,8 @@
 		07ED003E2B63F70B00F0A143 /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ED00392B63F70B00F0A143 /* GeneralViewController.swift */; };
 		07ED003F2B63F70B00F0A143 /* GeneralInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ED003A2B63F70B00F0A143 /* GeneralInteractor.swift */; };
 		07ED00432B640E2700F0A143 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ED00422B640E2700F0A143 /* ThemeColor.swift */; };
+		07F16CCB2BA9BF6C00470130 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F16CCA2BA9BF6C00470130 /* Page.swift */; };
+		07F16CCD2BA9E4B200470130 /* UILabel.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F16CCC2BA9E4B200470130 /* UILabel.extension.swift */; };
 		07F6DD8C2B6BF177001F9DB3 /* FiltersModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F6DD872B6BF177001F9DB3 /* FiltersModuleBuilder.swift */; };
 		07F6DD8D2B6BF177001F9DB3 /* FiltersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F6DD882B6BF177001F9DB3 /* FiltersPresenter.swift */; };
 		07F6DD8E2B6BF177001F9DB3 /* FiltersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F6DD892B6BF177001F9DB3 /* FiltersRouter.swift */; };
@@ -123,6 +125,8 @@
 		07ED00392B63F70B00F0A143 /* GeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
 		07ED003A2B63F70B00F0A143 /* GeneralInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInteractor.swift; sourceTree = "<group>"; };
 		07ED00422B640E2700F0A143 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
+		07F16CCA2BA9BF6C00470130 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		07F16CCC2BA9E4B200470130 /* UILabel.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.extension.swift; sourceTree = "<group>"; };
 		07F6DD872B6BF177001F9DB3 /* FiltersModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersModuleBuilder.swift; sourceTree = "<group>"; };
 		07F6DD882B6BF177001F9DB3 /* FiltersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersPresenter.swift; sourceTree = "<group>"; };
 		07F6DD892B6BF177001F9DB3 /* FiltersRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersRouter.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 				070827012B6AB8AE00D10341 /* UIImageView.extension.swift */,
 				070827042B6ABACB00D10341 /* UIView.extension.swift */,
 				07773D2A2B8FEDF700483A08 /* UITextField.extension.swift */,
+				07F16CCC2BA9E4B200470130 /* UILabel.extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 		07E04D792B6585C700F9867F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				07F16CCA2BA9BF6C00470130 /* Page.swift */,
 				0760B8572B9AE20E006CFFF5 /* User.swift */,
 				0781FFB92BA36DE0001903A8 /* Movie.swift */,
 				078275AF2BA7310600FB8582 /* Series.swift */,
@@ -452,6 +458,7 @@
 				07F6DD8E2B6BF177001F9DB3 /* FiltersRouter.swift in Sources */,
 				07ED003E2B63F70B00F0A143 /* GeneralViewController.swift in Sources */,
 				07773D362B8FFC9400483A08 /* RegisterInteractor.swift in Sources */,
+				07F16CCB2BA9BF6C00470130 /* Page.swift in Sources */,
 				07773D352B8FFC9400483A08 /* RegisterViewController.swift in Sources */,
 				075909312B6D75F800A603EA /* SearchModuleBuilder.swift in Sources */,
 				07AF1EC02BA0474300B4169D /* SettingCell.swift in Sources */,
@@ -463,6 +470,7 @@
 				077FD3BF2B9E20800041E2C6 /* SettingsViewController.swift in Sources */,
 				070827052B6ABACC00D10341 /* UIView.extension.swift in Sources */,
 				0760B8582B9AE20E006CFFF5 /* User.swift in Sources */,
+				07F16CCD2BA9E4B200470130 /* UILabel.extension.swift in Sources */,
 				07773D322B8FFC9400483A08 /* RegisterModuleBuilder.swift in Sources */,
 				077FD3BE2B9E20800041E2C6 /* SettingsRouter.swift in Sources */,
 				07ED003C2B63F70B00F0A143 /* GeneralPresenter.swift in Sources */,

@@ -1,14 +1,14 @@
 import UIKit
 
 protocol GeneralViewProtocol: AnyObject {
-    
+    func show(category: DataType, card: Card)
 }
 
 class GeneralViewController: UIViewController {
     var presenter: GeneralPresenterProtocol?
     
     // MARK: UI Elements
-    private let filmCategoryLabel = UILabel()
+    private let moviesCategoryLabel = UILabel()
     private let seriesCategoryLabel = UILabel()
     private let filtersButton = UIButton()
     
@@ -33,13 +33,20 @@ class GeneralViewController: UIViewController {
 
 // MARK: Module
 extension GeneralViewController: GeneralViewProtocol {
-    // TODO: - Add content presentation func
-//    func show(film: Content) {
-//        filmCategoryLabel.textColor = ThemeColor.generalColor
-//        seriesCategoryLabel.textColor = ThemeColor.silentColor
-//        
-//        updateSwipeView(content: film)
-//    }
+    func show(category: DataType, card: Card) {
+        switch category {
+        case .movies:
+            moviesCategoryLabel.enable()
+            seriesCategoryLabel.disable()
+            let content = card.movie
+            updateSwipeView(title: content.title.ru, year: String(content.year), rating: String(content.rating.imdb), posterURL: content.posterURL)
+        case .series:
+            seriesCategoryLabel.enable()
+            moviesCategoryLabel.disable()
+            let content = card.series
+            updateSwipeView(title: content.title.ru, year: String(content.year), rating: String(content.rating.imdb), posterURL: content.posterURL)
+        }
+    }
 }
 
 // MARK: Setup
@@ -53,7 +60,7 @@ private extension GeneralViewController {
     }
     
     func setupLayout() {
-        let uiElements = [filmCategoryLabel, seriesCategoryLabel, filtersButton, swipeView]
+        let uiElements = [moviesCategoryLabel, seriesCategoryLabel, filtersButton, swipeView]
         
         uiElements.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -68,16 +75,16 @@ private extension GeneralViewController {
             swipeView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             swipeView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
-            filmCategoryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            filmCategoryLabel.bottomAnchor.constraint(equalTo: swipeView.topAnchor, constant: -20),
+            moviesCategoryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            moviesCategoryLabel.bottomAnchor.constraint(equalTo: swipeView.topAnchor, constant: -20),
             
-            seriesCategoryLabel.leadingAnchor.constraint(equalTo: filmCategoryLabel.trailingAnchor, constant: 16),
-            seriesCategoryLabel.centerYAnchor.constraint(equalTo: filmCategoryLabel.centerYAnchor),
+            seriesCategoryLabel.leadingAnchor.constraint(equalTo: moviesCategoryLabel.trailingAnchor, constant: 16),
+            seriesCategoryLabel.centerYAnchor.constraint(equalTo: moviesCategoryLabel.centerYAnchor),
             
             filtersButton.widthAnchor.constraint(equalToConstant: 24),
             filtersButton.heightAnchor.constraint(equalToConstant: 24),
             filtersButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            filtersButton.centerYAnchor.constraint(equalTo: filmCategoryLabel.centerYAnchor)
+            filtersButton.centerYAnchor.constraint(equalTo: moviesCategoryLabel.centerYAnchor)
         ])
         
         let ratingIcon = UIImageView(image: UIImage(systemName: "star.fill"))
@@ -119,18 +126,18 @@ private extension GeneralViewController {
     }
     
     func setupCategories() {
-        filmCategoryLabel.text = "Фильмы"
-        filmCategoryLabel.textColor = ThemeColor.generalColor
-        filmCategoryLabel.font = UIFont.systemFont(ofSize: 20)
-        filmCategoryLabel.isUserInteractionEnabled = true
-        let filmTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapFilmCategory))
-        filmCategoryLabel.addGestureRecognizer(filmTapGestureRecognizer)
+        moviesCategoryLabel.text = "Фильмы"
+        moviesCategoryLabel.textColor = ThemeColor.generalColor
+        moviesCategoryLabel.font = UIFont.systemFont(ofSize: 20)
+        moviesCategoryLabel.isUserInteractionEnabled = true
+        let moviesTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleCategory))
+        moviesCategoryLabel.addGestureRecognizer(moviesTapGestureRecognizer)
         
         seriesCategoryLabel.text = "Сериалы"
         seriesCategoryLabel.textColor = ThemeColor.silentColor
         seriesCategoryLabel.font = UIFont.systemFont(ofSize: 20)
         seriesCategoryLabel.isUserInteractionEnabled = true
-        let seriesTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapSeriesCategory))
+        let seriesTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleCategory))
         seriesCategoryLabel.addGestureRecognizer(seriesTapGestureRecognizer)
     }
     
@@ -139,7 +146,7 @@ private extension GeneralViewController {
         let config = UIImage.SymbolConfiguration(pointSize: 24)
         let image = UIImage(systemName: "slider.horizontal.3", withConfiguration: config)
         filtersButton.setImage(image, for: .normal)
-        filtersButton.addTarget(self, action: #selector(didTapFiltersButton), for: .touchUpInside)
+        filtersButton.addTarget(self, action: #selector(handleCategory), for: .touchUpInside)
     }
     
     func setupSwipeView() {
@@ -147,25 +154,23 @@ private extension GeneralViewController {
         name.numberOfLines = 0
         year.font = UIFont.systemFont(ofSize: 20)
         rating.font = UIFont.systemFont(ofSize: 20)
+        
         [name, year, rating].forEach {
             $0.textColor = .white
         }
+        
         swipeView.layer.cornerRadius = 16
         swipeImage.layer.cornerRadius = 16
         swipeImage.clipsToBounds = true
+        
+        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
+        swipeLeftGesture.direction = .left
+        swipeView.addGestureRecognizer(swipeLeftGesture)
+        
+        let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
+        swipeRightGesture.direction = .right
+        swipeView.addGestureRecognizer(swipeRightGesture)
     }
-    
-//    func updateSwipeView(content: Content) {
-//        name.text = content.name
-//        year.text = String(content.year)
-//        rating.text = String(content.rating)
-//        
-//        if let url = URL(string: content.poster) {
-//            swipeImage.load(url: url)
-//        } else {
-//        // TODO: - Add image placeholder
-//        }
-//    }
     
     func setupGradient() {
         let gradient = CAGradientLayer()
@@ -177,15 +182,44 @@ private extension GeneralViewController {
     }
     
     // MARK: Actions
-    @objc private func didTapFilmCategory() {
-        presenter?.didTapFilmCategory()
+    @objc private func handleCategory() {
+        presenter?.handleCategory()
     }
     
-    @objc private func didTapSeriesCategory() {
-        presenter?.didTapSeriesCategory()
+    @objc private func handleFilters() {
+        presenter?.handleFilters()
     }
     
-    @objc private func didTapFiltersButton() {
-        presenter?.didTapFiltersButton()
+    @objc func handleSwipeGesture(_ gestureRecognizer: UISwipeGestureRecognizer) {
+        switch gestureRecognizer.direction {
+        case .left:
+            presenter?.handleSwipe(direction: .left)
+        case .right:
+            presenter?.handleSwipe(direction: .right)
+        default:
+            break
+        }
     }
+}
+
+// MARK: - Support Methods
+private extension GeneralViewController {
+    func updateSwipeView(title: String, year: String, rating: String, posterURL: String?) {
+        name.text = title
+        self.year.text = year
+        self.rating.text = rating
+        
+        if let url = URL(string: posterURL ?? "") {
+            swipeImage.load(url: url)
+        } else {
+            // TODO: - Add image placeholder
+        }
+    }
+}
+
+
+// MARK: - SwipeDirection Enum
+enum SwipeDirection {
+    case left
+    case right
 }

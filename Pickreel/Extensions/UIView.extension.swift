@@ -58,16 +58,4 @@ extension UIView {
             hStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
         ])
     }
-    
-    // not worked :)
-//    func setGradient(colors: (UIColor?, UIColor?)) {
-//        let gradient = CAGradientLayer()
-//        gradient.frame = self.bounds
-//        gradient.colors = [colors.0 ?? .black.withAlphaComponent(0), colors.1 ?? .black.withAlphaComponent(0)]
-//        gradient.startPoint = CGPoint(x: 0, y: 0.5)
-//        gradient.endPoint = CGPoint(x: 1, y: 0.5)
-//        gradient.locations = [0, 1]
-//        gradient.cornerRadius = 16
-//        self.layer.addSublayer(gradient)
-//    }
 }

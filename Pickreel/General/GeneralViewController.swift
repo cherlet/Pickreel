@@ -36,15 +36,19 @@ extension GeneralViewController: GeneralViewProtocol {
     func show(category: DataType, card: Card) {
         switch category {
         case .movies:
-            moviesCategoryLabel.enable()
-            seriesCategoryLabel.disable()
-            let content = card.movie
-            updateSwipeView(title: content.title.ru, year: String(content.year), rating: String(content.rating.imdb), posterURL: content.posterURL)
+            DispatchQueue.main.async {
+                self.moviesCategoryLabel.enable()
+                self.seriesCategoryLabel.disable()
+                let content = card.movie
+                self.updateSwipeView(title: content.title.ru, year: String(content.year), rating: String(content.rating.imdb), posterURL: content.posterURL)
+            }
         case .series:
-            seriesCategoryLabel.enable()
-            moviesCategoryLabel.disable()
-            let content = card.series
-            updateSwipeView(title: content.title.ru, year: String(content.year), rating: String(content.rating.imdb), posterURL: content.posterURL)
+            DispatchQueue.main.async {
+                self.seriesCategoryLabel.enable()
+                self.moviesCategoryLabel.disable()
+                let content = card.series
+                self.updateSwipeView(title: content.title.ru, year: String(content.year), rating: String(content.rating.imdb), posterURL: content.posterURL)
+            }
         }
     }
 }
@@ -146,7 +150,7 @@ private extension GeneralViewController {
         let config = UIImage.SymbolConfiguration(pointSize: 24)
         let image = UIImage(systemName: "slider.horizontal.3", withConfiguration: config)
         filtersButton.setImage(image, for: .normal)
-        filtersButton.addTarget(self, action: #selector(handleCategory), for: .touchUpInside)
+        filtersButton.addTarget(self, action: #selector(handleFilters), for: .touchUpInside)
     }
     
     func setupSwipeView() {

@@ -4,7 +4,7 @@ import FirebaseFirestore
 
 final class NetworkManager {
     static let shared = NetworkManager()
-
+    
     private let db = Firestore.firestore()
     private let auth = Auth.auth()
     
@@ -80,13 +80,18 @@ extension NetworkManager {
 // MARK: - Firestore
 extension NetworkManager {
     func fetchData() async {
-        guard let movies = await loadData(of: .movies) as? [Movie] else { return }
-        guard let series = await loadData(of: .series) as? [Series] else { return }
+        guard let movies = await loadData(of: .movies) as? [Movie], !movies.isEmpty else { return }
+        guard let series = await loadData(of: .series) as? [Series], !series.isEmpty else { return }
         let data = Media(movies: movies, series: series)
         self.currentPage = Page(data: data)
     }
     
     func loadData(of type: DataType, limit: Int = 20) async -> [Any] {
+        guard let uid = auth.currentUser?.uid else { return [] }
+        guard let historySnapshot = try? await db.collection("users").document(uid).collection("\(type.rawValue)_history").getDocuments()
+        else { return [] }
+        let history = historySnapshot.documents.map { $0.documentID }
+        
         let query = db.collection(type.rawValue)
             .order(by: "votes.kp", descending: true)
             .limit(to: limit)
@@ -95,13 +100,41 @@ extension NetworkManager {
         
         let data: [Any]
         
-        if type == .movies {
+        switch type {
+        case .movies:
             data = snapshot.documents.map { try! $0.data(as: Movie.self) }
-        } else {
+        case .series:
             data = snapshot.documents.map { try! $0.data(as: Series.self) }
         }
         
         return data
+    }
+    
+    func writeChoice(of card: Card, with type: DataType) async {
+        guard let uid = auth.currentUser?.uid else { return }
+        
+        switch type {
+        case .movies:
+            let data = card.movie
+            do {
+                let snapshot = try? await db.collection(type.rawValue).whereField("externalID.imdb", isEqualTo: data.externalID.imdb).getDocuments()
+                let id = snapshot?.documents.map { $0.documentID }[0] ?? ""
+                try await db.collection(type.rawValue).document(id).delete()
+                try db.collection("users").document(uid).collection("\(type.rawValue)_history").addDocument(from: data)
+            } catch {
+                print("DEBUG: Failed to transfer data")
+            }
+        case .series:
+            let data = card.series
+            do {
+                let snapshot = try? await db.collection(type.rawValue).whereField("externalID.imdb", isEqualTo: data.externalID.imdb).getDocuments()
+                let id = snapshot?.documents.map { $0.documentID }[0] ?? ""
+                try await db.collection(type.rawValue).document(id).delete()
+                try db.collection("users").document(uid).collection("\(type.rawValue)_history").addDocument(from: data)
+            } catch {
+                print("DEBUG: Failed to transfer data")
+            }
+        }
     }
     
     func checkCount(of type: DataType) async {
@@ -118,4 +151,13 @@ extension NetworkManager {
 enum DataType: String {
     case movies = "movies"
     case series = "series"
+    
+    func getOpposite() -> DataType {
+        switch self {
+        case .movies:
+            return .series
+        case .series:
+            return .movies
+        }
+    }
 }

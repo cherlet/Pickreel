@@ -13,12 +13,14 @@ class FiltersPresenter {
     
     private var years: (Int, Int)
     private var ratings: (Double, Double)
+    private var genre: String?
     private var completion: (Filter) -> Void
 
     init(router: FiltersRouterProtocol, filter: Filter, completion: @escaping (Filter) -> Void) {
         self.router = router
-        self.years = filter.years
-        self.ratings = filter.ratings
+        self.years = filter.years ?? (1930, 2030)
+        self.ratings = filter.ratings ?? (0.0, 10.0)
+        self.genre = filter.genre
         self.completion = completion
     }
 }
@@ -40,6 +42,6 @@ extension FiltersPresenter: FiltersPresenterProtocol {
     }
     
     func didTapSubmitButton() {
-        router.closeFilters(newFilter: Filter(years: years, ratings: ratings), completion: completion)
+        router.closeFilters(newFilter: Filter(years: years, ratings: ratings, genre: genre), completion: completion)
     }
 }

@@ -10,8 +10,8 @@ final class NetworkManager {
     
     var userSession: FirebaseAuth.User?
     var currentUser: User?
-    
     var currentPage: Page?
+    var iterator = Iterator()
     
     private init() {
         self.userSession = auth.currentUser
@@ -79,67 +79,85 @@ extension NetworkManager {
 
 // MARK: - Firestore
 extension NetworkManager {
-    func fetchData() async {
-        guard let movies = await loadData(of: .movies) as? [Movie], !movies.isEmpty else { return }
-        guard let series = await loadData(of: .series) as? [Series], !series.isEmpty else { return }
-        let data = Media(movies: movies, series: series)
+    func loadData(with filter: Filter? = nil) async {
+        let movies = await fetchData(of: .movies, with: filter)
+        let series = await fetchData(of: .series, with: filter)
+        let data = MediaData(movies: movies, series: series)
         self.currentPage = Page(data: data)
+        self.iterator.reset()
     }
     
-    func loadData(of type: DataType, limit: Int = 20) async -> [Any] {
-        guard let uid = auth.currentUser?.uid else { return [] }
-        guard let historySnapshot = try? await db.collection("users").document(uid).collection("\(type.rawValue)_history").getDocuments()
-        else { return [] }
-        let history = historySnapshot.documents.map { $0.documentID }
-        
-        let query = db.collection(type.rawValue)
-            .order(by: "votes.kp", descending: true)
-            .limit(to: limit)
-        
-        guard let snapshot = try? await query.getDocuments() else { return [] }
-        
-        let data: [Any]
+    func fetchData(of type: MediaType, limit: Int = 20, with filter: Filter? = nil) async -> [Media] {
+        // MARK: Construct query
+        var query = db.collection("media").limit(to: limit)
         
         switch type {
         case .movies:
-            data = snapshot.documents.map { try! $0.data(as: Movie.self) }
+            query = query.whereField("isMovie", isEqualTo: true)
         case .series:
-            data = snapshot.documents.map { try! $0.data(as: Series.self) }
+            query = query.whereField("isMovie", isEqualTo: false)
+        }
+        
+        if let yearFilter = filter?.years {
+            query = query.whereField("year", isGreaterThanOrEqualTo: yearFilter.left)
+                    .whereField("year", isLessThanOrEqualTo: yearFilter.right)
+        }
+        
+        if let genreFilter = filter?.genre {
+            query = query.whereFilter(FirebaseFirestoreInternal.Filter.orFilter([
+                FirebaseFirestoreInternal.Filter.whereField("genres.en", arrayContains: genreFilter),
+                FirebaseFirestoreInternal.Filter.whereField("genres.ru", arrayContains: genreFilter)
+            ]))
+        }
+        
+        // MARK: Execute Query
+        var data: [Media]
+        
+        do {
+            let snapshot = try await query.getDocuments()
+            data = try snapshot.documents.map { try $0.data(as: Media.self) }
+        } catch {
+            print("DEBUG: Failed to parse media data")
+            return []
+        }
+        
+        if let ratingFilter = filter?.ratings {
+            data = data.filter { $0.rating.imdb >= ratingFilter.left &&  $0.rating.imdb <= ratingFilter.right }
         }
         
         return data
     }
     
-    func writeChoice(of card: Card, with type: DataType) async {
+    func writeChoice(of card: Card, with type: MediaType) async {
         guard let uid = auth.currentUser?.uid else { return }
+        let data = type == .movies ? card.movie : card.series
+        guard data.externalID.imdb != "" else { return }
+        iterator.increase()
         
-        switch type {
-        case .movies:
-            let data = card.movie
-            do {
-                let snapshot = try? await db.collection(type.rawValue).whereField("externalID.imdb", isEqualTo: data.externalID.imdb).getDocuments()
-                let id = snapshot?.documents.map { $0.documentID }[0] ?? ""
-                try await db.collection(type.rawValue).document(id).delete()
-                try db.collection("users").document(uid).collection("\(type.rawValue)_history").addDocument(from: data)
-            } catch {
-                print("DEBUG: Failed to transfer data")
+        do {
+            // MARK: Delete card from general collection and transfer to user_history
+            try await db.collection("media").document(data.externalID.imdb).delete()
+            try db.collection("users").document(uid).collection("history").document(data.externalID.imdb).setData(from: data)
+            
+            // MARK: Load backup data if needed
+            guard let currentCount = type == .movies ? currentPage?.data.movies.count : currentPage?.data.series.count else { return }
+            if iterator.isReachedMiddle(of: currentCount) {
+                currentPage?.data.movies.removeFirst(currentCount / 2)
+                var backup = await NetworkManager.shared.fetchData(of: type, limit: currentCount)
+                backup.removeFirst(currentCount - currentCount / 2)
+                currentPage?.data.movies.append(contentsOf: backup)
+                iterator.reset()
+                currentPage?.data.swiper.reset(for: type)
             }
-        case .series:
-            let data = card.series
-            do {
-                let snapshot = try? await db.collection(type.rawValue).whereField("externalID.imdb", isEqualTo: data.externalID.imdb).getDocuments()
-                let id = snapshot?.documents.map { $0.documentID }[0] ?? ""
-                try await db.collection(type.rawValue).document(id).delete()
-                try db.collection("users").document(uid).collection("\(type.rawValue)_history").addDocument(from: data)
-            } catch {
-                print("DEBUG: Failed to transfer data")
-            }
+        } catch {
+            print("DEBUG: Failed to write swipe-choice")
+            return
         }
     }
     
-    func checkCount(of type: DataType) async {
+    func checkCount() async {
         do {
-            let snapshot = try await db.collection(type.rawValue).count.getAggregation(source: .server)
+            let snapshot = try await db.collection("media").count.getAggregation(source: .server)
             print("DEBUG: Data count = \(snapshot.count)")
         } catch {
             print(error)
@@ -148,16 +166,33 @@ extension NetworkManager {
 }
 
 // MARK: - DataType Enum
-enum DataType: String {
-    case movies = "movies"
-    case series = "series"
+enum MediaType {
+    case movies
+    case series
     
-    func getOpposite() -> DataType {
+    func getOpposite() -> MediaType {
         switch self {
         case .movies:
             return .series
         case .series:
             return .movies
         }
+    }
+}
+
+// MARK: - Iterator
+struct Iterator {
+    var value = 0
+    
+    mutating func increase() {
+        value += 1
+    }
+    
+    mutating func reset() {
+        value = 0
+    }
+    
+    func isReachedMiddle(of number: Int) -> Bool {
+        value == number / 2
     }
 }

@@ -16,10 +16,10 @@ class GeneralPresenter {
     var interactor: GeneralInteractorProtocol
     
     // MARK: Variables
-    private var category: DataType = .movies
+    private var category: MediaType = .movies
     
     private var page: Page?
-    private var filter = Filter(years: (1930, 2030), ratings: (0, 10))
+    private var filter = Filter()
     
     // MARK: Initialize
     init(interactor: GeneralInteractorProtocol, router: GeneralRouterProtocol) {
@@ -30,7 +30,7 @@ class GeneralPresenter {
 
 extension GeneralPresenter: GeneralPresenterProtocol {
     func viewLoaded() {
-        interactor.loadData()
+        interactor.loadData(with: filter)
     }
     
     func dataLoaded(with page: Page) {
@@ -41,6 +41,7 @@ extension GeneralPresenter: GeneralPresenterProtocol {
     
     func handleCategory() {
         guard let card = self.page?.currentCard else { return }
+        interactor.resetIterator()
         category = category.getOpposite()
         view?.show(category: self.category, card: card)
     }
@@ -51,7 +52,7 @@ extension GeneralPresenter: GeneralPresenterProtocol {
         interactor.sendChoice(of: currentCard, with: category)
         
         // Swipe card
-        page?.swiper.step(for: category)
+        page?.data.swiper.step(for: category)
         guard let card = self.page?.currentCard else { return }
         view?.show(category: self.category, card: card)
     }
@@ -62,5 +63,6 @@ extension GeneralPresenter: GeneralPresenterProtocol {
     
     func updateFilter(to filter: Filter) {
         self.filter = filter
+        interactor.loadData(with: filter)
     }
 }

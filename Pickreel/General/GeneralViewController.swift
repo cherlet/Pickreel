@@ -1,7 +1,7 @@
 import UIKit
 
 protocol GeneralViewProtocol: AnyObject {
-    func show(category: DataType, card: Card)
+    func show(category: MediaType, card: Card)
 }
 
 class GeneralViewController: UIViewController {
@@ -33,7 +33,7 @@ class GeneralViewController: UIViewController {
 
 // MARK: Module
 extension GeneralViewController: GeneralViewProtocol {
-    func show(category: DataType, card: Card) {
+    func show(category: MediaType, card: Card) {
         switch category {
         case .movies:
             DispatchQueue.main.async {

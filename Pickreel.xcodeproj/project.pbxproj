@@ -10,6 +10,7 @@
 		070827002B6AB89E00D10341 /* UIColor.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070826FF2B6AB89E00D10341 /* UIColor.extension.swift */; };
 		070827022B6AB8AE00D10341 /* UIImageView.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070827012B6AB8AE00D10341 /* UIImageView.extension.swift */; };
 		070827052B6ABACC00D10341 /* UIView.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070827042B6ABACB00D10341 /* UIView.extension.swift */; };
+		071F3FB42BACD36F00D08E90 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071F3FB32BACD36F00D08E90 /* Media.swift */; };
 		07514A3D2B98C69C003449AF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 07514A3C2B98C69C003449AF /* FirebaseAuth */; };
 		07514A432B98C69C003449AF /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 07514A422B98C69C003449AF /* FirebaseDatabase */; };
 		07514A492B98C69C003449AF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 07514A482B98C69C003449AF /* FirebaseFirestore */; };
@@ -40,8 +41,6 @@
 		077FD3BE2B9E20800041E2C6 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3B92B9E20800041E2C6 /* SettingsRouter.swift */; };
 		077FD3BF2B9E20800041E2C6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3BA2B9E20800041E2C6 /* SettingsViewController.swift */; };
 		077FD3C02B9E20800041E2C6 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3BB2B9E20800041E2C6 /* SettingsInteractor.swift */; };
-		0781FFBA2BA36DE0001903A8 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0781FFB92BA36DE0001903A8 /* Movie.swift */; };
-		078275B02BA7310600FB8582 /* Series.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078275AF2BA7310600FB8582 /* Series.swift */; };
 		07946FD22B651A53001C4E7F /* ProfileModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FCD2B651A53001C4E7F /* ProfileModuleBuilder.swift */; };
 		07946FD32B651A53001C4E7F /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FCE2B651A53001C4E7F /* ProfilePresenter.swift */; };
 		07946FD42B651A53001C4E7F /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FCF2B651A53001C4E7F /* ProfileRouter.swift */; };
@@ -76,6 +75,7 @@
 		070826FF2B6AB89E00D10341 /* UIColor.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.extension.swift; sourceTree = "<group>"; };
 		070827012B6AB8AE00D10341 /* UIImageView.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.extension.swift; sourceTree = "<group>"; };
 		070827042B6ABACB00D10341 /* UIView.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.extension.swift; sourceTree = "<group>"; };
+		071F3FB32BACD36F00D08E90 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		07514A662B98C785003449AF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		0759092C2B6D75F800A603EA /* SearchModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModuleBuilder.swift; sourceTree = "<group>"; };
 		0759092D2B6D75F800A603EA /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
@@ -101,8 +101,6 @@
 		077FD3B92B9E20800041E2C6 /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
 		077FD3BA2B9E20800041E2C6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		077FD3BB2B9E20800041E2C6 /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
-		0781FFB92BA36DE0001903A8 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		078275AF2BA7310600FB8582 /* Series.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
 		07946FCD2B651A53001C4E7F /* ProfileModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModuleBuilder.swift; sourceTree = "<group>"; };
 		07946FCE2B651A53001C4E7F /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		07946FCF2B651A53001C4E7F /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
@@ -341,9 +339,8 @@
 			children = (
 				07F16CCA2BA9BF6C00470130 /* Page.swift */,
 				0760B8572B9AE20E006CFFF5 /* User.swift */,
-				0781FFB92BA36DE0001903A8 /* Movie.swift */,
-				078275AF2BA7310600FB8582 /* Series.swift */,
 				077E03FD2B6D48B400FA6DA4 /* Filter.swift */,
+				071F3FB32BACD36F00D08E90 /* Media.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -476,10 +473,9 @@
 				07ED003C2B63F70B00F0A143 /* GeneralPresenter.swift in Sources */,
 				07F6DD8D2B6BF177001F9DB3 /* FiltersPresenter.swift in Sources */,
 				07946FE02B651B6C001C4E7F /* TabBarController.swift in Sources */,
-				078275B02BA7310600FB8582 /* Series.swift in Sources */,
+				071F3FB42BACD36F00D08E90 /* Media.swift in Sources */,
 				077FD3C02B9E20800041E2C6 /* SettingsInteractor.swift in Sources */,
 				07CEF24C2B623CD700BF88BD /* AppDelegate.swift in Sources */,
-				0781FFBA2BA36DE0001903A8 /* Movie.swift in Sources */,
 				07946FD32B651A53001C4E7F /* ProfilePresenter.swift in Sources */,
 				076CDEDA2BA888A200B9F576 /* AlertManager.swift in Sources */,
 				07946FD62B651A53001C4E7F /* ProfileInteractor.swift in Sources */,

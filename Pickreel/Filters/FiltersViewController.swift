@@ -10,14 +10,12 @@ class FiltersViewController: UIViewController {
     var presenter: FiltersPresenterProtocol?
 
     // MARK: UI Elements
-    private let headerLabel = UILabel()
     private let yearFilterLabel = UILabel()
     private let yearValueLabel = UILabel()
     private let yearSlider = MultiSlider()
     private let ratingFilterLabel = UILabel()
     private let ratingValueLabel = UILabel()
     private let ratingSlider = MultiSlider()
-    private let countriesFilterLabel = UILabel()
     private let genresFilterLabel = UILabel()
     private let submitButton = UIButton()
 
@@ -65,18 +63,15 @@ private extension FiltersViewController {
             $0.distribution = .equalSpacing
         }
         
-        let uiElements = [headerLabel, yearStack, yearSlider, ratingStack, ratingSlider, countriesFilterLabel, genresFilterLabel, submitButton]
+        let uiElements = [yearStack, yearSlider, ratingStack, ratingSlider, genresFilterLabel, submitButton]
         uiElements.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
         
         NSLayoutConstraint.activate([
-            headerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 32),
-            headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            
-            yearStack.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 16),
-            yearStack.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor),
+            yearStack.topAnchor.constraint(equalTo: view.topAnchor, constant: 32),
+            yearStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             yearStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
             yearSlider.topAnchor.constraint(equalTo: yearStack.bottomAnchor, constant: 8),
@@ -91,16 +86,13 @@ private extension FiltersViewController {
             ratingSlider.leadingAnchor.constraint(equalTo: yearSlider.leadingAnchor),
             ratingSlider.trailingAnchor.constraint(equalTo: yearSlider.trailingAnchor),
             
-            countriesFilterLabel.topAnchor.constraint(equalTo: ratingSlider.bottomAnchor, constant: 16),
-            countriesFilterLabel.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor),
-            
-            genresFilterLabel.topAnchor.constraint(equalTo: countriesFilterLabel.bottomAnchor, constant: 16),
-            genresFilterLabel.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor),
+            genresFilterLabel.topAnchor.constraint(equalTo: ratingSlider.bottomAnchor, constant: 16),
+            genresFilterLabel.leadingAnchor.constraint(equalTo: yearStack.leadingAnchor),
             
             submitButton.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor),
             submitButton.heightAnchor.constraint(equalToConstant: 40),
             submitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -64),
-            submitButton.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor),
+            submitButton.leadingAnchor.constraint(equalTo: yearStack.leadingAnchor),
             submitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
     }
@@ -127,16 +119,11 @@ private extension FiltersViewController {
     }
     
     func setupSectionLabels() {
-        headerLabel.text = "Фильтры"
-        headerLabel.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
-        headerLabel.textColor = ThemeColor.oppColor
-        
         yearFilterLabel.text = "Год:"
         ratingFilterLabel.text = "Рейтинг:"
-        countriesFilterLabel.text = "Страна:"
         genresFilterLabel.text = "Жанр:"
         
-        [yearFilterLabel, yearValueLabel, ratingFilterLabel, ratingValueLabel, countriesFilterLabel, genresFilterLabel].forEach {
+        [yearFilterLabel, yearValueLabel, ratingFilterLabel, ratingValueLabel, genresFilterLabel].forEach {
             $0.font = UIFont.systemFont(ofSize: 20)
             $0.textColor = ThemeColor.oppColor?.withAlphaComponent(0.5)
         }

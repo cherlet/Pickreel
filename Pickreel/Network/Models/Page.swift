@@ -2,88 +2,89 @@ import Foundation
 
 class Page {
     // MARK: Variables
-    var data: Media
+    var data: MediaData
     var currentCard: Card {
-        Card(movie: data.movies[swiper.movieIterator], series: data.series[swiper.seriesIterator])
-    }
-    var swiper: Swiper {
-        willSet {
-            if newValue.neededMovieBackup {
-                Task {
-                    await self.loadBackup(for: .movies)
-                    self.swiper.reset(for: .movies)
-                }
-            } else if newValue.neededSeriesBackup {
-                Task {
-                    await self.loadBackup(for: .series)
-                    self.swiper.reset(for: .series)
-                }
-            }
-        }
+        getCard(dataStatus: data.getDataStatus())
     }
     
     // MARK: Initialize
-    init(data: Media, swiper: Swiper = Swiper()) {
+    init(data: MediaData) {
         self.data = data
-        self.swiper = swiper
+    }
+}
+
+// MARK: - Media
+struct MediaData {
+    var movies: [Media]
+    var series: [Media]
+    var swiper: Swiper
+    
+    init(movies: [Media], series: [Media]) {
+        self.movies = movies
+        self.series = series
+        self.swiper = Swiper()
     }
     
-    // MARK: Methods
-    private func loadBackup(for type: DataType) async {
-        switch type {
-        case .movies:
-            guard let backup = await NetworkManager.shared.loadData(of: type, limit: 10) as? [Movie] else { return }
-            guard self.data.movies.count >= 20 else { return }
-            self.data.movies.removeFirst(10)
-            self.data.movies.append(contentsOf: backup)
-        case .series:
-            guard let backup = await NetworkManager.shared.loadData(of: type, limit: 10) as? [Series] else { return }
-            guard self.data.series.count >= 20 else { return }
-            self.data.series.removeFirst(10)
-            self.data.series.append(contentsOf: backup)
-        }
+    func getDataStatus() -> (movies: Bool, series: Bool) {
+        var dataStatus: (movies: Bool, series: Bool)
+        dataStatus.movies = swiper.movieIterator.value < movies.count
+        dataStatus.series = swiper.seriesIterator.value < series.count
+        return dataStatus
     }
 }
 
 // MARK: - Swiper
 struct Swiper {
-    var movieIterator = 0
-    var seriesIterator = 0
+    var movieIterator = Iterator()
+    var seriesIterator = Iterator()
     
-    var neededMovieBackup = false
-    var neededSeriesBackup = false
-    
-    mutating func step(for type: DataType) {
+    mutating func step(for type: MediaType) {
         switch type {
         case .movies:
-            movieIterator += 1
-            neededMovieBackup = movieIterator == 10 ? true : false
+            movieIterator.increase()
         case .series:
-            seriesIterator += 1
-            neededSeriesBackup = seriesIterator == 10 ? true : false
+            seriesIterator.increase()
         }
     }
     
-    mutating func reset(for type: DataType) {
+    mutating func reset(for type: MediaType) {
         switch type {
         case .movies:
-            movieIterator = 0
-            neededMovieBackup = false
+            movieIterator.reset()
         case .series:
-            seriesIterator = 0
-            neededSeriesBackup = false
+            seriesIterator.reset()
         }
     }
 }
 
 // MARK: - Card
 struct Card {
-    let movie: Movie
-    let series: Series
+    let movie: Media
+    let series: Media
 }
 
-// MARK: - Media
-struct Media {
-    var movies: [Movie]
-    var series: [Series]
+// MARK: - GetCard
+extension Page {
+    private func getCard(dataStatus: (movies: Bool, series: Bool)) -> Card {
+        let externalID = ExternalID(imdb: "", kp: 0, tmdb: 0)
+        let title = Title(ru: "Данные отсутствуют", en: "Out of data", original: "Out of data")
+        let posterURL = "https://i.imgur.com/ob2h2BA.png"
+        let overview = Overview(ru: "", en: "")
+        let rating = Rating(pr: 0, imdb: 0, kp: 0, tmdb: 0, filmCritics: 0)
+        let genres = Genres(ru: [], en: [])
+        let countries = Countries(ru: [], en: [])
+        let credits = Credits(cast: [], crew: [])
+        
+        let placeholder = Media(externalID: externalID, isMovie: true, title: title, year: 0, runtime: 0, ageRating: 0, posterURL: posterURL, overview: overview, rating: rating, votes: rating, genres: genres, countries: countries, companies: [], seasons: [], credits: credits)
+        
+        if dataStatus.movies == true, dataStatus.series == true {
+            return Card(movie: data.movies[data.swiper.movieIterator.value], series: data.series[data.swiper.seriesIterator.value])
+        } else if dataStatus.movies == false, dataStatus.series == true {
+            return Card(movie: placeholder, series: data.series[data.swiper.seriesIterator.value])
+        } else if dataStatus.movies == true, dataStatus.series == false {
+            return Card(movie: data.movies[data.swiper.movieIterator.value], series: placeholder)
+        } else {
+            return Card(movie: placeholder, series: placeholder)
+        }
+    }
 }

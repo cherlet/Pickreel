@@ -1,4 +1,5 @@
 protocol ProfilePresenterProtocol: AnyObject {
+    func viewLoaded()
     func didTapSettingsButton()
     func deselectSettingsButton()
 }
@@ -8,7 +9,7 @@ class ProfilePresenter {
     var router: ProfileRouterProtocol
     var interactor: ProfileInteractorProtocol
     
-    var isSettingsVisible: Bool = false
+    var isSettingsVisible = false
 
     init(interactor: ProfileInteractorProtocol, router: ProfileRouterProtocol) {
         self.interactor = interactor
@@ -17,6 +18,11 @@ class ProfilePresenter {
 }
 
 extension ProfilePresenter: ProfilePresenterProtocol {
+    func viewLoaded() {
+        let user = interactor.getUser()
+        view?.initializeUser(user: user)
+    }
+    
     func didTapSettingsButton() {
         if isSettingsVisible {
             view?.hideSettings()

@@ -1,6 +1,7 @@
 import UIKit
 
 protocol ProfileViewProtocol: AnyObject {
+    func initializeUser(user: User?)
     func showSettings()
     func hideSettings()
 }
@@ -9,6 +10,7 @@ class ProfileViewController: UIViewController {
     // MARK: Variables
     var presenter: ProfilePresenterProtocol?
     var settingsViewController: SettingsViewController?
+    var user: User?
     
     // MARK: UI Elements
     private let profileView = UIView()
@@ -21,6 +23,8 @@ class ProfileViewController: UIViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.viewLoaded()
+        settingsViewController = SettingsModuleBuilder.build()
         initialize()
     }
     
@@ -32,34 +36,18 @@ class ProfileViewController: UIViewController {
 
 // MARK: Module
 extension ProfileViewController: ProfileViewProtocol {
+    func initializeUser(user: User?) {
+        self.user = user
+    }
+    
     func showSettings() {
-        settingsViewController = SettingsModuleBuilder.build()
         guard let settingsViewController = settingsViewController else { return }
-        addChild(settingsViewController)
-        
-        settingsViewController.view.frame = CGRect(x: 0, y: -settingsViewController.view.frame.height, width: view.bounds.width, height: settingsViewController.view.frame.height)
-        view.insertSubview(settingsViewController.view, belowSubview: profileView)
-        settingsViewController.didMove(toParent: self)
-
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
-            settingsViewController.view.frame = CGRect(x: 0, y: self.profileView.frame.maxY, width: settingsViewController.view.frame.width, height: settingsViewController.view.frame.height)
-        }, completion: nil)
-        
-        settingsButton.tintColor = ThemeColor.generalColor
+        unroll(settingsViewController)
     }
 
     func hideSettings() {
         guard let settingsViewController = settingsViewController else { return }
-        
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
-            settingsViewController.view.frame = CGRect(x: 0, y: -settingsViewController.view.frame.height, width: settingsViewController.view.frame.width, height: settingsViewController.view.frame.height)
-        }) { _ in
-            settingsViewController.willMove(toParent: nil)
-            settingsViewController.view.removeFromSuperview()
-            settingsViewController.removeFromParent()
-        }
-
-        settingsButton.tintColor = ThemeColor.backgroundColor
+        roll(settingsViewController)
     }
 }
 
@@ -124,6 +112,8 @@ private extension ProfileViewController {
     }
     
     func setupProfile() {
+        guard let user = user else { return }
+        
         profileView.backgroundColor = ThemeColor.contrastColor
         profileView.translatesAutoresizingMaskIntoConstraints = false
         profileView.layer.cornerRadius = 16
@@ -133,7 +123,7 @@ private extension ProfileViewController {
         profileAvatar.translatesAutoresizingMaskIntoConstraints = false
         profileAvatar.tintColor = .white
         
-        profileName.text = NetworkManager.shared.currentUser?.nickname
+        profileName.text = user.nickname
         profileName.textColor = .white
         profileName.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         profileName.translatesAutoresizingMaskIntoConstraints = false
@@ -150,8 +140,36 @@ private extension ProfileViewController {
     }
     
     // MARK: Actions
-    
     @objc func didTapSettingsButton() {
         presenter?.didTapSettingsButton()
+    }
+}
+
+// MARK: - Animation Methods
+private extension ProfileViewController {
+    func roll(_ viewController: UIViewController) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+            viewController.view.frame = CGRect(x: 0, y: -viewController.view.frame.height, width: viewController.view.frame.width, height: viewController.view.frame.height)
+        }) { _ in
+            viewController.willMove(toParent: nil)
+            viewController.view.removeFromSuperview()
+            viewController.removeFromParent()
+        }
+        
+        settingsButton.tintColor = ThemeColor.backgroundColor
+    }
+    
+    func unroll(_ viewController: UIViewController) {
+        addChild(viewController)
+        
+        viewController.view.frame = CGRect(x: 0, y: -viewController.view.frame.height, width: view.bounds.width, height: viewController.view.frame.height)
+        view.insertSubview(viewController.view, belowSubview: profileView)
+        viewController.didMove(toParent: self)
+
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+            viewController.view.frame = CGRect(x: 0, y: self.profileView.frame.maxY, width: viewController.view.frame.width, height: viewController.view.frame.height)
+        }, completion: nil)
+        
+        settingsButton.tintColor = ThemeColor.generalColor
     }
 }

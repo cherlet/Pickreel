@@ -7,6 +7,5 @@ class FiltersRouter: FiltersRouterProtocol {
     
     func closeFilters(newFilter: Filter, completion: (Filter) -> Void) {
         completion(newFilter)
-        viewController?.dismiss(animated: true)
     }
 }

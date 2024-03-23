@@ -7,9 +7,16 @@ protocol FiltersViewProtocol: AnyObject {
 }
 
 class FiltersViewController: UIViewController {
+    // MARK: Properties
     var presenter: FiltersPresenterProtocol?
+    private var heightConstraint: NSLayoutConstraint?
+    private var bottomConstraint: NSLayoutConstraint?
+    private let heightConstant: CGFloat = 460
+    private let alphaConstant: CGFloat = 0.6
 
     // MARK: UI Elements
+    private let filtersSubview = UIView()
+    private let dimmedSubview = UIView()
     private let yearFilterLabel = UILabel()
     private let yearValueLabel = UILabel()
     private let yearSlider = MultiSlider()
@@ -24,6 +31,11 @@ class FiltersViewController: UIViewController {
         super.viewDidLoad()
         presenter?.viewLoaded()
         initialize()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fadeIn()
     }
 }
 
@@ -47,7 +59,8 @@ extension FiltersViewController: FiltersViewProtocol {
 // MARK: Setup
 private extension FiltersViewController {
     func initialize() {
-        view.backgroundColor = ThemeColor.backgroundColor
+        view.backgroundColor = .clear
+        setupSubviews()
         setupSliders()
         setupSectionLabels()
         setupSubmitButton()
@@ -55,6 +68,29 @@ private extension FiltersViewController {
     }
     
     func setupLayout() {
+        // MARK: Layout on main view
+        [dimmedSubview, filtersSubview].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview($0)
+        }
+        
+        NSLayoutConstraint.activate([
+            dimmedSubview.topAnchor.constraint(equalTo: view.topAnchor),
+            dimmedSubview.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            dimmedSubview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            dimmedSubview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            filtersSubview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            filtersSubview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+        
+        heightConstraint = filtersSubview.heightAnchor.constraint(equalToConstant: heightConstant)
+        bottomConstraint = filtersSubview.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: heightConstant)
+        
+        heightConstraint?.isActive = true
+        bottomConstraint?.isActive = true
+        
+        // MARK: Layout on filters subview
         let yearStack = UIStackView(arrangedSubviews: [yearFilterLabel, yearValueLabel])
         let ratingStack = UIStackView(arrangedSubviews: [ratingFilterLabel, ratingValueLabel])
         
@@ -63,20 +99,19 @@ private extension FiltersViewController {
             $0.distribution = .equalSpacing
         }
         
-        let uiElements = [yearStack, yearSlider, ratingStack, ratingSlider, genresFilterLabel, submitButton]
-        uiElements.forEach {
+        [yearStack, yearSlider, ratingStack, ratingSlider, genresFilterLabel, submitButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview($0)
+            filtersSubview.addSubview($0)
         }
         
         NSLayoutConstraint.activate([
-            yearStack.topAnchor.constraint(equalTo: view.topAnchor, constant: 32),
-            yearStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            yearStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            yearStack.topAnchor.constraint(equalTo: filtersSubview.topAnchor, constant: 32),
+            yearStack.leadingAnchor.constraint(equalTo: filtersSubview.leadingAnchor, constant: 16),
+            yearStack.trailingAnchor.constraint(equalTo: filtersSubview.trailingAnchor, constant: -16),
             
             yearSlider.topAnchor.constraint(equalTo: yearStack.bottomAnchor, constant: 8),
-            yearSlider.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            yearSlider.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            yearSlider.leadingAnchor.constraint(equalTo: filtersSubview.leadingAnchor, constant: 20),
+            yearSlider.trailingAnchor.constraint(equalTo: filtersSubview.trailingAnchor, constant: -20),
             
             ratingStack.topAnchor.constraint(equalTo: yearSlider.bottomAnchor, constant: 16),
             ratingStack.leadingAnchor.constraint(equalTo: yearStack.leadingAnchor),
@@ -89,12 +124,26 @@ private extension FiltersViewController {
             genresFilterLabel.topAnchor.constraint(equalTo: ratingSlider.bottomAnchor, constant: 16),
             genresFilterLabel.leadingAnchor.constraint(equalTo: yearStack.leadingAnchor),
             
-            submitButton.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor),
+            submitButton.widthAnchor.constraint(lessThanOrEqualTo: filtersSubview.widthAnchor),
             submitButton.heightAnchor.constraint(equalToConstant: 40),
-            submitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -64),
+            submitButton.bottomAnchor.constraint(equalTo: filtersSubview.bottomAnchor, constant: -64),
             submitButton.leadingAnchor.constraint(equalTo: yearStack.leadingAnchor),
-            submitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            submitButton.trailingAnchor.constraint(equalTo: filtersSubview.trailingAnchor, constant: -16)
         ])
+    }
+    
+    func setupSubviews() {
+        let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(fadeOut))
+        swipeGestureRecognizer.direction = .down
+        filtersSubview.backgroundColor = ThemeColor.backgroundColor
+        filtersSubview.layer.cornerRadius = 16
+        filtersSubview.clipsToBounds = true
+        filtersSubview.addGestureRecognizer(swipeGestureRecognizer)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(fadeOut))
+        dimmedSubview.backgroundColor = .black
+        dimmedSubview.alpha = 0
+        dimmedSubview.addGestureRecognizer(tapGestureRecognizer)
     }
     
     func setupSliders() {
@@ -137,7 +186,6 @@ private extension FiltersViewController {
     }
     
     // MARK: Actions
-    
     @objc func yearSliderChanged(slider: MultiSlider) {
         presenter?.yearSliderChanged(slider: slider)
     }
@@ -148,5 +196,29 @@ private extension FiltersViewController {
     
     @objc func didTapSubmitButton() {
         presenter?.didTapSubmitButton()
+        fadeOut()
+    }
+}
+
+// MARK: - Animation Methods
+private extension FiltersViewController {
+    @objc func fadeOut() {
+        dimmedSubview.alpha = alphaConstant
+        UIView.animate(withDuration: 0.15) {
+            self.dimmedSubview.alpha = 0
+            self.bottomConstraint?.constant = self.heightConstant
+            self.view.layoutIfNeeded()
+        } completion: { _ in
+            self.dismiss(animated: false)
+        }
+    }
+
+    func fadeIn() {
+        view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.15) {
+            self.dimmedSubview.alpha = self.alphaConstant
+            self.bottomConstraint?.constant = 0
+            self.view.layoutIfNeeded()
+        }
     }
 }

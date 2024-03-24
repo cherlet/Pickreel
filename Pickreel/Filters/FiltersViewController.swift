@@ -2,19 +2,34 @@ import UIKit
 import MultiSlider
 
 protocol FiltersViewProtocol: AnyObject {
-    func update(years: (Int, Int))
-    func update(ratings: (Double, Double))
+    func update(filter: Filter)
 }
 
 class FiltersViewController: UIViewController {
     // MARK: Properties
     var presenter: FiltersPresenterProtocol?
+    private var selectedGenreIndex: IndexPath?
     private var heightConstraint: NSLayoutConstraint?
     private var bottomConstraint: NSLayoutConstraint?
-    private let heightConstant: CGFloat = 460
+    private let heightConstant: CGFloat = 480
     private let alphaConstant: CGFloat = 0.6
 
     // MARK: UI Elements
+    private lazy var genreCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 0
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.estimatedItemSize = CGSize(width: 1, height: 1)
+        layout.itemSize = UICollectionViewFlowLayout.automaticSize
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = ThemeColor.backgroundColor
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.register(GenreCell.self, forCellWithReuseIdentifier: GenreCell.identifier)
+        return collectionView
+    }()
+    
     private let filtersSubview = UIView()
     private let dimmedSubview = UIView()
     private let yearFilterLabel = UILabel()
@@ -30,6 +45,8 @@ class FiltersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewLoaded()
+        genreCollectionView.delegate = self
+        genreCollectionView.dataSource = self
         initialize()
     }
     
@@ -41,17 +58,22 @@ class FiltersViewController: UIViewController {
 
 // MARK: Module 
 extension FiltersViewController: FiltersViewProtocol {
-    func update(years: (Int, Int)) {
+    func update(filter: Filter) {
+        let years = filter.years ?? (left: 1930, right: 2030)
+        let ratings = filter.ratings ?? (left: 0.0, right: 10.0)
+        let genreIndex = Genres.findIndex(of: filter.genre)
+        
         DispatchQueue.main.async {
-            self.yearValueLabel.text = "\(years.0) - \(years.1)"
-            self.yearSlider.value = [CGFloat(years.0), CGFloat(years.1)]
-        }
-    }
-    
-    func update(ratings: (Double, Double)) {
-        DispatchQueue.main.async {
-            self.ratingValueLabel.text = "\(ratings.0) - \(ratings.1)"
-            self.ratingSlider.value = [CGFloat(ratings.0), CGFloat(ratings.1)]
+            self.yearValueLabel.text = "\(years.left) - \(years.right)"
+            self.yearSlider.value = [CGFloat(years.left), CGFloat(years.right)]
+            
+            self.ratingValueLabel.text = "\(ratings.left) - \(ratings.right)"
+            self.ratingSlider.value = [CGFloat(ratings.left), CGFloat(ratings.right)]
+            
+            if let index = genreIndex {
+                self.selectedGenreIndex = IndexPath(row: index, section: 0)
+                self.genreCollectionView.selectItem(at: self.selectedGenreIndex, animated: false, scrollPosition: UICollectionView.ScrollPosition.left)
+            }
         }
     }
 }
@@ -99,7 +121,7 @@ private extension FiltersViewController {
             $0.distribution = .equalSpacing
         }
         
-        [yearStack, yearSlider, ratingStack, ratingSlider, genresFilterLabel, submitButton].forEach {
+        [yearStack, yearSlider, ratingStack, ratingSlider, genresFilterLabel, genreCollectionView, submitButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             filtersSubview.addSubview($0)
         }
@@ -118,11 +140,16 @@ private extension FiltersViewController {
             ratingStack.trailingAnchor.constraint(equalTo: yearStack.trailingAnchor),
             
             ratingSlider.topAnchor.constraint(equalTo: ratingStack.bottomAnchor, constant: 8),
-            ratingSlider.leadingAnchor.constraint(equalTo: yearSlider.leadingAnchor),
+            ratingSlider.leadingAnchor.constraint(equalTo: yearStack.leadingAnchor),
             ratingSlider.trailingAnchor.constraint(equalTo: yearSlider.trailingAnchor),
             
             genresFilterLabel.topAnchor.constraint(equalTo: ratingSlider.bottomAnchor, constant: 16),
             genresFilterLabel.leadingAnchor.constraint(equalTo: yearStack.leadingAnchor),
+            
+            genreCollectionView.topAnchor.constraint(equalTo: genresFilterLabel.bottomAnchor, constant: 12),
+            genreCollectionView.leadingAnchor.constraint(equalTo: yearStack.leadingAnchor),
+            genreCollectionView.trailingAnchor.constraint(equalTo: filtersSubview.trailingAnchor, constant: -20),
+            genreCollectionView.heightAnchor.constraint(equalToConstant: 40),
             
             submitButton.widthAnchor.constraint(lessThanOrEqualTo: filtersSubview.widthAnchor),
             submitButton.heightAnchor.constraint(equalToConstant: 40),
@@ -182,7 +209,7 @@ private extension FiltersViewController {
         submitButton.setTitle("Применить", for: .normal)
         submitButton.backgroundColor = ThemeColor.generalColor
         submitButton.layer.cornerRadius = 16
-        submitButton.addTarget(self, action: #selector(didTapSubmitButton), for: .touchUpInside)
+        submitButton.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
     }
     
     // MARK: Actions
@@ -194,9 +221,36 @@ private extension FiltersViewController {
         presenter?.ratingSliderChanged(slider: slider)
     }
     
-    @objc func didTapSubmitButton() {
-        presenter?.didTapSubmitButton()
+    @objc func handleSubmit() {
+        let genre = selectedGenreIndex != nil ? Genres.all.ru[selectedGenreIndex!.row] : nil
+        presenter?.handleSubmit(genre: genre)
         fadeOut()
+    }
+}
+
+// MARK: - GenreCollectionView DataSource/Delegate
+extension FiltersViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        Genres.all.ru.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenreCell.identifier, for: indexPath) as? GenreCell else {
+            fatalError("DEBUG: Failed with custom cell bug")
+        }
+        
+        let genre = Genres.all.ru[indexPath.row]
+        cell.configure(title: genre)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath == selectedGenreIndex {
+            collectionView.deselectItem(at: indexPath, animated: false)
+            selectedGenreIndex = nil
+        } else {
+            selectedGenreIndex = indexPath
+        }
     }
 }
 

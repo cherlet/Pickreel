@@ -7,7 +7,7 @@ protocol ProfileViewProtocol: AnyObject {
 }
 
 class ProfileViewController: UIViewController {
-    // MARK: Variables
+    // MARK: Properties
     var presenter: ProfilePresenterProtocol?
     var settingsViewController: SettingsViewController?
     var user: User?

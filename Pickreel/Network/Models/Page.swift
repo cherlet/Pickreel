@@ -1,7 +1,7 @@
 import Foundation
 
 class Page {
-    // MARK: Variables
+    // MARK: Properties
     var data: MediaData
     var currentCard: Card {
         getCard(dataStatus: data.getDataStatus())

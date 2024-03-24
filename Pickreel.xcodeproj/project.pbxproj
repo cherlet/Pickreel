@@ -24,6 +24,8 @@
 		0760B8562B9AD86C006CFFF5 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0760B8552B9AD86C006CFFF5 /* StorageManager.swift */; };
 		0760B8582B9AE20E006CFFF5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0760B8572B9AE20E006CFFF5 /* User.swift */; };
 		0760B85B2B9AE416006CFFF5 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0760B85A2B9AE416006CFFF5 /* FirebaseFirestoreSwift */; };
+		076567282BAF1C2600FE17B7 /* GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076567272BAF1C2600FE17B7 /* GenreCell.swift */; };
+		0765672A2BAF1EEF00FE17B7 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076567292BAF1EEF00FE17B7 /* Genres.swift */; };
 		076CDEDA2BA888A200B9F576 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076CDED92BA888A200B9F576 /* AlertManager.swift */; };
 		07773D252B8FE7FF00483A08 /* LoginModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D202B8FE7FF00483A08 /* LoginModuleBuilder.swift */; };
 		07773D262B8FE7FF00483A08 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D212B8FE7FF00483A08 /* LoginPresenter.swift */; };
@@ -84,6 +86,8 @@
 		075909302B6D75F800A603EA /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
 		0760B8552B9AD86C006CFFF5 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		0760B8572B9AE20E006CFFF5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		076567272BAF1C2600FE17B7 /* GenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCell.swift; sourceTree = "<group>"; };
+		076567292BAF1EEF00FE17B7 /* Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
 		076CDED92BA888A200B9F576 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		07773D202B8FE7FF00483A08 /* LoginModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModuleBuilder.swift; sourceTree = "<group>"; };
 		07773D212B8FE7FF00483A08 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
@@ -341,6 +345,7 @@
 				0760B8572B9AE20E006CFFF5 /* User.swift */,
 				077E03FD2B6D48B400FA6DA4 /* Filter.swift */,
 				071F3FB32BACD36F00D08E90 /* Media.swift */,
+				076567292BAF1EEF00FE17B7 /* Genres.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -352,6 +357,7 @@
 				07F6DD882B6BF177001F9DB3 /* FiltersPresenter.swift */,
 				07F6DD892B6BF177001F9DB3 /* FiltersRouter.swift */,
 				07F6DD8A2B6BF177001F9DB3 /* FiltersViewController.swift */,
+				076567272BAF1C2600FE17B7 /* GenreCell.swift */,
 			);
 			path = Filters;
 			sourceTree = "<group>";
@@ -446,6 +452,7 @@
 				07946FD22B651A53001C4E7F /* ProfileModuleBuilder.swift in Sources */,
 				07F6DD8C2B6BF177001F9DB3 /* FiltersModuleBuilder.swift in Sources */,
 				075909332B6D75F800A603EA /* SearchRouter.swift in Sources */,
+				076567282BAF1C2600FE17B7 /* GenreCell.swift in Sources */,
 				07773D272B8FE7FF00483A08 /* LoginRouter.swift in Sources */,
 				07773D332B8FFC9400483A08 /* RegisterPresenter.swift in Sources */,
 				07ED003B2B63F70B00F0A143 /* GeneralModuleBuilder.swift in Sources */,
@@ -467,6 +474,7 @@
 				077FD3BF2B9E20800041E2C6 /* SettingsViewController.swift in Sources */,
 				070827052B6ABACC00D10341 /* UIView.extension.swift in Sources */,
 				0760B8582B9AE20E006CFFF5 /* User.swift in Sources */,
+				0765672A2BAF1EEF00FE17B7 /* Genres.swift in Sources */,
 				07F16CCD2BA9E4B200470130 /* UILabel.extension.swift in Sources */,
 				07773D322B8FFC9400483A08 /* RegisterModuleBuilder.swift in Sources */,
 				077FD3BE2B9E20800041E2C6 /* SettingsRouter.swift in Sources */,

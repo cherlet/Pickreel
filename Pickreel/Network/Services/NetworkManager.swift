@@ -70,7 +70,7 @@ extension NetworkManager {
             try await user.delete()
             try await db.collection("users").document(id).delete()
         } catch {
-            print("DEBUG: Failed to delete user: \(error)")
+            print("DEBUG: Failed to delete user: \(error.localizedDescription)")
         }
         
         signOut()
@@ -117,7 +117,7 @@ extension NetworkManager {
             let snapshot = try await query.getDocuments()
             data = try snapshot.documents.map { try $0.data(as: Media.self) }
         } catch {
-            print("DEBUG: Failed to parse media data")
+            print("DEBUG: Failed to parse media data, error: \(error.localizedDescription)")
             return []
         }
         
@@ -142,10 +142,18 @@ extension NetworkManager {
             // MARK: Load backup data if needed
             guard let currentCount = type == .movies ? currentPage?.data.movies.count : currentPage?.data.series.count else { return }
             if iterator.isReachedMiddle(of: currentCount) {
-                currentPage?.data.movies.removeFirst(currentCount / 2)
                 var backup = await NetworkManager.shared.fetchData(of: type, limit: currentCount)
                 backup.removeFirst(currentCount - currentCount / 2)
-                currentPage?.data.movies.append(contentsOf: backup)
+                
+                switch type {
+                case .movies:
+                    currentPage?.data.movies.removeFirst(currentCount / 2)
+                    currentPage?.data.movies.append(contentsOf: backup)
+                case .series:
+                    currentPage?.data.series.removeFirst(currentCount / 2)
+                    currentPage?.data.series.append(contentsOf: backup)
+                }
+                
                 iterator.reset()
                 currentPage?.data.swiper.reset(for: type)
             }

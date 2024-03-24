@@ -1,7 +1,7 @@
 import UIKit
 
 class SettingCell: UICollectionViewCell {
-    // MARK: Variables
+    // MARK: Properties
     static let identifier = "SettingCell"
     
     // MARK: UI Elements

@@ -15,7 +15,7 @@ class GeneralPresenter {
     var router: GeneralRouterProtocol
     var interactor: GeneralInteractorProtocol
     
-    // MARK: Variables
+    // MARK: Properties
     private var category: MediaType = .movies
     
     private var page: Page?

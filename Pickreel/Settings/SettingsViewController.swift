@@ -4,7 +4,7 @@ protocol SettingsViewProtocol: AnyObject {
 }
 
 class SettingsViewController: UIViewController {
-    // MARK: Variables
+    // MARK: Properties
     var presenter: SettingsPresenterProtocol?
     private var settingsSections: [[Setting]] = []
     

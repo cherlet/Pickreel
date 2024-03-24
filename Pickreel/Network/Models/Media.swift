@@ -62,12 +62,6 @@ struct Countries: Codable {
     let en: [String]
 }
 
-// MARK: - Genre
-struct Genres: Codable {
-    let ru: [String]
-    let en: [String]
-}
-
 // MARK: - Rating
 struct Rating: Codable {
     let pr: Double

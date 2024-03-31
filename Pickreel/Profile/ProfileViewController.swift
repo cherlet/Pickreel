@@ -65,6 +65,7 @@ private extension ProfileViewController {
         let uiElements = [likedSection, ratingSection, profileView, settingsButton]
         
         uiElements.forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
         
@@ -86,6 +87,7 @@ private extension ProfileViewController {
         ])
         
         [profileAvatar, profileName, settingsButton].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
             profileView.addSubview($0)
         }
         
@@ -115,18 +117,15 @@ private extension ProfileViewController {
         guard let user = user else { return }
         
         profileView.backgroundColor = ThemeColor.contrastColor
-        profileView.translatesAutoresizingMaskIntoConstraints = false
         profileView.layer.cornerRadius = 16
         profileView.isUserInteractionEnabled = true
         
         profileAvatar.image = UIImage(systemName: "person.circle")
-        profileAvatar.translatesAutoresizingMaskIntoConstraints = false
         profileAvatar.tintColor = .white
         
         profileName.text = user.nickname
         profileName.textColor = .white
         profileName.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        profileName.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func setupButtons() {
@@ -135,7 +134,6 @@ private extension ProfileViewController {
         settingsButton.setImage(image, for: .normal)
         settingsButton.tintColor = ThemeColor.backgroundColor
         settingsButton.addTarget(self, action: #selector(didTapSettingsButton), for: .touchUpInside)
-        settingsButton.translatesAutoresizingMaskIntoConstraints = false
         settingsButton.isUserInteractionEnabled = true
     }
     

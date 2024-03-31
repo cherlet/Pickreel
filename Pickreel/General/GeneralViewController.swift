@@ -64,9 +64,7 @@ private extension GeneralViewController {
     }
     
     func setupLayout() {
-        let uiElements = [moviesCategoryLabel, seriesCategoryLabel, filtersButton, swipeView]
-        
-        uiElements.forEach {
+        [moviesCategoryLabel, seriesCategoryLabel, filtersButton, swipeView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
@@ -98,9 +96,7 @@ private extension GeneralViewController {
             $0.tintColor = .white
         }
         
-        let swipeElements = [swipeImage, name, year, rating, ratingIcon, yearIcon]
-        
-        swipeElements.forEach {
+        [swipeImage, name, year, rating, ratingIcon, yearIcon].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             swipeView.addSubview($0)
         }

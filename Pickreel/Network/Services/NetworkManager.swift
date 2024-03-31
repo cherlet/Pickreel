@@ -128,6 +128,20 @@ extension NetworkManager {
         return data
     }
     
+    func fetchHistory() async -> [Media] {
+        guard let uid = auth.currentUser?.uid else { return [] }
+        let query = db.collection("users").document(uid).collection("history")
+        
+        do {
+            let snapshot = try await query.getDocuments()
+            let data = try snapshot.documents.map { try $0.data(as: Media.self) }
+            return data
+        } catch {
+            print("DEBUG: Failed to parse media data, error: \(error.localizedDescription)")
+            return []
+        }
+    }
+    
     func writeChoice(of card: Card, with type: MediaType) async {
         guard let uid = auth.currentUser?.uid else { return }
         let data = type == .movies ? card.movie : card.series

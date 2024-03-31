@@ -38,6 +38,7 @@
 		07773D352B8FFC9400483A08 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D302B8FFC9400483A08 /* RegisterViewController.swift */; };
 		07773D362B8FFC9400483A08 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D312B8FFC9400483A08 /* RegisterInteractor.swift */; };
 		077E03FE2B6D48B400FA6DA4 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E03FD2B6D48B400FA6DA4 /* Filter.swift */; };
+		077F8C792BB07B0C0076927E /* MediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F8C782BB07B0C0076927E /* MediaCell.swift */; };
 		077FD3BC2B9E20800041E2C6 /* SettingsModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3B72B9E20800041E2C6 /* SettingsModuleBuilder.swift */; };
 		077FD3BD2B9E20800041E2C6 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3B82B9E20800041E2C6 /* SettingsPresenter.swift */; };
 		077FD3BE2B9E20800041E2C6 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3B92B9E20800041E2C6 /* SettingsRouter.swift */; };
@@ -100,6 +101,7 @@
 		07773D302B8FFC9400483A08 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		07773D312B8FFC9400483A08 /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
 		077E03FD2B6D48B400FA6DA4 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		077F8C782BB07B0C0076927E /* MediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCell.swift; sourceTree = "<group>"; };
 		077FD3B72B9E20800041E2C6 /* SettingsModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleBuilder.swift; sourceTree = "<group>"; };
 		077FD3B82B9E20800041E2C6 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		077FD3B92B9E20800041E2C6 /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				0759092E2B6D75F800A603EA /* SearchRouter.swift */,
 				0759092F2B6D75F800A603EA /* SearchViewController.swift */,
 				075909302B6D75F800A603EA /* SearchInteractor.swift */,
+				077F8C782BB07B0C0076927E /* MediaCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				07773D362B8FFC9400483A08 /* RegisterInteractor.swift in Sources */,
 				07F16CCB2BA9BF6C00470130 /* Page.swift in Sources */,
 				07773D352B8FFC9400483A08 /* RegisterViewController.swift in Sources */,
+				077F8C792BB07B0C0076927E /* MediaCell.swift in Sources */,
 				075909312B6D75F800A603EA /* SearchModuleBuilder.swift in Sources */,
 				07AF1EC02BA0474300B4169D /* SettingCell.swift in Sources */,
 				07ED003D2B63F70B00F0A143 /* GeneralRouter.swift in Sources */,

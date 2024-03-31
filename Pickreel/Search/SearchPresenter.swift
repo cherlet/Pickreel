@@ -1,4 +1,6 @@
 protocol SearchPresenterProtocol: AnyObject {
+    func viewLoaded()
+    func dataLoaded(with history: [Media])
 }
 
 class SearchPresenter {
@@ -13,4 +15,11 @@ class SearchPresenter {
 }
 
 extension SearchPresenter: SearchPresenterProtocol {
+    func viewLoaded() {
+        interactor.loadData()
+    }
+    
+    func dataLoaded(with history: [Media]) {
+        view?.initializeTable(with: history)
+    }
 }

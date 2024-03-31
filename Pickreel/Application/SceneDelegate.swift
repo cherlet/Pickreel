@@ -9,10 +9,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let generalViewController = GeneralModuleBuilder.build()
         let searchViewController = SearchModuleBuilder.build()
+        let searchNavigationController = UINavigationController(rootViewController: searchViewController)
         let profileViewController = ProfileModuleBuilder.build()
         
         let modules = (
-            search: searchViewController,
+            search: searchNavigationController,
             general: generalViewController,
             profile: profileViewController
         )

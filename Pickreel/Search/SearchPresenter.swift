@@ -16,7 +16,7 @@ class SearchPresenter {
 
 extension SearchPresenter: SearchPresenterProtocol {
     func viewLoaded() {
-        interactor.loadData()
+        //interactor.loadData()
     }
     
     func dataLoaded(with history: [Media]) {

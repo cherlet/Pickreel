@@ -7,10 +7,15 @@ extension UIImageView {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         self?.image = image
-                        //if let completion = completion { completion() }
                     }
                 }
             }
         }
+    }
+    
+    convenience init(iconName: String, color: UIColor) {
+        self.init()
+        self.image = UIImage(systemName: iconName)
+        self.tintColor = color
     }
 }

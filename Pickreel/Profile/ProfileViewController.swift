@@ -146,7 +146,7 @@ private extension ProfileViewController {
 // MARK: - Animation Methods
 private extension ProfileViewController {
     func roll(_ viewController: UIViewController) {
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
             viewController.view.frame = CGRect(x: 0, y: -viewController.view.frame.height, width: viewController.view.frame.width, height: viewController.view.frame.height)
         }) { _ in
             viewController.willMove(toParent: nil)
@@ -164,7 +164,7 @@ private extension ProfileViewController {
         view.insertSubview(viewController.view, belowSubview: profileView)
         viewController.didMove(toParent: self)
 
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
             viewController.view.frame = CGRect(x: 0, y: self.profileView.frame.maxY, width: viewController.view.frame.width, height: viewController.view.frame.height)
         }, completion: nil)
         

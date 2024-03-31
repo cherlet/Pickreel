@@ -30,7 +30,7 @@ class GeneralPresenter {
 
 extension GeneralPresenter: GeneralPresenterProtocol {
     func viewLoaded() {
-        //interactor.loadData(with: filter)
+        interactor.loadData(with: filter)
     }
     
     func dataLoaded(with page: Page) {

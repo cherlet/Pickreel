@@ -24,6 +24,9 @@
 		0760B8562B9AD86C006CFFF5 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0760B8552B9AD86C006CFFF5 /* StorageManager.swift */; };
 		0760B8582B9AE20E006CFFF5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0760B8572B9AE20E006CFFF5 /* User.swift */; };
 		0760B85B2B9AE416006CFFF5 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0760B85A2B9AE416006CFFF5 /* FirebaseFirestoreSwift */; };
+		076453002BB917920090EF67 /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076452FF2BB917920090EF67 /* SwipeView.swift */; };
+		076453022BB920AB0090EF67 /* ReView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076453012BB920AB0090EF67 /* ReView.swift */; };
+		076453042BB928A70090EF67 /* [String].extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076453032BB928A70090EF67 /* [String].extension.swift */; };
 		076567282BAF1C2600FE17B7 /* GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076567272BAF1C2600FE17B7 /* GenreCell.swift */; };
 		0765672A2BAF1EEF00FE17B7 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076567292BAF1EEF00FE17B7 /* Genres.swift */; };
 		076CDEDA2BA888A200B9F576 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076CDED92BA888A200B9F576 /* AlertManager.swift */; };
@@ -87,6 +90,9 @@
 		075909302B6D75F800A603EA /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
 		0760B8552B9AD86C006CFFF5 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		0760B8572B9AE20E006CFFF5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		076452FF2BB917920090EF67 /* SwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
+		076453012BB920AB0090EF67 /* ReView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReView.swift; sourceTree = "<group>"; };
+		076453032BB928A70090EF67 /* [String].extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "[String].extension.swift"; sourceTree = "<group>"; };
 		076567272BAF1C2600FE17B7 /* GenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCell.swift; sourceTree = "<group>"; };
 		076567292BAF1EEF00FE17B7 /* Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
 		076CDED92BA888A200B9F576 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
@@ -163,6 +169,7 @@
 				070827042B6ABACB00D10341 /* UIView.extension.swift */,
 				07773D2A2B8FEDF700483A08 /* UITextField.extension.swift */,
 				07F16CCC2BA9E4B200470130 /* UILabel.extension.swift */,
+				076453032BB928A70090EF67 /* [String].extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -193,6 +200,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		076452FE2BB9174F0090EF67 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				076452FF2BB917920090EF67 /* SwipeView.swift */,
+				076453012BB920AB0090EF67 /* ReView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		07773D1F2B8FE7D100483A08 /* Login */ = {
@@ -303,6 +319,7 @@
 				07946FD72B651B31001C4E7F /* TabBar */,
 				0760B8542B9AD84F006CFFF5 /* Storage */,
 				078016C02B63F58100DCAF55 /* Network */,
+				076452FE2BB9174F0090EF67 /* View */,
 				07D1BD2B2B62425A004DED7E /* Application */,
 				070826FE2B6AB88300D10341 /* Extensions */,
 				07D1BD2C2B624268004DED7E /* Resources */,
@@ -462,6 +479,7 @@
 				07773D292B8FE7FF00483A08 /* LoginInteractor.swift in Sources */,
 				07ED00432B640E2700F0A143 /* ThemeColor.swift in Sources */,
 				075909322B6D75F800A603EA /* SearchPresenter.swift in Sources */,
+				076453022BB920AB0090EF67 /* ReView.swift in Sources */,
 				07F6DD8E2B6BF177001F9DB3 /* FiltersRouter.swift in Sources */,
 				07ED003E2B63F70B00F0A143 /* GeneralViewController.swift in Sources */,
 				07773D362B8FFC9400483A08 /* RegisterInteractor.swift in Sources */,
@@ -480,6 +498,7 @@
 				0760B8582B9AE20E006CFFF5 /* User.swift in Sources */,
 				0765672A2BAF1EEF00FE17B7 /* Genres.swift in Sources */,
 				07F16CCD2BA9E4B200470130 /* UILabel.extension.swift in Sources */,
+				076453042BB928A70090EF67 /* [String].extension.swift in Sources */,
 				07773D322B8FFC9400483A08 /* RegisterModuleBuilder.swift in Sources */,
 				077FD3BE2B9E20800041E2C6 /* SettingsRouter.swift in Sources */,
 				07ED003C2B63F70B00F0A143 /* GeneralPresenter.swift in Sources */,
@@ -495,6 +514,7 @@
 				07946FDD2B651B6C001C4E7F /* TabBarModuleBuilder.swift in Sources */,
 				07773D252B8FE7FF00483A08 /* LoginModuleBuilder.swift in Sources */,
 				0760B8562B9AD86C006CFFF5 /* StorageManager.swift in Sources */,
+				076453002BB917920090EF67 /* SwipeView.swift in Sources */,
 				07773D282B8FE7FF00483A08 /* LoginViewController.swift in Sources */,
 				07CEF24E2B623CD700BF88BD /* SceneDelegate.swift in Sources */,
 				07946FD42B651A53001C4E7F /* ProfileRouter.swift in Sources */,

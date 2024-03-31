@@ -11,12 +11,7 @@ class GeneralViewController: UIViewController {
     private let moviesCategoryLabel = UILabel()
     private let seriesCategoryLabel = UILabel()
     private let filtersButton = UIButton()
-    
-    private let swipeView = UIView()
-    private let swipeImage = UIImageView()
-    private let name = UILabel()
-    private let year = UILabel()
-    private let rating = UILabel()
+    private let swipeView = SwipeView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -27,7 +22,7 @@ class GeneralViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupGradient()
+        swipeView.setGradient()
     }
 }
 
@@ -39,15 +34,13 @@ extension GeneralViewController: GeneralViewProtocol {
             DispatchQueue.main.async {
                 self.moviesCategoryLabel.enable()
                 self.seriesCategoryLabel.disable()
-                let content = card.movie
-                self.updateSwipeView(title: content.title.ru, year: String(content.year), rating: String(content.rating.imdb), posterURL: content.posterURL)
+                self.swipeView.update(with: card.movie)
             }
         case .series:
             DispatchQueue.main.async {
                 self.seriesCategoryLabel.enable()
                 self.moviesCategoryLabel.disable()
-                let content = card.series
-                self.updateSwipeView(title: content.title.ru, year: String(content.year), rating: String(content.rating.imdb), posterURL: content.posterURL)
+                self.swipeView.update(with: card.series)
             }
         }
     }
@@ -57,9 +50,9 @@ extension GeneralViewController: GeneralViewProtocol {
 private extension GeneralViewController {
     func initialize() {
         view.backgroundColor = ThemeColor.backgroundColor
-        setupSwipeView()
         setupCategories()
         setupFilters()
+        setupSwipeGestures()
         setupLayout()
     }
     
@@ -88,41 +81,6 @@ private extension GeneralViewController {
             filtersButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             filtersButton.centerYAnchor.constraint(equalTo: moviesCategoryLabel.centerYAnchor)
         ])
-        
-        let ratingIcon = UIImageView(image: UIImage(systemName: "star.fill"))
-        let yearIcon = UIImageView(image: UIImage(systemName: "calendar"))
-        
-        [ratingIcon, yearIcon].forEach {
-            $0.tintColor = .white
-        }
-        
-        [swipeImage, name, year, rating, ratingIcon, yearIcon].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            swipeView.addSubview($0)
-        }
-        
-        NSLayoutConstraint.activate([ // building interface from bottom up
-            ratingIcon.bottomAnchor.constraint(equalTo: swipeView.bottomAnchor, constant: -48),
-            ratingIcon.leadingAnchor.constraint(equalTo: swipeView.leadingAnchor, constant: 16),
-            
-            rating.centerYAnchor.constraint(equalTo: ratingIcon.centerYAnchor),
-            rating.leadingAnchor.constraint(equalTo: ratingIcon.trailingAnchor, constant: 8),
-            
-            yearIcon.bottomAnchor.constraint(equalTo: ratingIcon.topAnchor, constant: -16),
-            yearIcon.leadingAnchor.constraint(equalTo: ratingIcon.leadingAnchor),
-            
-            year.centerYAnchor.constraint(equalTo: yearIcon.centerYAnchor),
-            year.leadingAnchor.constraint(equalTo: yearIcon.trailingAnchor, constant: 8),
-            
-            name.bottomAnchor.constraint(equalTo: yearIcon.topAnchor, constant: -16),
-            name.leadingAnchor.constraint(equalTo: swipeView.leadingAnchor, constant: 16),
-            name.trailingAnchor.constraint(equalTo: swipeView.trailingAnchor, constant: -16),
-            
-            swipeImage.topAnchor.constraint(equalTo: swipeView.topAnchor),
-            swipeImage.leadingAnchor.constraint(equalTo: swipeView.leadingAnchor),
-            swipeImage.trailingAnchor.constraint(equalTo: swipeView.trailingAnchor),
-            swipeImage.bottomAnchor.constraint(equalTo: swipeView.bottomAnchor)
-        ])
     }
     
     func setupCategories() {
@@ -149,20 +107,7 @@ private extension GeneralViewController {
         filtersButton.addTarget(self, action: #selector(handleFilters), for: .touchUpInside)
     }
     
-    func setupSwipeView() {
-        name.font = UIFont.systemFont(ofSize: 36, weight: .bold)
-        name.numberOfLines = 0
-        year.font = UIFont.systemFont(ofSize: 20)
-        rating.font = UIFont.systemFont(ofSize: 20)
-        
-        [name, year, rating].forEach {
-            $0.textColor = .white
-        }
-        
-        swipeView.layer.cornerRadius = 16
-        swipeImage.layer.cornerRadius = 16
-        swipeImage.clipsToBounds = true
-        
+    func setupSwipeGestures() {
         let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
         swipeLeftGesture.direction = .left
         swipeView.addGestureRecognizer(swipeLeftGesture)
@@ -171,17 +116,10 @@ private extension GeneralViewController {
         swipeRightGesture.direction = .right
         swipeView.addGestureRecognizer(swipeRightGesture)
     }
-    
-    func setupGradient() {
-        let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.black.withAlphaComponent(0).cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
-        gradient.cornerRadius = 16
-        gradient.frame = swipeImage.bounds
-        swipeImage.layer.sublayers?.removeAll()
-        swipeImage.layer.addSublayer(gradient)
-    }
-    
-    // MARK: Actions
+}
+
+// MARK: - Actions
+private extension GeneralViewController {
     @objc private func handleCategory() {
         presenter?.handleCategory()
     }
@@ -201,22 +139,6 @@ private extension GeneralViewController {
         }
     }
 }
-
-// MARK: - Support Methods
-private extension GeneralViewController {
-    func updateSwipeView(title: String, year: String, rating: String, posterURL: String?) {
-        name.text = title
-        self.year.text = year
-        self.rating.text = rating
-        
-        if let url = URL(string: posterURL ?? "") {
-            swipeImage.load(url: url)
-        } else {
-            // TODO: - Add image placeholder
-        }
-    }
-}
-
 
 // MARK: - SwipeDirection Enum
 enum SwipeDirection {

@@ -96,7 +96,7 @@ class MediaCell: UITableViewCell {
         yearLabel.text = String(media.year)
         ratingLabel.text = String(media.rating.imdb)
         
-        if let url = URL(string: media.posterURL ?? "") {
+        if let posterURL = media.posterURL, let url = URL(string: posterURL) {
             posterImageView.load(url: url)
         } else {
             // TODO: - Add image placeholder

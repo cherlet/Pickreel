@@ -1,6 +1,9 @@
 import UIKit
 
 class ReView: UIScrollView {
+    // MARK: Properties
+    private var cast: [Actor] = []
+    
     // MARK: UI Elements
     private lazy var nameLabel = UILabel(textColor: ThemeColor.oppColor, font: UIFont.systemFont(ofSize: 24, weight: .semibold), numberOfLines: 0, alignment: .center)
     private lazy var yearHeadline = UILabel(headline: "Год")
@@ -19,7 +22,19 @@ class ReView: UIScrollView {
     private lazy var runtimeContent = UILabel(textColor: ThemeColor.oppColor)
     private lazy var overviewHeadline = UILabel(headline: "Описание")
     private lazy var overviewContent = UILabel(textColor: ThemeColor.oppColor, numberOfLines: 0)
-    private lazy var castHeadline = UILabel(headline: "В главных ролях")
+    private lazy var castHeadline = UILabel(headline: "Актеры")
+    
+    private lazy var castCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 8
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 200, height: 80)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = ThemeColor.contrastColor
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.register(CastCell.self, forCellWithReuseIdentifier: CastCell.identifier)
+        return collectionView
+    }()
     
     // MARK: Initialize
     init(media: Media) {
@@ -35,6 +50,17 @@ class ReView: UIScrollView {
     private func setup(with media: Media) {
         layer.cornerRadius = 16
         backgroundColor = ThemeColor.contrastColor
+        showsVerticalScrollIndicator = false
+        
+        castCollectionView.delegate = self
+        castCollectionView.dataSource = self
+        
+        let mid = (media.credits.cast.count / 2) - 1
+        
+        cast = media.credits.cast
+        DispatchQueue.main.async {
+            self.castCollectionView.reloadData()
+        }
         
         nameLabel.text = media.title.ru
         yearContent.text = String(media.year)
@@ -77,7 +103,7 @@ class ReView: UIScrollView {
         infoStack.axis = .vertical
         infoStack.spacing = 16
         
-        [nameLabel, infoStack, overviewHeadline, overviewContent].forEach {
+        [nameLabel, infoStack, overviewHeadline, overviewContent, castHeadline, castCollectionView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             addSubview($0)
         }
@@ -98,6 +124,32 @@ class ReView: UIScrollView {
             overviewContent.topAnchor.constraint(equalTo: overviewHeadline.bottomAnchor, constant: 8),
             overviewContent.leadingAnchor.constraint(equalTo: overviewHeadline.leadingAnchor),
             overviewContent.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            
+            castHeadline.topAnchor.constraint(equalTo: overviewContent.bottomAnchor, constant: 16),
+            castHeadline.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            
+            castCollectionView.topAnchor.constraint(equalTo: castHeadline.bottomAnchor, constant: 8),
+            castCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            castCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            castCollectionView.heightAnchor.constraint(equalToConstant: 88),
+            castCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
         ])
+    }
+}
+
+// MARK: - CastCollectionView DataSource/Delegate
+extension ReView: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        cast.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CastCell.identifier, for: indexPath) as? CastCell else {
+            fatalError("DEBUG: Failed with custom cell bug")
+        }
+        
+        let actor = cast[indexPath.row]
+        cell.configure(with: actor)
+        return cell
     }
 }

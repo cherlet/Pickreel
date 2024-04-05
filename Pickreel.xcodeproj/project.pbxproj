@@ -21,6 +21,7 @@
 		075909332B6D75F800A603EA /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0759092E2B6D75F800A603EA /* SearchRouter.swift */; };
 		075909342B6D75F800A603EA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0759092F2B6D75F800A603EA /* SearchViewController.swift */; };
 		075909352B6D75F800A603EA /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075909302B6D75F800A603EA /* SearchInteractor.swift */; };
+		075F83242BC02EF400C376A3 /* CastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075F83232BC02EF400C376A3 /* CastCell.swift */; };
 		0760B8562B9AD86C006CFFF5 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0760B8552B9AD86C006CFFF5 /* StorageManager.swift */; };
 		0760B8582B9AE20E006CFFF5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0760B8572B9AE20E006CFFF5 /* User.swift */; };
 		0760B85B2B9AE416006CFFF5 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0760B85A2B9AE416006CFFF5 /* FirebaseFirestoreSwift */; };
@@ -88,6 +89,7 @@
 		0759092E2B6D75F800A603EA /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		0759092F2B6D75F800A603EA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		075909302B6D75F800A603EA /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
+		075F83232BC02EF400C376A3 /* CastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCell.swift; sourceTree = "<group>"; };
 		0760B8552B9AD86C006CFFF5 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		0760B8572B9AE20E006CFFF5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		076452FF2BB917920090EF67 /* SwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			children = (
 				076452FF2BB917920090EF67 /* SwipeView.swift */,
 				076453012BB920AB0090EF67 /* ReView.swift */,
+				075F83232BC02EF400C376A3 /* CastCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				07946FD62B651A53001C4E7F /* ProfileInteractor.swift in Sources */,
 				07773D2B2B8FEDF700483A08 /* UITextField.extension.swift in Sources */,
 				07946FDD2B651B6C001C4E7F /* TabBarModuleBuilder.swift in Sources */,
+				075F83242BC02EF400C376A3 /* CastCell.swift in Sources */,
 				07773D252B8FE7FF00483A08 /* LoginModuleBuilder.swift in Sources */,
 				0760B8562B9AD86C006CFFF5 /* StorageManager.swift in Sources */,
 				076453002BB917920090EF67 /* SwipeView.swift in Sources */,

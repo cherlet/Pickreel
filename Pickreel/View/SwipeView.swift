@@ -87,7 +87,7 @@ extension SwipeView {
         yearLabel.text = String(media.year)
         ratingLabel.text = String(media.rating.imdb)
         
-        if let url = URL(string: media.posterURL ?? "") {
+        if let posterURL = media.posterURL, let url = URL(string: posterURL) {
             swipeImage.load(url: url)
         } else {
             // TODO: - Add image placeholder
@@ -95,12 +95,7 @@ extension SwipeView {
     }
     
     func setGradient() {
-        let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.black.withAlphaComponent(0).cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
-        gradient.cornerRadius = 16
-        gradient.frame = swipeImage.bounds
-        swipeImage.layer.sublayers?.removeAll()
-        swipeImage.layer.addSublayer(gradient)
+        swipeImage.setGradient()
     }
     
     private func closeReview() {

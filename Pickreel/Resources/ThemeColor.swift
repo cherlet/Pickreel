@@ -1,19 +1,18 @@
 import UIKit
 
 struct ThemeColor {
-    static let generalColor = UIColor.appColor(CustomColor.GeneralColor)
-    static let backgroundColor = UIColor.appColor(CustomColor.BackgroundColor)
-    static let silentColor = UIColor.appColor(CustomColor.SilentColor)
-    static let contrastColor = UIColor.appColor(CustomColor.ContrastColor)
-    static let oppColor = UIColor.appColor(CustomColor.OppColor)
-    static let greenGradientFirst = UIColor.appColor(CustomColor.GreenGradientFirstColor)
-    static let greenGradientSecond = UIColor.appColor(CustomColor.GreenGradientSecondColor)
-    static let redGradientFirst = UIColor.appColor(CustomColor.RedGradientFirstColor)
-    static let redGradientSecond = UIColor.appColor(CustomColor.RedGradientSecondColor)
-    static let yellowGradientFirst = UIColor.appColor(CustomColor.YellowGradientFirstColor)
-    static let yellowGradientSecond = UIColor.appColor(CustomColor.YellowGradientSecondColor)
-    static let tableFrontColor = UIColor.appColor(CustomColor.TableFrontColor)
-    static let tableBackColor = UIColor.appColor(CustomColor.TableBackColor)
+    static let general = UIColor.appColor(CustomColor.GeneralColor)
+    static let background = UIColor.appColor(CustomColor.BackgroundColor)
+    static let silent = UIColor.appColor(CustomColor.SilentColor)
+    static let contrast = UIColor.appColor(CustomColor.ContrastColor)
+    static let opp = UIColor.appColor(CustomColor.OppColor)
+    static let tableFront = UIColor.appColor(CustomColor.TableFrontColor)
+    static let tableBack = UIColor.appColor(CustomColor.TableBackColor)
+    static let white = UIColor.appColor(CustomColor.WhiteColor)
+    static let red = UIColor.appColor(CustomColor.RedColor)
+    static let yellow = UIColor.appColor(CustomColor.YellowColor)
+    static let green = UIColor.appColor(CustomColor.GreenColor)
+    static let gray = UIColor.appColor(CustomColor.GrayColor)
 }
 
 enum CustomColor: String {
@@ -22,12 +21,11 @@ enum CustomColor: String {
     case SilentColor
     case ContrastColor
     case OppColor
-    case GreenGradientFirstColor
-    case GreenGradientSecondColor
-    case RedGradientFirstColor
-    case RedGradientSecondColor
-    case YellowGradientFirstColor
-    case YellowGradientSecondColor
     case TableFrontColor
     case TableBackColor
+    case WhiteColor
+    case RedColor
+    case YellowColor
+    case GreenColor
+    case GrayColor
 }

@@ -6,13 +6,13 @@ extension UIView {
         isUserInteractionEnabled = true
         layer.cornerRadius = 16
         clipsToBounds = true
-        backgroundColor = ThemeColor.contrastColor
+        backgroundColor = ThemeColor.contrast
         
         let nameLabel: UILabel = {
             let label = UILabel()
             label.text = name
             label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-            label.textColor = .white
+            label.textColor = ThemeColor.white
             label.translatesAutoresizingMaskIntoConstraints = false
             return label
         }()
@@ -32,7 +32,7 @@ extension UIView {
         let chevron: UIImageView = {
             let imageView = UIImageView(image: UIImage(systemName: "chevron.right"))
             imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.tintColor = .white
+            imageView.tintColor = ThemeColor.white
             return imageView
         }()
         

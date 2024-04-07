@@ -13,7 +13,7 @@ extension UIImageView {
         }
     }
     
-    convenience init(iconName: String, color: UIColor) {
+    convenience init(iconName: String, color: UIColor? = ThemeColor.white) {
         self.init()
         self.image = UIImage(systemName: iconName)
         self.tintColor = color
@@ -26,5 +26,13 @@ extension UIImageView {
         gradient.frame = self.bounds
         self.layer.sublayers?.removeAll()
         self.layer.addSublayer(gradient)
+    }
+    
+    func setBlur() {
+        let blur = UIBlurEffect(style: .dark)
+        let view = UIVisualEffectView(effect: blur)
+        view.frame = self.bounds
+        self.subviews.forEach { $0.removeFromSuperview() }
+        self.addSubview(view)
     }
 }

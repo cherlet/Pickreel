@@ -15,20 +15,7 @@ class FiltersViewController: UIViewController {
     private let alphaConstant: CGFloat = 0.6
 
     // MARK: UI Elements
-    private lazy var genreCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 0
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.estimatedItemSize = CGSize(width: 1, height: 1)
-        layout.itemSize = UICollectionViewFlowLayout.automaticSize
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = ThemeColor.background
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(GenreCell.self, forCellWithReuseIdentifier: GenreCell.identifier)
-        return collectionView
-    }()
+    private lazy var genreCollectionView = UICollectionView.getGenreCollection()
     
     private let filtersSubview = UIView()
     private let dimmedSubview = UIView()
@@ -136,25 +123,25 @@ private extension FiltersViewController {
             yearSlider.trailingAnchor.constraint(equalTo: filtersSubview.trailingAnchor, constant: -20),
             
             ratingStack.topAnchor.constraint(equalTo: yearSlider.bottomAnchor, constant: 16),
-            ratingStack.leadingAnchor.constraint(equalTo: yearStack.leadingAnchor),
-            ratingStack.trailingAnchor.constraint(equalTo: yearStack.trailingAnchor),
+            ratingStack.leadingAnchor.constraint(equalTo: filtersSubview.leadingAnchor, constant: 16),
+            ratingStack.trailingAnchor.constraint(equalTo: filtersSubview.trailingAnchor, constant: -16),
             
             ratingSlider.topAnchor.constraint(equalTo: ratingStack.bottomAnchor, constant: 8),
-            ratingSlider.leadingAnchor.constraint(equalTo: yearStack.leadingAnchor),
-            ratingSlider.trailingAnchor.constraint(equalTo: yearSlider.trailingAnchor),
+            ratingSlider.leadingAnchor.constraint(equalTo: filtersSubview.leadingAnchor, constant: 20),
+            ratingSlider.trailingAnchor.constraint(equalTo: filtersSubview.trailingAnchor, constant: -20),
             
             genresFilterLabel.topAnchor.constraint(equalTo: ratingSlider.bottomAnchor, constant: 16),
-            genresFilterLabel.leadingAnchor.constraint(equalTo: yearStack.leadingAnchor),
+            genresFilterLabel.leadingAnchor.constraint(equalTo: filtersSubview.leadingAnchor, constant: 16),
             
             genreCollectionView.topAnchor.constraint(equalTo: genresFilterLabel.bottomAnchor, constant: 12),
-            genreCollectionView.leadingAnchor.constraint(equalTo: yearStack.leadingAnchor),
+            genreCollectionView.leadingAnchor.constraint(equalTo: filtersSubview.leadingAnchor, constant: 20),
             genreCollectionView.trailingAnchor.constraint(equalTo: filtersSubview.trailingAnchor, constant: -20),
             genreCollectionView.heightAnchor.constraint(equalToConstant: 40),
             
             submitButton.widthAnchor.constraint(lessThanOrEqualTo: filtersSubview.widthAnchor),
             submitButton.heightAnchor.constraint(equalToConstant: 40),
             submitButton.bottomAnchor.constraint(equalTo: filtersSubview.bottomAnchor, constant: -64),
-            submitButton.leadingAnchor.constraint(equalTo: yearStack.leadingAnchor),
+            submitButton.leadingAnchor.constraint(equalTo: filtersSubview.leadingAnchor, constant: 16),
             submitButton.trailingAnchor.constraint(equalTo: filtersSubview.trailingAnchor, constant: -16)
         ])
     }
@@ -240,7 +227,7 @@ extension FiltersViewController: UICollectionViewDataSource, UICollectionViewDel
         }
         
         let genre = Genres.all.ru[indexPath.row]
-        cell.configure(title: genre)
+        cell.configure(genre: genre, forFilters: true)
         return cell
     }
     

@@ -1,7 +1,7 @@
 import UIKit
 
 extension UILabel {
-    convenience init(text: String = "", textColor: UIColor? = ThemeColor.white, fontSize: CGFloat = 16, fontWeight: UIFont.Weight = .regular, numberOfLines: Int = 1, alignment: NSTextAlignment = .left) { // configured INIT
+    convenience init(text: String = "", textColor: UIColor? = ThemeColor.white, fontSize: CGFloat = 16, fontWeight: UIFont.Weight = .regular, numberOfLines: Int = 1, alignment: NSTextAlignment = .left) { // configure init
         self.init()
         self.text = text
         self.textColor = textColor

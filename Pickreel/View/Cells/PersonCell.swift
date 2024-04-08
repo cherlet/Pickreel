@@ -1,30 +1,14 @@
 import UIKit
 
-class CastCell: UICollectionViewCell {
+class PersonCell: UICollectionViewCell {
     // MARK: Properties
-    static let identifier = "CastCell"
+    static let castIdentifier = "CastCell"
+    static let crewIdentifier = "CrewCell"
     
     // MARK: UI Elements
-    private lazy var name: UILabel = {
-        let label = UILabel()
-        label.textColor = ThemeColor.opp
-        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        return label
-    }()
-    
-    private lazy var character: UILabel = {
-        let label = UILabel()
-        label.textColor = ThemeColor.silent
-        label.font = UIFont.systemFont(ofSize: 16)
-        return label
-    }()
-    
-    private lazy var image: UIImageView = {
-        let imageView = UIImageView()
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
+    private lazy var name = UILabel(textColor: ThemeColor.white, fontSize: 16, fontWeight: .semibold, numberOfLines: 0)
+    private lazy var character = UILabel(textColor: ThemeColor.silent, fontSize: 16)
+    private lazy var image = UIImageView(clipsToBounds: true, contentMode: .scaleAspectFill)
     
     // MARK: Initialize
     override init(frame: CGRect) {
@@ -60,11 +44,11 @@ class CastCell: UICollectionViewCell {
         
     }
     
-    func configure(with actor: Actor) {
-        name.text = actor.nameRu
-        character.text = actor.character
+    func configure(name: String, role: String, posterURL: String?) {
+        self.name.text = name
+        character.text = role
         
-        if let posterURL = actor.posterURL, let url = URL(string: posterURL) {
+        if let posterURL = posterURL, let url = URL(string: posterURL) {
             image.load(url: url)
         } else {
             // TODO: - Add image placeholder

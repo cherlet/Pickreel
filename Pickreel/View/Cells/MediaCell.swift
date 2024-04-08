@@ -5,50 +5,12 @@ class MediaCell: UITableViewCell {
     static let identifier = "MediaCell"
     
     // MARK: UI Elements
-    private lazy var posterImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 8
-        return imageView
-    }()
-    
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = ThemeColor.opp
-        label.font = UIFont.systemFont(ofSize: 20)
-        return label
-    }()
-    
-    private lazy var yearLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = ThemeColor.opp
-        label.font = UIFont.systemFont(ofSize: 16)
-        return label
-    }()
-    
-    private lazy var ratingLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = ThemeColor.opp
-        label.font = UIFont.systemFont(ofSize: 16)
-        return label
-    }()
-    
-    private lazy var yearIcon: UIImageView = {
-        let image = UIImage(systemName: "calendar")
-        let imageView = UIImageView(image: image)
-        imageView.tintColor = ThemeColor.opp
-        return imageView
-    }()
-    
-    private lazy var ratingIcon: UIImageView = {
-        let image = UIImage(systemName: "star.fill")
-        let imageView = UIImageView(image: image)
-        imageView.tintColor = ThemeColor.opp
-        return imageView
-    }()
-    
-    
+    private lazy var posterImageView = UIImageView(clipsToBounds: true, contentMode: .scaleAspectFill, cornerRadius: 8)
+    private lazy var titleLabel = UILabel(textColor: ThemeColor.opp, fontSize: 20)
+    private lazy var yearLabel = UILabel(textColor: ThemeColor.opp, fontSize: 16)
+    private lazy var ratingLabel = UILabel(textColor: ThemeColor.opp, fontSize: 16)
+    private lazy var yearIcon = UIImageView(iconName: "calendar", color: ThemeColor.opp)
+    private lazy var ratingIcon = UIImageView(iconName: "star.fill", color: ThemeColor.opp)
     
     // MARK: Initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

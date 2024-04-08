@@ -5,22 +5,16 @@ class SettingCell: UICollectionViewCell {
     static let identifier = "SettingCell"
     
     // MARK: UI Elements
-    private let icon = UIImageView(image: UIImage(systemName: "circle"))
-    private let label = UILabel()
+    private lazy var icon = UIImageView(color: ThemeColor.opp)
+    private lazy var label = UILabel(textColor: ThemeColor.opp, fontSize: 20)
+    private lazy var arrowIcon = UIImageView(iconName: "chevron.right", color: ThemeColor.contrast, isHidden: true)
+    
     private let toggleSwitch: UISwitch = {
         let toggleSwitch = UISwitch()
         toggleSwitch.onTintColor = ThemeColor.general
         toggleSwitch.isHidden = true
         toggleSwitch.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
         return toggleSwitch
-    }()
-    
-    private let arrowIcon: UIImageView = {
-        let image = UIImage(systemName: "chevron.right")
-        let imageView = UIImageView(image: image)
-        imageView.tintColor = ThemeColor.contrast
-        imageView.isHidden = true
-        return imageView
     }()
     
     // MARK: Initialize
@@ -59,13 +53,9 @@ class SettingCell: UICollectionViewCell {
         ])
     }
     
-    private func setupUI(iconName: String, text: String, type: SettingType? = nil) {
+    private func setup(iconName: String, text: String, type: SettingType? = nil) {
         icon.image = UIImage(systemName: iconName)
-        icon.tintColor = ThemeColor.opp
-        
         label.text = text
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = ThemeColor.opp
         
         if let type = type {
             switch type {
@@ -86,17 +76,17 @@ class SettingCell: UICollectionViewCell {
     public func configure(setting: Setting) {
         switch setting {
         case .changeAvatar:
-            setupUI(iconName: "arrow.triangle.2.circlepath.camera", text: setting.rawValue)
+            setup(iconName: "arrow.triangle.2.circlepath.camera", text: setting.rawValue)
         case .toggleTheme:
-            setupUI(iconName: "moon", text: setting.rawValue, type: .toggle)
+            setup(iconName: "moon", text: setting.rawValue, type: .toggle)
         case .personalData:
-            setupUI(iconName: "pencil", text: setting.rawValue, type: .container)
+            setup(iconName: "pencil", text: setting.rawValue, type: .container)
         case .signOut:
-            setupUI(iconName: "arrowshape.left", text: setting.rawValue, type: .danger)
+            setup(iconName: "arrowshape.left", text: setting.rawValue, type: .danger)
         case .resetAccount:
-            setupUI(iconName: "gobackward", text: setting.rawValue, type: .danger)
+            setup(iconName: "gobackward", text: setting.rawValue, type: .danger)
         case .deleteAccount:
-            setupUI(iconName: "clear", text: setting.rawValue, type: .danger)
+            setup(iconName: "clear", text: setting.rawValue, type: .danger)
         }
     }
     

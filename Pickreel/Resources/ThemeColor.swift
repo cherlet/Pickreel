@@ -13,6 +13,18 @@ struct ThemeColor {
     static let yellow = UIColor.appColor(CustomColor.YellowColor)
     static let green = UIColor.appColor(CustomColor.GreenColor)
     static let gray = UIColor.appColor(CustomColor.GrayColor)
+    static let comedy = UIColor.appColor(CustomColor.ComedyColor)
+    static let action = UIColor.appColor(CustomColor.ActionColor)
+    static let fantasy = UIColor.appColor(CustomColor.FantasyColor)
+    static let mystery = UIColor.appColor(CustomColor.MysteryColor)
+    static let drama = UIColor.appColor(CustomColor.DramaColor)
+    static let family = UIColor.appColor(CustomColor.FamilyColor)
+    static let adventure = UIColor.appColor(CustomColor.AdventureColor)
+    static let animation = UIColor.appColor(CustomColor.AnimationColor)
+    static let horror = UIColor.appColor(CustomColor.HorrorColor)
+    static let scienceFiction = UIColor.appColor(CustomColor.ScienceFictionColor)
+    static let crime = UIColor.appColor(CustomColor.CrimeColor)
+    static let war = UIColor.appColor(CustomColor.WarColor)
 }
 
 enum CustomColor: String {
@@ -28,4 +40,16 @@ enum CustomColor: String {
     case YellowColor
     case GreenColor
     case GrayColor
+    case ComedyColor
+    case ActionColor
+    case FantasyColor
+    case MysteryColor
+    case DramaColor
+    case FamilyColor
+    case AdventureColor
+    case AnimationColor
+    case HorrorColor
+    case ScienceFictionColor
+    case CrimeColor
+    case WarColor
 }

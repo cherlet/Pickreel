@@ -13,10 +13,24 @@ extension UIImageView {
         }
     }
     
-    convenience init(iconName: String, color: UIColor? = ThemeColor.white) {
+    convenience init(iconName: String = "circle", color: UIColor? = ThemeColor.white, isCustom: Bool = false, isHidden: Bool = false) { // icon init
         self.init()
-        self.image = UIImage(systemName: iconName)
+        
+        if isCustom {
+            self.image = UIImage(named: iconName)
+        } else {
+            self.image = UIImage(systemName: iconName) 
+        }
+        
         self.tintColor = color
+        self.isHidden = isHidden
+    }
+    
+    convenience init(clipsToBounds: Bool = false, contentMode: UIView.ContentMode = .scaleToFill, cornerRadius: CGFloat = 0) { // configure init
+        self.init()
+        self.clipsToBounds = clipsToBounds
+        self.contentMode = contentMode
+        self.layer.cornerRadius = cornerRadius
     }
     
     func setGradient() {

@@ -22,7 +22,7 @@ class GenreCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = ThemeColor.white
-        contentView.layer.cornerRadius = 8
+        contentView.layer.cornerRadius = 16
         setupLayout()
     }
     
@@ -34,18 +34,19 @@ class GenreCell: UICollectionViewCell {
     func setupLayout() {
         [icon, label].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
-            contentView.addSubview($0)
+            addSubview($0)
         }
         
         NSLayoutConstraint.activate([
+            icon.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            icon.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            icon.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             icon.heightAnchor.constraint(equalToConstant: 16),
-            icon.widthAnchor.constraint(equalToConstant: 16),
-            icon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            icon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             
-            label.centerYAnchor.constraint(equalTo: icon.centerYAnchor),
+            label.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             label.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 8),
-            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
         ])
     }
     

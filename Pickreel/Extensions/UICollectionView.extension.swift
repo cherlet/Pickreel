@@ -3,12 +3,10 @@ import UIKit
 extension UICollectionView {
     static func getGenreCollection(identifier: String = GenreCell.identifier, tag: Int = 0) -> UICollectionView {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
+        layout.minimumLineSpacing = 8
         layout.minimumInteritemSpacing = 0
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.estimatedItemSize = CGSize(width: 1, height: 32)
-        layout.itemSize = UICollectionViewFlowLayout.automaticSize
+        layout.estimatedItemSize = CGSize(width: 64, height: 32)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false

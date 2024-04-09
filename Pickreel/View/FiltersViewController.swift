@@ -136,7 +136,7 @@ private extension FiltersViewController {
             genreCollectionView.topAnchor.constraint(equalTo: genresFilterLabel.bottomAnchor, constant: 12),
             genreCollectionView.leadingAnchor.constraint(equalTo: filtersSubview.leadingAnchor, constant: 20),
             genreCollectionView.trailingAnchor.constraint(equalTo: filtersSubview.trailingAnchor, constant: -20),
-            genreCollectionView.heightAnchor.constraint(equalToConstant: 40),
+            genreCollectionView.heightAnchor.constraint(equalToConstant: 32),
             
             submitButton.widthAnchor.constraint(lessThanOrEqualTo: filtersSubview.widthAnchor),
             submitButton.heightAnchor.constraint(equalToConstant: 40),

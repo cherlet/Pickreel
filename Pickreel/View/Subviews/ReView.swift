@@ -4,7 +4,7 @@ class ReView: UIView {
     // MARK: Properties
     private var cast: [Actor] = []
     private var crew: [Person] = []
-    private var genres: Genres = Genres(ru: [], en: [])
+    private var genres: [String] = []
     
     // MARK: UI Elements
     private lazy var nameLabel = UILabel(fontSize: 30, fontWeight: .bold, numberOfLines: 0, alignment: .center)
@@ -12,7 +12,6 @@ class ReView: UIView {
     private lazy var votesLabel = UILabel(textColor: ThemeColor.silent, fontSize: 14)
     private lazy var infoLabel = UILabel(textColor: ThemeColor.silent, fontSize: 14)
     private lazy var productionLabel = UILabel(textColor: ThemeColor.silent, fontSize: 14)
-    private lazy var genreHeadline = UILabel(text: "Жанры", textColor: ThemeColor.white,  fontSize: 16)
     private lazy var overviewHeadline = UILabel(text: "Описание", textColor: ThemeColor.white,  fontSize: 16)
     private lazy var castHeadline = UILabel(text: "В главных ролях", textColor: ThemeColor.white,  fontSize: 16)
     private lazy var crewHeadline = UILabel(text: "Съемочная группа", textColor: ThemeColor.white,  fontSize: 16)
@@ -56,7 +55,7 @@ class ReView: UIView {
         infoStack.spacing = 4
         infoStack.alignment = .center
         
-        [swipeImage, nameLabel, infoStack, genreHeadline, genreCollectionView, overviewHeadline, castHeadline, castCollectionView, crewHeadline, crewCollectionView].forEach {
+        [swipeImage, nameLabel, infoStack, genreCollectionView, overviewHeadline, castHeadline, castCollectionView, crewHeadline, crewCollectionView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             addSubview($0)
         }
@@ -67,17 +66,14 @@ class ReView: UIView {
             swipeImage.trailingAnchor.constraint(equalTo: trailingAnchor),
             swipeImage.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 40),
+            nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 32),
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
             infoStack.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 12),
             infoStack.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            genreHeadline.topAnchor.constraint(equalTo: productionLabel.bottomAnchor, constant: 16),
-            genreHeadline.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            
-            genreCollectionView.topAnchor.constraint(equalTo: genreHeadline.bottomAnchor, constant: 16),
+            genreCollectionView.topAnchor.constraint(equalTo: productionLabel.bottomAnchor, constant: 16),
             genreCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             genreCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             genreCollectionView.heightAnchor.constraint(equalToConstant: 32),
@@ -175,10 +171,11 @@ extension ReView {
         
         productionLabel.text = production
         
-        // CAST & CREW & GENRES
+        // CAST
         cast = media.credits.cast
+        
+        // CREW
         crew = media.credits.crew
-        genres = media.genres
         
         if let index = crew.firstIndex(where: { $0.jobEn == "director"}) {
             let director = crew[index]
@@ -198,6 +195,22 @@ extension ReView {
             crew.insert(producer, at: 2)
         }
         
+        // GENRES
+        genres = media.genres.ru
+        
+        var unknownGenreIndexes: [Int] = []
+        
+        for index in 0..<genres.count {
+            if Genres.findIndex(of: genres[index]) == nil {
+                unknownGenreIndexes.append(index)
+            }
+        }
+        
+        for index in unknownGenreIndexes {
+            genres.remove(at: index)
+        }
+        
+        // RELOAD COLLECTION DATA
         DispatchQueue.main.async {
             self.castCollectionView.reloadData()
             self.crewCollectionView.reloadData()
@@ -219,7 +232,7 @@ extension ReView: UICollectionViewDataSource, UICollectionViewDelegate {
         } else if collectionView.tag == 1 {
             return crew.count
         } else {
-            return genres.ru.count
+            return genres.count
         }
     }
     
@@ -246,7 +259,7 @@ extension ReView: UICollectionViewDataSource, UICollectionViewDelegate {
                 fatalError("DEBUG: Failed with custom cell bug")
             }
             
-            let genre = genres.ru[indexPath.row]
+            let genre = genres[indexPath.row]
             cell.configure(genre: genre)
             return cell
         }

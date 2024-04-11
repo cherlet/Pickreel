@@ -12,7 +12,8 @@ class ReView: UIView {
     private lazy var votesLabel = UILabel(textColor: ThemeColor.silent, fontSize: 14)
     private lazy var infoLabel = UILabel(textColor: ThemeColor.silent, fontSize: 14)
     private lazy var productionLabel = UILabel(textColor: ThemeColor.silent, fontSize: 14)
-    private lazy var overviewHeadline = UILabel(text: "Описание", textColor: ThemeColor.white,  fontSize: 16)
+    private lazy var overviewContainer = UIView(color: .clear, isUserInteraction: true)
+    private lazy var overviewLabel = UILabel(textColor: ThemeColor.white, fontSize: 16, numberOfLines: 0)
     private lazy var castHeadline = UILabel(text: "В главных ролях", textColor: ThemeColor.white,  fontSize: 16)
     private lazy var crewHeadline = UILabel(text: "Съемочная группа", textColor: ThemeColor.white,  fontSize: 16)
     
@@ -52,13 +53,16 @@ class ReView: UIView {
         
         let infoStack = UIStackView(arrangedSubviews: [ratingStack, infoLabel, productionLabel])
         infoStack.axis = .vertical
-        infoStack.spacing = 4
+        infoStack.spacing = 2
         infoStack.alignment = .center
         
-        [swipeImage, nameLabel, infoStack, genreCollectionView, overviewHeadline, castHeadline, castCollectionView, crewHeadline, crewCollectionView].forEach {
+        [swipeImage, nameLabel, infoStack, genreCollectionView, overviewContainer, castHeadline, castCollectionView, crewHeadline, crewCollectionView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             addSubview($0)
         }
+        
+        overviewLabel.translatesAutoresizingMaskIntoConstraints = false
+        overviewContainer.addSubview(overviewLabel)
         
         NSLayoutConstraint.activate([
             swipeImage.topAnchor.constraint(equalTo: topAnchor),
@@ -73,28 +77,35 @@ class ReView: UIView {
             infoStack.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 12),
             infoStack.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            genreCollectionView.topAnchor.constraint(equalTo: productionLabel.bottomAnchor, constant: 16),
+            overviewContainer.topAnchor.constraint(equalTo: infoStack.bottomAnchor, constant: 12),
+            overviewContainer.heightAnchor.constraint(equalToConstant: 128),
+            overviewContainer.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            overviewContainer.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            
+            overviewLabel.topAnchor.constraint(equalTo: overviewContainer.topAnchor),
+            overviewLabel.leadingAnchor.constraint(equalTo: overviewContainer.leadingAnchor),
+            overviewLabel.trailingAnchor.constraint(equalTo: overviewContainer.trailingAnchor),
+            overviewLabel.bottomAnchor.constraint(equalTo: overviewContainer.bottomAnchor),
+            
+            genreCollectionView.topAnchor.constraint(equalTo: overviewContainer.bottomAnchor, constant: 12),
             genreCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             genreCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             genreCollectionView.heightAnchor.constraint(equalToConstant: 32),
             
-            overviewHeadline.topAnchor.constraint(equalTo: genreCollectionView.bottomAnchor, constant: 16),
-            overviewHeadline.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            
+            castHeadline.topAnchor.constraint(equalTo: genreCollectionView.bottomAnchor, constant: 16),
             castHeadline.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            castHeadline.bottomAnchor.constraint(equalTo: castCollectionView.topAnchor, constant: -16),
             
+            castCollectionView.topAnchor.constraint(equalTo: castHeadline.bottomAnchor, constant: 12),
             castCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             castCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            castCollectionView.bottomAnchor.constraint(equalTo: crewHeadline.topAnchor, constant: -16),
             castCollectionView.heightAnchor.constraint(equalToConstant: 80),
             
-            crewHeadline.bottomAnchor.constraint(equalTo: crewCollectionView.topAnchor, constant: -16),
+            crewHeadline.topAnchor.constraint(equalTo: castCollectionView.bottomAnchor, constant: 12),
             crewHeadline.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             
+            crewCollectionView.topAnchor.constraint(equalTo: crewHeadline.bottomAnchor, constant: 12),
             crewCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             crewCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            crewCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             crewCollectionView.heightAnchor.constraint(equalToConstant: 80),
         ])
     }
@@ -158,6 +169,9 @@ extension ReView {
         
         infoLabel.text = info
         
+        // OVERVIEW
+        overviewLabel.text = media.overview.ru
+        
         // PRODUCTION LINE
         var production = String()
         
@@ -196,18 +210,12 @@ extension ReView {
         }
         
         // GENRES
-        genres = media.genres.ru
         
-        var unknownGenreIndexes: [Int] = []
-        
-        for index in 0..<genres.count {
-            if Genres.findIndex(of: genres[index]) == nil {
-                unknownGenreIndexes.append(index)
+        genres.removeAll()
+        for genre in media.genres.ru {
+            if Genres.findIndex(of: genre) != nil {
+                genres.append(genre)
             }
-        }
-        
-        for index in unknownGenreIndexes {
-            genres.remove(at: index)
         }
         
         // RELOAD COLLECTION DATA

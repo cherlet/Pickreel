@@ -25,6 +25,7 @@ struct ThemeColor {
     static let scienceFiction = UIColor.appColor(CustomColor.ScienceFictionColor)
     static let crime = UIColor.appColor(CustomColor.CrimeColor)
     static let war = UIColor.appColor(CustomColor.WarColor)
+    static let black = UIColor.appColor(CustomColor.BlackColor)
 }
 
 enum CustomColor: String {
@@ -52,4 +53,5 @@ enum CustomColor: String {
     case ScienceFictionColor
     case CrimeColor
     case WarColor
+    case BlackColor
 }

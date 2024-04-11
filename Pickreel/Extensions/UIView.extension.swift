@@ -1,6 +1,13 @@
 import UIKit
 
 extension UIView {
+    convenience init(color: UIColor? = ThemeColor.background, isUserInteraction: Bool = false, cornerRadius: CGFloat = 0) { // configure init
+        self.init()
+        backgroundColor = color
+        isUserInteractionEnabled = isUserInteraction
+        layer.cornerRadius = cornerRadius
+    }
+    
     func transformToSection(name: String, iconName: String) {
         translatesAutoresizingMaskIntoConstraints = false
         isUserInteractionEnabled = true

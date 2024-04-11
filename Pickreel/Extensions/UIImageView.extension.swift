@@ -35,7 +35,7 @@ extension UIImageView {
     
     func setGradient() {
         let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.black.withAlphaComponent(0).cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
+        gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
         gradient.cornerRadius = 16
         gradient.frame = self.bounds
         self.layer.sublayers?.removeAll()

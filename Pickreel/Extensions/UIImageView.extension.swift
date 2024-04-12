@@ -13,7 +13,7 @@ extension UIImageView {
         }
     }
     
-    convenience init(iconName: String = "circle", color: UIColor? = ThemeColor.white, isCustom: Bool = false, isHidden: Bool = false) { // icon init
+    convenience init(iconName: String = "circle", iconColor: UIColor? = .clear, isCustom: Bool = false, isHidden: Bool = false) { // icon init
         self.init()
         
         if isCustom {
@@ -22,7 +22,7 @@ extension UIImageView {
             self.image = UIImage(systemName: iconName) 
         }
         
-        self.tintColor = color
+        self.tintColor = iconColor
         self.isHidden = isHidden
     }
     

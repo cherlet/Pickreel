@@ -4,6 +4,7 @@ import Foundation
 struct Media: Codable {
     let externalID: ExternalID
     let isMovie: Bool
+    let isLiked: Bool?
     let title: Title
     let year: Int
     let runtime: Int
@@ -17,6 +18,9 @@ struct Media: Codable {
     let companies: [String]
     let seasons: [Season]?
     let credits: Credits
+    var keywords: [String] {
+        [self.title.ru.generateKeywords(), self.title.en.generateKeywords(), self.title.original.generateKeywords()].flatMap { $0 }
+    }
 }
 
 // MARK: - Credits

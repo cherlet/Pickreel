@@ -9,8 +9,8 @@ class MediaCell: UITableViewCell {
     private lazy var titleLabel = UILabel(textColor: ThemeColor.opp, fontSize: 20)
     private lazy var yearLabel = UILabel(textColor: ThemeColor.opp, fontSize: 16)
     private lazy var ratingLabel = UILabel(textColor: ThemeColor.opp, fontSize: 16)
-    private lazy var yearIcon = UIImageView(iconName: "calendar", color: ThemeColor.opp)
-    private lazy var ratingIcon = UIImageView(iconName: "star.fill", color: ThemeColor.opp)
+    private lazy var yearIcon = UIImageView(iconName: "calendar", iconColor: ThemeColor.opp)
+    private lazy var ratingIcon = UIImageView(iconName: "star.fill", iconColor: ThemeColor.opp)
     
     // MARK: Initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

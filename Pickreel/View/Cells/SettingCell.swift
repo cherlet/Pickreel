@@ -5,9 +5,9 @@ class SettingCell: UICollectionViewCell {
     static let identifier = "SettingCell"
     
     // MARK: UI Elements
-    private lazy var icon = UIImageView(color: ThemeColor.opp)
+    private lazy var icon = UIImageView(iconColor: ThemeColor.opp)
     private lazy var label = UILabel(textColor: ThemeColor.opp, fontSize: 20)
-    private lazy var arrowIcon = UIImageView(iconName: "chevron.right", color: ThemeColor.contrast, isHidden: true)
+    private lazy var arrowIcon = UIImageView(iconName: "chevron.right", iconColor: ThemeColor.contrast, isHidden: true)
     
     private let toggleSwitch: UISwitch = {
         let toggleSwitch = UISwitch()

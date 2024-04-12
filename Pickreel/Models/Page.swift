@@ -25,7 +25,7 @@ private extension Page {
         let countries = Countries(ru: [], en: [])
         let credits = Credits(cast: [], crew: [])
         
-        let placeholder = Media(externalID: externalID, isMovie: true, title: title, year: 0, runtime: 0, ageRating: 0, posterURL: posterURL, overview: overview, rating: rating, votes: rating, genres: genres, countries: countries, companies: [], seasons: [], credits: credits)
+        let placeholder = Media(externalID: externalID, isMovie: true, isLiked: nil, title: title, year: 0, runtime: 0, ageRating: 0, posterURL: posterURL, overview: overview, rating: rating, votes: rating, genres: genres, countries: countries, companies: [], seasons: [], credits: credits)
         
         if dataStatus.movies == true, dataStatus.series == true {
             return Card(movie: data.movies[data.swiper.movieIterator.value], series: data.series[data.swiper.seriesIterator.value])

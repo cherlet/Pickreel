@@ -23,7 +23,7 @@ class SettingsPresenter {
 
 extension SettingsPresenter: SettingsPresenterProtocol {
     func handleAvatarChange() {
-        print("avatar")
+        //
     }
     
     func handlePersonalData() {
@@ -31,11 +31,11 @@ extension SettingsPresenter: SettingsPresenterProtocol {
     }
     
     func handleThemeToggle() {
-        print("hello")
+        //
     }
     
     func handleSignOut() {
-        interactor.handleSignOut()
+        interactor.signOut()
     }
     
     func didSignOut() {
@@ -43,10 +43,10 @@ extension SettingsPresenter: SettingsPresenterProtocol {
     }
     
     func handleAccountReset() {
-        //
+        interactor.resetAccount()
     }
     
     func handleAccountDeletion() {
-        interactor.handleAccountDeletion()
+        interactor.deleteAccount()
     }
 }

@@ -1,7 +1,8 @@
 import UIKit
 
 protocol SearchViewProtocol: AnyObject {
-    func initializeTable(with history: [Media])
+    func show(history: [Media])
+    func show(results: [Media])
 }
 
 class SearchViewController: UIViewController {
@@ -24,17 +25,20 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         presenter?.viewLoaded()
         initialize()
-        
-        
-        tableView.delegate = self
-        tableView.dataSource = self
     }
 }
 
 // MARK: Module
 extension SearchViewController: SearchViewProtocol {
-    func initializeTable(with history: [Media]) {
+    func show(history: [Media]) {
         self.history = history
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func show(results: [Media]) {
+        self.results = results
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -44,6 +48,9 @@ extension SearchViewController: SearchViewProtocol {
 // MARK: Setup
 private extension SearchViewController {
     func initialize() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         setupSearchController()
         setupLayout()
     }
@@ -110,15 +117,8 @@ private extension SearchViewController {
     }
     
     func updateSearchController(searchBarText: String?) {
-        results = history
-        
-        if let searchText = searchBarText?.lowercased() {
-            guard !searchText.isEmpty else {
-                DispatchQueue.main.async { self.tableView.reloadData() }
-                return
-            }
-            
-            results = results.filter { $0.title.ru.lowercased().contains(searchText) }
+        if let searchText = searchBarText, !searchText.isEmpty {
+            presenter?.updateSearch(with: searchText.lowercased())
         }
         
         DispatchQueue.main.async { self.tableView.reloadData() }

@@ -80,14 +80,32 @@ extension NetworkManager {
 // MARK: - Firestore
 extension NetworkManager {
     func loadData(with filter: Filter? = nil) async {
-        let movies = await fetchData(of: .movies, with: filter)
-        let series = await fetchData(of: .series, with: filter)
+        let movies = await fetchData(of: .movies, filter: filter)
+        let series = await fetchData(of: .series, filter: filter)
         let data = MediaData(movies: movies, series: series)
         self.currentPage = Page(data: data)
         self.iterator.reset()
     }
     
-    func fetchData(of type: MediaType, limit: Int = 20, with filter: Filter? = nil) async -> [Media] {
+    func searchData(with keyword: String) async -> [Media] {
+        // MARK: Construct query
+        let query = db.collection("media").limit(to: 20).whereField("keywords", arrayContains: keyword)
+        
+        // MARK: Execute Query
+        var data: [Media]
+        
+        do {
+            let snapshot = try await query.getDocuments()
+            data = try snapshot.documents.map { try $0.data(as: Media.self) }
+        } catch {
+            print("DEBUG: Failed to search data, error: \(error.localizedDescription)")
+            return []
+        }
+        
+        return data
+    }
+    
+    func fetchData(of type: MediaType, limit: Int = 20, filter: Filter? = nil) async -> [Media] {
         // MARK: Construct query
         var query = db.collection("media").limit(to: limit)
         
@@ -117,7 +135,7 @@ extension NetworkManager {
             let snapshot = try await query.getDocuments()
             data = try snapshot.documents.map { try $0.data(as: Media.self) }
         } catch {
-            print("DEBUG: Failed to parse media data, error: \(error.localizedDescription)")
+            print("DEBUG: Failed to fetch data, error: \(error.localizedDescription)")
             return []
         }
         
@@ -128,17 +146,23 @@ extension NetworkManager {
         return data
     }
     
-    func fetchHistory() async -> [Media] {
-        guard let uid = auth.currentUser?.uid else { return [] }
+    func clearHistory() async {
+        guard let uid = auth.currentUser?.uid else { return }
         let query = db.collection("users").document(uid).collection("history")
         
         do {
             let snapshot = try await query.getDocuments()
             let data = try snapshot.documents.map { try $0.data(as: Media.self) }
-            return data
+            
+            for media in data {
+                try db.collection("media").document(media.externalID.imdb).setData(from: media)
+                try await db.collection("media").document(media.externalID.imdb).updateData(["keywords": media.keywords])
+                try await db.collection("users").document(uid).collection("history").document(media.externalID.imdb).delete()
+            }
+            
+            print("DEBUG: History deleted")
         } catch {
-            print("DEBUG: Failed to parse media data, error: \(error.localizedDescription)")
-            return []
+            print("DEBUG: Failed to clear data, error: \(error.localizedDescription)")
         }
     }
     

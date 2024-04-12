@@ -65,6 +65,7 @@
 		07946FD62B651A53001C4E7F /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FD12B651A53001C4E7F /* ProfileInteractor.swift */; };
 		07946FDD2B651B6C001C4E7F /* TabBarModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FD82B651B6C001C4E7F /* TabBarModuleBuilder.swift */; };
 		07946FE02B651B6C001C4E7F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FDB2B651B6C001C4E7F /* TabBarController.swift */; };
+		079536642BC98C94005580A3 /* String.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079536632BC98C94005580A3 /* String.extension.swift */; };
 		0797AAE32B91DD0400AF9E78 /* Shuffle in Frameworks */ = {isa = PBXBuildFile; productRef = 0797AAE22B91DD0400AF9E78 /* Shuffle */; };
 		07AF1EC02BA0474300B4169D /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AF1EBF2BA0474300B4169D /* SettingCell.swift */; };
 		07AF1EC22BA08AFB00B4169D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AF1EC12BA08AFB00B4169D /* ThemeManager.swift */; };
@@ -142,6 +143,7 @@
 		07946FD12B651A53001C4E7F /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
 		07946FD82B651B6C001C4E7F /* TabBarModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModuleBuilder.swift; sourceTree = "<group>"; };
 		07946FDB2B651B6C001C4E7F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		079536632BC98C94005580A3 /* String.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.extension.swift; sourceTree = "<group>"; };
 		07AF1EBF2BA0474300B4169D /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		07AF1EC12BA08AFB00B4169D /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		07B025F92B98C2D2004C303B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				07773D2A2B8FEDF700483A08 /* UITextField.extension.swift */,
 				070827042B6ABACB00D10341 /* UIView.extension.swift */,
 				076453032BB928A70090EF67 /* [String].extension.swift */,
+				079536632BC98C94005580A3 /* String.extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				07546A822BC34FFA00C6E72E /* Setting.swift in Sources */,
 				076567282BAF1C2600FE17B7 /* GenreCell.swift in Sources */,
 				07773D272B8FE7FF00483A08 /* LoginRouter.swift in Sources */,
+				079536642BC98C94005580A3 /* String.extension.swift in Sources */,
 				07773D332B8FFC9400483A08 /* RegisterPresenter.swift in Sources */,
 				07ED003B2B63F70B00F0A143 /* GeneralModuleBuilder.swift in Sources */,
 				07773D292B8FE7FF00483A08 /* LoginInteractor.swift in Sources */,

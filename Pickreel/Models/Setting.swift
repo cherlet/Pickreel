@@ -3,6 +3,6 @@ enum Setting: String, CaseIterable {
     case toggleTheme = "Темная тема"
     case personalData = "Личные данные"
     case signOut = "Выйти"
-    case resetAccount = "Сбросить аккаунт"
+    case resetAccount = "Очистить историю"
     case deleteAccount = "Удалить аккаунт"
 }

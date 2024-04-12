@@ -1,6 +1,8 @@
 protocol SearchPresenterProtocol: AnyObject {
     func viewLoaded()
     func dataLoaded(with history: [Media])
+    func updateSearch(with keyword: String)
+    func dataFound(with results: [Media])
 }
 
 class SearchPresenter {
@@ -20,6 +22,14 @@ extension SearchPresenter: SearchPresenterProtocol {
     }
     
     func dataLoaded(with history: [Media]) {
-        view?.initializeTable(with: history)
+        view?.show(history: history)
+    }
+    
+    func updateSearch(with keyword: String) {
+        interactor.searchData(with: keyword)
+    }
+    
+    func dataFound(with results: [Media]) {
+        view?.show(results: results)
     }
 }

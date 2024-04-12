@@ -1,20 +1,27 @@
 protocol SettingsInteractorProtocol: AnyObject {
-    func handleSignOut()
-    func handleAccountDeletion()
+    func signOut()
+    func deleteAccount()
+    func resetAccount()
 }
 
 class SettingsInteractor: SettingsInteractorProtocol {
     weak var presenter: SettingsPresenterProtocol?
     
-    func handleSignOut() {
+    func signOut() {
         NetworkManager.shared.signOut()
         presenter?.didSignOut()
     }
     
-    func handleAccountDeletion() {
+    func deleteAccount() {
         Task {
             await NetworkManager.shared.deleteAccount()
             presenter?.didSignOut()
+        }
+    }
+    
+    func resetAccount() {
+        Task {
+            await NetworkManager.shared.clearHistory()
         }
     }
 }

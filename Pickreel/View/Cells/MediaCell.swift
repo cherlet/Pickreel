@@ -5,12 +5,10 @@ class MediaCell: UITableViewCell {
     static let identifier = "MediaCell"
     
     // MARK: UI Elements
-    private lazy var posterImageView = UIImageView(clipsToBounds: true, contentMode: .scaleAspectFill, cornerRadius: 8)
-    private lazy var titleLabel = UILabel(textColor: ThemeColor.opp, fontSize: 20)
-    private lazy var yearLabel = UILabel(textColor: ThemeColor.opp, fontSize: 16)
-    private lazy var ratingLabel = UILabel(textColor: ThemeColor.opp, fontSize: 16)
-    private lazy var yearIcon = UIImageView(iconName: "calendar", iconColor: ThemeColor.opp)
-    private lazy var ratingIcon = UIImageView(iconName: "star.fill", iconColor: ThemeColor.opp)
+    private lazy var poster = UIImageView(clipsToBounds: true, contentMode: .scaleAspectFill)
+    private lazy var titleLabel = UILabel(textColor: ThemeColor.opp, fontSize: 14, fontWeight: .semibold)
+    private lazy var originalTitleLabel = UILabel(textColor: ThemeColor.gray, fontSize: 14, fontWeight: .semibold)
+    private lazy var ratingLabel = UILabel(textColor: ThemeColor.opp, fontSize: 16, fontWeight: .semibold)
     
     // MARK: Initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -24,42 +22,43 @@ class MediaCell: UITableViewCell {
     
     // MARK: Setup
     private func setupLayout() {
-        [posterImageView, titleLabel, yearLabel, ratingLabel, yearIcon, ratingIcon].forEach {
+        let titleStack = UIStackView(arrangedSubviews: [titleLabel, originalTitleLabel])
+        titleStack.axis = .vertical
+        titleStack.spacing = 2
+        titleStack.translatesAutoresizingMaskIntoConstraints = false
+        
+        let infoStack = UIStackView(arrangedSubviews: [titleStack, ratingLabel])
+        infoStack.axis = .horizontal
+        infoStack.distribution = .equalSpacing
+        
+        [poster, infoStack].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview($0)
         }
         
         NSLayoutConstraint.activate([
-            posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            posterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-            posterImageView.widthAnchor.constraint(equalToConstant: 60),
+            poster.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            poster.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            poster.heightAnchor.constraint(equalToConstant: 64),
+            poster.widthAnchor.constraint(equalToConstant: 40),
             
-            titleLabel.topAnchor.constraint(equalTo: posterImageView.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 16),
+            titleStack.widthAnchor.constraint(lessThanOrEqualToConstant: 260),
             
-            yearIcon.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            yearIcon.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            
-            yearLabel.centerYAnchor.constraint(equalTo: yearIcon.centerYAnchor),
-            yearLabel.leadingAnchor.constraint(equalTo: yearIcon.trailingAnchor, constant: 8),
-            
-            ratingIcon.topAnchor.constraint(equalTo: yearLabel.bottomAnchor, constant: 8),
-            ratingIcon.leadingAnchor.constraint(equalTo: yearIcon.leadingAnchor),
-            
-            ratingLabel.centerYAnchor.constraint(equalTo: ratingIcon.centerYAnchor),
-            ratingLabel.leadingAnchor.constraint(equalTo: yearLabel.leadingAnchor),
+            infoStack.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            infoStack.leadingAnchor.constraint(equalTo: poster.trailingAnchor, constant: 8),
+            infoStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
         ])
     }
 
     
     func configure(with media: Media) {
         titleLabel.text = media.title.ru
-        yearLabel.text = String(media.year)
-        ratingLabel.text = String(media.rating.imdb)
+        let year = String(media.year)
+        originalTitleLabel.text = media.title.original + ", \(year)"
+        ratingLabel.setup(as: .rating, text: String(media.rating.imdb))
         
         if let posterURL = media.posterURL, let url = URL(string: posterURL) {
-            posterImageView.load(url: url)
+            poster.load(url: url)
         } else {
             // TODO: - Add image placeholder
         }

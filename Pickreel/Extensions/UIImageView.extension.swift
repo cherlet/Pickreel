@@ -13,13 +13,14 @@ extension UIImageView {
         }
     }
     
-    convenience init(iconName: String = "circle", iconColor: UIColor? = .clear, isCustom: Bool = false, isHidden: Bool = false) { // icon init
+    convenience init(iconName: String = "circle", iconColor: UIColor? = ThemeColor.white, isCustom: Bool = false, isHidden: Bool = false, iconSize: CGFloat = 20) { // icon init
         self.init()
         
         if isCustom {
             self.image = UIImage(named: iconName)
         } else {
-            self.image = UIImage(systemName: iconName) 
+            let configuration = UIImage.SymbolConfiguration(pointSize: iconSize)
+            self.image = UIImage(systemName: iconName, withConfiguration: configuration)
         }
         
         self.tintColor = iconColor

@@ -286,8 +286,8 @@
 			isa = PBXGroup;
 			children = (
 				076567272BAF1C2600FE17B7 /* GenreCell.swift */,
-				075F83232BC02EF400C376A3 /* PersonCell.swift */,
 				077F8C782BB07B0C0076927E /* MediaCell.swift */,
+				075F83232BC02EF400C376A3 /* PersonCell.swift */,
 				07AF1EBF2BA0474300B4169D /* SettingCell.swift */,
 			);
 			path = Cells;

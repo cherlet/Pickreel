@@ -71,7 +71,7 @@ private extension SearchViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.placeholder = "Название фильма/сериала"
+        searchController.searchBar.placeholder = "Фильмы, сериалы"
         
         navigationItem.searchController = searchController
         definesPresentationContext = true
@@ -97,7 +97,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { 100 }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { 88 }
 }
 
 // MARK: - Search Controller

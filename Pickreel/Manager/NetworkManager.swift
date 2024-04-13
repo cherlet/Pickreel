@@ -200,13 +200,4 @@ extension NetworkManager {
             return
         }
     }
-    
-    func checkCount() async {
-        do {
-            let snapshot = try await db.collection("media").count.getAggregation(source: .server)
-            print("DEBUG: Data count = \(snapshot.count)")
-        } catch {
-            print(error)
-        }
-    }
 }

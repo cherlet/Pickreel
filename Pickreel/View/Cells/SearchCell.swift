@@ -1,6 +1,6 @@
 import UIKit
 
-class MediaCell: UITableViewCell {
+class SearchCell: UITableViewCell {
     // MARK: Properties
     static let identifier = "MediaCell"
     

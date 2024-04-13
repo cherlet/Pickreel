@@ -16,9 +16,9 @@ class SwipeView: UIView {
     private lazy var ratingLabel = UILabel(fontSize: 20)
     
     // MARK: Initialize
-    init() {
+    init(asFullscreen: Bool = false) {
         super.init(frame: .zero)
-        setup()
+        setup(asFullscreen)
     }
     
     required init?(coder: NSCoder) {
@@ -26,8 +26,9 @@ class SwipeView: UIView {
     }
     
     // MARK: Setup
-    private func setup() {
-        layer.cornerRadius = 16
+    private func setup(_ asFullscreen: Bool) {
+        layer.cornerRadius = asFullscreen ? 0 : 16
+        swipeImage.layer.cornerRadius = asFullscreen ? 0 : 16
         setupLayout()
     }
     

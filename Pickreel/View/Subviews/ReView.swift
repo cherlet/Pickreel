@@ -7,7 +7,7 @@ class ReView: UIView {
     private var genres: [String] = []
     
     // MARK: UI Elements
-    private lazy var nameLabel = UILabel(fontSize: 30, fontWeight: .bold, numberOfLines: 0, alignment: .center)
+    private lazy var nameLabel = UILabel(fontSize: 30, fontWeight: .bold, numberOfLines: 2, alignment: .center)
     private lazy var ratingLabel = UILabel(fontSize: 14, fontWeight: .semibold)
     private lazy var votesLabel = UILabel(textColor: ThemeColor.silent, fontSize: 14)
     private lazy var infoLabel = UILabel(textColor: ThemeColor.silent, fontSize: 14)
@@ -24,9 +24,9 @@ class ReView: UIView {
     private lazy var swipeImage = UIImageView(clipsToBounds: true, cornerRadius: 16)
     
     // MARK: Initialize
-    init() {
+    init(asFullscreen: Bool = false) {
         super.init(frame: .zero)
-        setup()
+        setup(asFullscreen)
     }
     
     required init?(coder: NSCoder) {
@@ -34,8 +34,9 @@ class ReView: UIView {
     }
     
     // MARK: Setup
-    private func setup() {
-        layer.cornerRadius = 16
+    private func setup(_ asFullscreen: Bool) {
+        layer.cornerRadius = asFullscreen ? 0 : 16
+        swipeImage.layer.cornerRadius = asFullscreen ? 0 : 16
         backgroundColor = ThemeColor.contrast
         
         [castCollectionView, crewCollectionView, genreCollectionView].forEach {
@@ -76,34 +77,38 @@ class ReView: UIView {
             
             infoStack.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 12),
             infoStack.centerXAnchor.constraint(equalTo: centerXAnchor),
+            infoStack.heightAnchor.constraint(equalToConstant: 50),
             
             overviewContainer.topAnchor.constraint(equalTo: infoStack.bottomAnchor, constant: 12),
-            overviewContainer.heightAnchor.constraint(equalToConstant: 128),
+            overviewContainer.heightAnchor.constraint(greaterThanOrEqualToConstant: 100),
             overviewContainer.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             overviewContainer.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            overviewContainer.bottomAnchor.constraint(equalTo: genreCollectionView.topAnchor, constant: -12),
             
             overviewLabel.topAnchor.constraint(equalTo: overviewContainer.topAnchor),
             overviewLabel.leadingAnchor.constraint(equalTo: overviewContainer.leadingAnchor),
             overviewLabel.trailingAnchor.constraint(equalTo: overviewContainer.trailingAnchor),
             overviewLabel.bottomAnchor.constraint(equalTo: overviewContainer.bottomAnchor),
             
-            genreCollectionView.topAnchor.constraint(equalTo: overviewContainer.bottomAnchor, constant: 12),
+            genreCollectionView.bottomAnchor.constraint(equalTo: castHeadline.topAnchor, constant: -12),
             genreCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             genreCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             genreCollectionView.heightAnchor.constraint(equalToConstant: 32),
             
-            castHeadline.topAnchor.constraint(equalTo: genreCollectionView.bottomAnchor, constant: 16),
+            castHeadline.bottomAnchor.constraint(equalTo: castCollectionView.topAnchor, constant: -12),
             castHeadline.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            castHeadline.heightAnchor.constraint(equalToConstant: 16),
             
-            castCollectionView.topAnchor.constraint(equalTo: castHeadline.bottomAnchor, constant: 12),
+            castCollectionView.bottomAnchor.constraint(equalTo: crewHeadline.topAnchor, constant: -12),
             castCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             castCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             castCollectionView.heightAnchor.constraint(equalToConstant: 80),
             
-            crewHeadline.topAnchor.constraint(equalTo: castCollectionView.bottomAnchor, constant: 12),
+            crewHeadline.bottomAnchor.constraint(equalTo: crewCollectionView.topAnchor, constant: -12),
             crewHeadline.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            crewHeadline.heightAnchor.constraint(equalToConstant: 16),
             
-            crewCollectionView.topAnchor.constraint(equalTo: crewHeadline.bottomAnchor, constant: 12),
+            crewCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             crewCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             crewCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             crewCollectionView.heightAnchor.constraint(equalToConstant: 80),
@@ -113,12 +118,16 @@ class ReView: UIView {
 
 // MARK: - Public Methods
 extension ReView {
-    func update(with media: Media) {
+    func update(with media: Media, isFullscreen: Bool = false) {
         // POSTER
-        if let posterURL = media.posterURL, let url = URL(string: posterURL) {
+        if let posterURL = media.posterURL, let url = URL(string: posterURL), !isFullscreen {
             swipeImage.load(url: url)
         } else {
             // TODO: - Add image placeholder
+        }
+        
+        if isFullscreen {
+            swipeImage.isHidden = true
         }
         
         // NAME
@@ -223,6 +232,25 @@ extension ReView {
             self.castCollectionView.reloadData()
             self.crewCollectionView.reloadData()
             self.genreCollectionView.reloadData()
+        }
+        
+        // EXCEPTION HANDLING
+        if cast.isEmpty {
+            castHeadline.isHidden = true
+        } else {
+            castHeadline.isHidden = false
+        }
+        
+        if crew.isEmpty {
+            crewHeadline.isHidden = true
+        } else {
+            crewHeadline.isHidden = false
+        }
+        
+        if genres.contains(where: { $0 == "Animation" || $0 == "мультфильм" }) {
+            castHeadline.text = "Актеры озвучки"
+        } else {
+            castHeadline.text = "В главных ролях"
         }
     }
     

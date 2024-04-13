@@ -118,7 +118,7 @@ extension NetworkManager {
         
         if let yearFilter = filter?.years {
             query = query.whereField("year", isGreaterThanOrEqualTo: yearFilter.left)
-                    .whereField("year", isLessThanOrEqualTo: yearFilter.right)
+                .whereField("year", isLessThanOrEqualTo: yearFilter.right)
         }
         
         if let genreFilter = filter?.genre {

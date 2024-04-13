@@ -16,7 +16,7 @@ class SearchViewController: UIViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(MediaCell.self, forCellReuseIdentifier: MediaCell.identifier)
+        tableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.identifier)
         return tableView
     }()
     
@@ -87,7 +87,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MediaCell.identifier, for: indexPath) as? MediaCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.identifier, for: indexPath) as? SearchCell else {
             fatalError("DEBUG: Failed with custom cell bug")
         }
         
@@ -98,6 +98,12 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { 88 }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let media = inSearchMode(searchController) ? results[indexPath.row] : history[indexPath.row]
+        let mediaViewController = MediaModuleBuilder.build(for: media)
+        navigationController?.pushViewController(mediaViewController, animated: true)
+    }
 }
 
 // MARK: - Search Controller

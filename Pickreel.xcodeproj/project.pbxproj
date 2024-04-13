@@ -52,7 +52,7 @@
 		07773D352B8FFC9400483A08 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D302B8FFC9400483A08 /* RegisterViewController.swift */; };
 		07773D362B8FFC9400483A08 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07773D312B8FFC9400483A08 /* RegisterInteractor.swift */; };
 		077E03FE2B6D48B400FA6DA4 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E03FD2B6D48B400FA6DA4 /* Filter.swift */; };
-		077F8C792BB07B0C0076927E /* MediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F8C782BB07B0C0076927E /* MediaCell.swift */; };
+		077F8C792BB07B0C0076927E /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F8C782BB07B0C0076927E /* SearchCell.swift */; };
 		077FD3BC2B9E20800041E2C6 /* SettingsModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3B72B9E20800041E2C6 /* SettingsModuleBuilder.swift */; };
 		077FD3BD2B9E20800041E2C6 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3B82B9E20800041E2C6 /* SettingsPresenter.swift */; };
 		077FD3BE2B9E20800041E2C6 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FD3B92B9E20800041E2C6 /* SettingsRouter.swift */; };
@@ -67,6 +67,9 @@
 		07946FE02B651B6C001C4E7F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07946FDB2B651B6C001C4E7F /* TabBarController.swift */; };
 		079536642BC98C94005580A3 /* String.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079536632BC98C94005580A3 /* String.extension.swift */; };
 		0797AAE32B91DD0400AF9E78 /* Shuffle in Frameworks */ = {isa = PBXBuildFile; productRef = 0797AAE22B91DD0400AF9E78 /* Shuffle */; };
+		07AE99CF2BCAD72C00012500 /* MediaModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AE99CA2BCAD72C00012500 /* MediaModuleBuilder.swift */; };
+		07AE99D02BCAD72C00012500 /* MediaPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AE99CB2BCAD72C00012500 /* MediaPresenter.swift */; };
+		07AE99D22BCAD72C00012500 /* MediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AE99CD2BCAD72C00012500 /* MediaViewController.swift */; };
 		07AF1EC02BA0474300B4169D /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AF1EBF2BA0474300B4169D /* SettingCell.swift */; };
 		07AF1EC22BA08AFB00B4169D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AF1EC12BA08AFB00B4169D /* ThemeManager.swift */; };
 		07B025FA2B98C2D2004C303B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07B025F92B98C2D2004C303B /* GoogleService-Info.plist */; };
@@ -130,7 +133,7 @@
 		07773D302B8FFC9400483A08 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		07773D312B8FFC9400483A08 /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
 		077E03FD2B6D48B400FA6DA4 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
-		077F8C782BB07B0C0076927E /* MediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCell.swift; sourceTree = "<group>"; };
+		077F8C782BB07B0C0076927E /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		077FD3B72B9E20800041E2C6 /* SettingsModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleBuilder.swift; sourceTree = "<group>"; };
 		077FD3B82B9E20800041E2C6 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		077FD3B92B9E20800041E2C6 /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
@@ -144,6 +147,9 @@
 		07946FD82B651B6C001C4E7F /* TabBarModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModuleBuilder.swift; sourceTree = "<group>"; };
 		07946FDB2B651B6C001C4E7F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		079536632BC98C94005580A3 /* String.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.extension.swift; sourceTree = "<group>"; };
+		07AE99CA2BCAD72C00012500 /* MediaModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaModuleBuilder.swift; sourceTree = "<group>"; };
+		07AE99CB2BCAD72C00012500 /* MediaPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPresenter.swift; sourceTree = "<group>"; };
+		07AE99CD2BCAD72C00012500 /* MediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewController.swift; sourceTree = "<group>"; };
 		07AF1EBF2BA0474300B4169D /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		07AF1EC12BA08AFB00B4169D /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		07B025F92B98C2D2004C303B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -237,6 +243,7 @@
 				07F6DD882B6BF177001F9DB3 /* FiltersPresenter.swift */,
 				07ED00372B63F70B00F0A143 /* GeneralPresenter.swift */,
 				07773D212B8FE7FF00483A08 /* LoginPresenter.swift */,
+				07AE99CB2BCAD72C00012500 /* MediaPresenter.swift */,
 				07946FCE2B651A53001C4E7F /* ProfilePresenter.swift */,
 				07773D2E2B8FFC9400483A08 /* RegisterPresenter.swift */,
 				0759092D2B6D75F800A603EA /* SearchPresenter.swift */,
@@ -273,6 +280,7 @@
 				07ED00362B63F70B00F0A143 /* GeneralModuleBuilder.swift */,
 				07F6DD872B6BF177001F9DB3 /* FiltersModuleBuilder.swift */,
 				07773D202B8FE7FF00483A08 /* LoginModuleBuilder.swift */,
+				07AE99CA2BCAD72C00012500 /* MediaModuleBuilder.swift */,
 				07946FCD2B651A53001C4E7F /* ProfileModuleBuilder.swift */,
 				07773D2D2B8FFC9400483A08 /* RegisterModuleBuilder.swift */,
 				0759092C2B6D75F800A603EA /* SearchModuleBuilder.swift */,
@@ -286,8 +294,8 @@
 			isa = PBXGroup;
 			children = (
 				076567272BAF1C2600FE17B7 /* GenreCell.swift */,
-				077F8C782BB07B0C0076927E /* MediaCell.swift */,
 				075F83232BC02EF400C376A3 /* PersonCell.swift */,
+				077F8C782BB07B0C0076927E /* SearchCell.swift */,
 				07AF1EBF2BA0474300B4169D /* SettingCell.swift */,
 			);
 			path = Cells;
@@ -326,6 +334,7 @@
 				07F6DD8A2B6BF177001F9DB3 /* FiltersViewController.swift */,
 				07ED00392B63F70B00F0A143 /* GeneralViewController.swift */,
 				07773D232B8FE7FF00483A08 /* LoginViewController.swift */,
+				07AE99CD2BCAD72C00012500 /* MediaViewController.swift */,
 				07946FD02B651A53001C4E7F /* ProfileViewController.swift */,
 				07773D302B8FFC9400483A08 /* RegisterViewController.swift */,
 				0759092F2B6D75F800A603EA /* SearchViewController.swift */,
@@ -486,6 +495,7 @@
 				07F6DD8C2B6BF177001F9DB3 /* FiltersModuleBuilder.swift in Sources */,
 				075909332B6D75F800A603EA /* SearchRouter.swift in Sources */,
 				07546A822BC34FFA00C6E72E /* Setting.swift in Sources */,
+				07AE99CF2BCAD72C00012500 /* MediaModuleBuilder.swift in Sources */,
 				076567282BAF1C2600FE17B7 /* GenreCell.swift in Sources */,
 				07773D272B8FE7FF00483A08 /* LoginRouter.swift in Sources */,
 				079536642BC98C94005580A3 /* String.extension.swift in Sources */,
@@ -501,10 +511,11 @@
 				07ED003E2B63F70B00F0A143 /* GeneralViewController.swift in Sources */,
 				07773D362B8FFC9400483A08 /* RegisterInteractor.swift in Sources */,
 				07F16CCB2BA9BF6C00470130 /* Page.swift in Sources */,
+				07AE99D02BCAD72C00012500 /* MediaPresenter.swift in Sources */,
 				07773D352B8FFC9400483A08 /* RegisterViewController.swift in Sources */,
 				0744A88F2BC47ED600BE242F /* ThemeIcon.swift in Sources */,
 				0744A88D2BC44B5E00BE242F /* UICollectionView.extension.swift in Sources */,
-				077F8C792BB07B0C0076927E /* MediaCell.swift in Sources */,
+				077F8C792BB07B0C0076927E /* SearchCell.swift in Sources */,
 				07546A882BC350C800C6E72E /* Iterator.swift in Sources */,
 				075909312B6D75F800A603EA /* SearchModuleBuilder.swift in Sources */,
 				07AF1EC02BA0474300B4169D /* SettingCell.swift in Sources */,
@@ -525,6 +536,7 @@
 				07546A802BC34C9900C6E72E /* Card.swift in Sources */,
 				07ED003C2B63F70B00F0A143 /* GeneralPresenter.swift in Sources */,
 				07F6DD8D2B6BF177001F9DB3 /* FiltersPresenter.swift in Sources */,
+				07AE99D22BCAD72C00012500 /* MediaViewController.swift in Sources */,
 				07546A862BC3509C00C6E72E /* MediaType.swift in Sources */,
 				07946FE02B651B6C001C4E7F /* TabBarController.swift in Sources */,
 				071F3FB42BACD36F00D08E90 /* Media.swift in Sources */,

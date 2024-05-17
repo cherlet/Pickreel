@@ -1,13 +1,15 @@
 import UIKit
 
+let ALL_GENRES_RU = ["комедия", "боевик", "фэнтези", "детектив",  "драма", "семейный", "приключения", "мультфильм", "ужасы", "фантастика", "криминал", "военный"]
+let ALL_GENRES_EN = ["Comedy", "Action", "Fantasy", "Mystery", "Drama", "Family", "Adventure", "Animation", "Horror", "Science Fiction", "Crime", "War"]
+
 struct Genres: Codable {
     var ru: [String]
     var en: [String]
 }
 
 extension Genres {
-    static let all = Genres(ru: ["комедия", "боевик", "фэнтези", "детектив",  "драма", "семейный", "приключения", "мультфильм", "ужасы", "фантастика", "криминал", "военный"], 
-                            en: ["Comedy", "Action", "Fantasy", "Mystery", "Drama", "Family", "Adventure", "Animation", "Horror", "Science Fiction", "Crime", "War"])
+    static let all = Genres(ru: ALL_GENRES_RU, en: ALL_GENRES_EN)
     
     static func findIndex(of genre: String?) -> Int? {
         guard let genre = genre else { return nil }
@@ -24,38 +26,11 @@ extension Genres {
     static func getAssociations(of genre: String) -> (color: UIColor?, icon: UIImage?)? {
         guard let index = findIndex(of: genre) else { return nil }
         
-        switch index {
-        case 0:
-            return Association.comedy.info
-        case 1:
-            return Association.action.info
-        case 2:
-            return Association.fantasy.info
-        case 3:
-            return Association.mystery.info
-        case 4:
-            return Association.drama.info
-        case 5:
-            return Association.family.info
-        case 6:
-            return Association.adventure.info
-        case 7:
-            return Association.animation.info
-        case 8:
-            return Association.horror.info
-        case 9:
-            return Association.scienceFiction.info
-        case 10:
-            return Association.crime.info
-        case 11:
-            return Association.war.info
-        default:
-            return nil
-        }
+        return Association(rawValue: index)?.info
     }
 }
 
-enum Association {
+enum Association: Int, CaseIterable {
     case comedy
     case action
     case fantasy
